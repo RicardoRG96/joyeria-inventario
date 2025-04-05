@@ -122,11 +122,11 @@
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="filterCustomerTopCustomersTableTxt" min="-2" pref="172" max="-2" attributes="0"/>
+                      <Component id="filterCustomerBestSellingJewerlyTableTxt" min="-2" pref="172" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="filterDateBestTopCustomersTableTxt" min="-2" pref="170" max="-2" attributes="0"/>
+                      <Component id="filterDateBestSellingJewerlyTableTxt" min="-2" pref="170" max="-2" attributes="0"/>
                       <EmptySpace pref="20" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -143,9 +143,9 @@
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="filterCustomerTopCustomersTableTxt" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Component id="filterCustomerBestSellingJewerlyTableTxt" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                           <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="filterDateBestTopCustomersTableTxt" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Component id="filterDateBestSellingJewerlyTableTxt" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                   </Group>
@@ -164,6 +164,9 @@
                 <Property name="text" type="java.lang.String" value="jButton1"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="null"/>
+                </Property>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
                 </Property>
               </Properties>
             </Component>
@@ -195,7 +198,7 @@
                 <Property name="text" type="java.lang.String" value="Cliente:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="filterCustomerTopCustomersTableTxt">
+            <Component class="javax.swing.JTextField" name="filterCustomerBestSellingJewerlyTableTxt">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="fc" green="fa" red="f8" type="rgb"/>
@@ -222,7 +225,7 @@
                 <Property name="text" type="java.lang.String" value="Fecha:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="filterDateBestTopCustomersTableTxt">
+            <Component class="javax.swing.JTextField" name="filterDateBestSellingJewerlyTableTxt">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="fc" green="fa" red="f8" type="rgb"/>

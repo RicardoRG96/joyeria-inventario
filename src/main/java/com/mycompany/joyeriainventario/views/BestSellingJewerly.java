@@ -76,6 +76,7 @@ public class BestSellingJewerly extends javax.swing.JFrame {
         exportToExcelBestSellingJewerlyBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/excel.png"))); // NOI18N
         exportToExcelBestSellingJewerlyBtn.setText("jButton1");
         exportToExcelBestSellingJewerlyBtn.setBorder(null);
+        exportToExcelBestSellingJewerlyBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel1.setBackground(new java.awt.Color(248, 250, 252));
         jLabel1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N

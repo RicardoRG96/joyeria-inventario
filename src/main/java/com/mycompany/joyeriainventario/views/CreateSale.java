@@ -33,16 +33,22 @@ public class CreateSale extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         customerSaleCbx = new javax.swing.JComboBox<>();
-        quantitySaleTxt = new javax.swing.JTextField();
+        totalAmountTxt = new javax.swing.JTextField();
         cancelSaleBtn = new javax.swing.JButton();
-        createSaleBtn1 = new javax.swing.JButton();
+        addProductToOrderSaleBtn = new javax.swing.JButton();
+        createSaleBtn2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ordertItemsTable = new javax.swing.JTable();
+        jLabel9 = new javax.swing.JLabel();
+        quantitySaleTxt1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(232, 249, 255));
-        setPreferredSize(new java.awt.Dimension(630, 273));
+        setPreferredSize(new java.awt.Dimension(787, 490));
 
         jPanel1.setBackground(new java.awt.Color(232, 249, 255));
         jPanel1.setMinimumSize(new java.awt.Dimension(630, 273));
+        jPanel1.setPreferredSize(new java.awt.Dimension(787, 490));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setBackground(new java.awt.Color(248, 250, 252));
@@ -54,37 +60,37 @@ public class CreateSale extends javax.swing.JFrame {
         jLabel6.setBackground(new java.awt.Color(248, 250, 252));
         jLabel6.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(49, 54, 63));
-        jLabel6.setText("Joya:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, -1, -1));
+        jLabel6.setText("Joya");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, -1, -1));
 
         jewelSaleCbx.setBackground(new java.awt.Color(248, 250, 252));
         jewelSaleCbx.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jewelSaleCbx.setForeground(new java.awt.Color(49, 54, 63));
         jewelSaleCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jewelSaleCbx, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 200, 20));
+        jPanel1.add(jewelSaleCbx, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 60, 200, 20));
 
         jLabel7.setBackground(new java.awt.Color(248, 250, 252));
         jLabel7.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(49, 54, 63));
-        jLabel7.setText("Cantidad:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
+        jLabel7.setText("Cantidad");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 40, -1, -1));
 
         jLabel8.setBackground(new java.awt.Color(248, 250, 252));
         jLabel8.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(49, 54, 63));
-        jLabel8.setText("Cliente:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
+        jLabel8.setText("Monto Total:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 420, -1, -1));
 
         customerSaleCbx.setBackground(new java.awt.Color(248, 250, 252));
         customerSaleCbx.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         customerSaleCbx.setForeground(new java.awt.Color(49, 54, 63));
         customerSaleCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(customerSaleCbx, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 200, 20));
+        jPanel1.add(customerSaleCbx, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 200, 20));
 
-        quantitySaleTxt.setBackground(new java.awt.Color(248, 250, 252));
-        quantitySaleTxt.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        quantitySaleTxt.setForeground(new java.awt.Color(49, 54, 63));
-        jPanel1.add(quantitySaleTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 130, 20));
+        totalAmountTxt.setBackground(new java.awt.Color(248, 250, 252));
+        totalAmountTxt.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        totalAmountTxt.setForeground(new java.awt.Color(49, 54, 63));
+        jPanel1.add(totalAmountTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 420, 70, 20));
 
         cancelSaleBtn.setBackground(new java.awt.Color(251, 251, 251));
         cancelSaleBtn.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -96,29 +102,76 @@ public class CreateSale extends javax.swing.JFrame {
                 cancelSaleBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(cancelSaleBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 200, 120, 30));
+        jPanel1.add(cancelSaleBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 410, 120, 30));
 
-        createSaleBtn1.setBackground(new java.awt.Color(251, 251, 251));
-        createSaleBtn1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        createSaleBtn1.setForeground(new java.awt.Color(49, 54, 63));
-        createSaleBtn1.setText("Crear pedido");
-        createSaleBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        createSaleBtn1.addActionListener(new java.awt.event.ActionListener() {
+        addProductToOrderSaleBtn.setBackground(new java.awt.Color(251, 251, 251));
+        addProductToOrderSaleBtn.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        addProductToOrderSaleBtn.setForeground(new java.awt.Color(49, 54, 63));
+        addProductToOrderSaleBtn.setText("Agregar");
+        addProductToOrderSaleBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        addProductToOrderSaleBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createSaleBtn1ActionPerformed(evt);
+                addProductToOrderSaleBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(createSaleBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 120, 30));
+        jPanel1.add(addProductToOrderSaleBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 60, -1, 20));
+
+        createSaleBtn2.setBackground(new java.awt.Color(251, 251, 251));
+        createSaleBtn2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        createSaleBtn2.setForeground(new java.awt.Color(49, 54, 63));
+        createSaleBtn2.setText("Crear pedido");
+        createSaleBtn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        createSaleBtn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createSaleBtn2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(createSaleBtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 410, 120, 30));
+
+        jScrollPane1.setBackground(new java.awt.Color(248, 250, 252));
+
+        ordertItemsTable.setBackground(new java.awt.Color(248, 250, 252));
+        ordertItemsTable.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        ordertItemsTable.setForeground(new java.awt.Color(49, 54, 63));
+        ordertItemsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(ordertItemsTable);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 710, 300));
+
+        jLabel9.setBackground(new java.awt.Color(248, 250, 252));
+        jLabel9.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(49, 54, 63));
+        jLabel9.setText("Cliente");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, -1, -1));
+
+        quantitySaleTxt1.setBackground(new java.awt.Color(248, 250, 252));
+        quantitySaleTxt1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        quantitySaleTxt1.setForeground(new java.awt.Color(49, 54, 63));
+        jPanel1.add(quantitySaleTxt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 60, 90, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 787, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -128,9 +181,13 @@ public class CreateSale extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cancelSaleBtnActionPerformed
 
-    private void createSaleBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createSaleBtn1ActionPerformed
+    private void addProductToOrderSaleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProductToOrderSaleBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_createSaleBtn1ActionPerformed
+    }//GEN-LAST:event_addProductToOrderSaleBtnActionPerformed
+
+    private void createSaleBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createSaleBtn2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_createSaleBtn2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -168,15 +225,20 @@ public class CreateSale extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addProductToOrderSaleBtn;
     private javax.swing.JButton cancelSaleBtn;
-    private javax.swing.JButton createSaleBtn1;
+    private javax.swing.JButton createSaleBtn2;
     private javax.swing.JComboBox<String> customerSaleCbx;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> jewelSaleCbx;
-    private javax.swing.JTextField quantitySaleTxt;
+    private javax.swing.JTable ordertItemsTable;
+    private javax.swing.JTextField quantitySaleTxt1;
+    private javax.swing.JTextField totalAmountTxt;
     // End of variables declaration//GEN-END:variables
 }

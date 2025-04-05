@@ -95,6 +95,7 @@ public class TotalSales extends javax.swing.JFrame {
         exportSaleToExcelBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/excel.png"))); // NOI18N
         exportSaleToExcelBtn.setText("jButton1");
         exportSaleToExcelBtn.setBorder(null);
+        exportSaleToExcelBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel1.setBackground(new java.awt.Color(248, 250, 252));
         jLabel1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N

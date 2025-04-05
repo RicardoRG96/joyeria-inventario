@@ -29,13 +29,13 @@ public class HomeScreen extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         inventoryTab = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        salesTab = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        reportsTab = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        inventoryTab1 = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        inventoryTab2 = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -76,78 +76,31 @@ public class HomeScreen extends javax.swing.JFrame {
 
         inventoryTab.setBackground(new java.awt.Color(217, 234, 253));
 
-        jLabel1.setBackground(new java.awt.Color(217, 234, 253));
-        jLabel1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(49, 54, 63));
-        jLabel1.setText("Inventario");
+        jLabel15.setFont(new java.awt.Font("SansSerif", 0, 22)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(49, 54, 63));
+        jLabel15.setText("Inventario");
 
         javax.swing.GroupLayout inventoryTabLayout = new javax.swing.GroupLayout(inventoryTab);
         inventoryTab.setLayout(inventoryTabLayout);
         inventoryTabLayout.setHorizontalGroup(
             inventoryTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(inventoryTabLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         inventoryTabLayout.setVerticalGroup(
             inventoryTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(inventoryTabLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                .addGap(19, 19, 19)
+                .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
                 .addContainerGap())
-        );
-
-        salesTab.setBackground(new java.awt.Color(217, 234, 253));
-        salesTab.setPreferredSize(new java.awt.Dimension(66, 76));
-
-        jLabel2.setBackground(new java.awt.Color(217, 234, 253));
-        jLabel2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(49, 54, 63));
-        jLabel2.setText("Ventas");
-
-        javax.swing.GroupLayout salesTabLayout = new javax.swing.GroupLayout(salesTab);
-        salesTab.setLayout(salesTabLayout);
-        salesTabLayout.setHorizontalGroup(
-            salesTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(salesTabLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        salesTabLayout.setVerticalGroup(
-            salesTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, salesTabLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
-        );
-
-        reportsTab.setBackground(new java.awt.Color(217, 234, 253));
-
-        jLabel3.setBackground(new java.awt.Color(217, 234, 253));
-        jLabel3.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(49, 54, 63));
-        jLabel3.setText("Reportes");
-
-        javax.swing.GroupLayout reportsTabLayout = new javax.swing.GroupLayout(reportsTab);
-        reportsTab.setLayout(reportsTabLayout);
-        reportsTabLayout.setHorizontalGroup(
-            reportsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(reportsTabLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        reportsTabLayout.setVerticalGroup(
-            reportsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reportsTabLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
         );
 
         jPanel6.setBackground(new java.awt.Color(217, 234, 253));
 
         jLabel4.setBackground(new java.awt.Color(217, 234, 253));
-        jLabel4.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("SansSerif", 0, 26)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(49, 54, 63));
         jLabel4.setText("Bienvenido");
 
@@ -156,16 +109,62 @@ public class HomeScreen extends javax.swing.JFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addContainerGap()
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(57, 57, 57)
+                .addContainerGap()
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
+        );
+
+        inventoryTab1.setBackground(new java.awt.Color(217, 234, 253));
+
+        jLabel16.setFont(new java.awt.Font("SansSerif", 0, 22)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(49, 54, 63));
+        jLabel16.setText("Ventas");
+
+        javax.swing.GroupLayout inventoryTab1Layout = new javax.swing.GroupLayout(inventoryTab1);
+        inventoryTab1.setLayout(inventoryTab1Layout);
+        inventoryTab1Layout.setHorizontalGroup(
+            inventoryTab1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inventoryTab1Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        inventoryTab1Layout.setVerticalGroup(
+            inventoryTab1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inventoryTab1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        inventoryTab2.setBackground(new java.awt.Color(217, 234, 253));
+
+        jLabel17.setFont(new java.awt.Font("SansSerif", 0, 22)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(49, 54, 63));
+        jLabel17.setText("Reportes");
+
+        javax.swing.GroupLayout inventoryTab2Layout = new javax.swing.GroupLayout(inventoryTab2);
+        inventoryTab2.setLayout(inventoryTab2Layout);
+        inventoryTab2Layout.setHorizontalGroup(
+            inventoryTab2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inventoryTab2Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        inventoryTab2Layout.setVerticalGroup(
+            inventoryTab2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inventoryTab2Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -175,23 +174,25 @@ public class HomeScreen extends javax.swing.JFrame {
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(salesTab, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(reportsTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(inventoryTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(inventoryTab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(inventoryTab1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(inventoryTab2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(52, 52, 52)
                 .addComponent(inventoryTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(salesTab, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(reportsTab, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                .addComponent(inventoryTab1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(inventoryTab2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(115, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 189, 490));
@@ -341,6 +342,7 @@ public class HomeScreen extends javax.swing.JFrame {
         addNewSaleBtn.setBackground(new java.awt.Color(248, 250, 252));
         addNewSaleBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add-sale.png"))); // NOI18N
         addNewSaleBtn.setBorder(null);
+        addNewSaleBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel10.setBackground(new java.awt.Color(248, 250, 252));
         jLabel10.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
@@ -350,6 +352,7 @@ public class HomeScreen extends javax.swing.JFrame {
         updateSalesTableBtn.setBackground(new java.awt.Color(248, 250, 252));
         updateSalesTableBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/invoice.png"))); // NOI18N
         updateSalesTableBtn.setBorder(null);
+        updateSalesTableBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel12.setBackground(new java.awt.Color(248, 250, 252));
         jLabel12.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
@@ -359,6 +362,7 @@ public class HomeScreen extends javax.swing.JFrame {
         editSaleBtn.setBackground(new java.awt.Color(248, 250, 252));
         editSaleBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/edit.png"))); // NOI18N
         editSaleBtn.setBorder(null);
+        editSaleBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel13.setBackground(new java.awt.Color(248, 250, 252));
         jLabel13.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
@@ -368,6 +372,7 @@ public class HomeScreen extends javax.swing.JFrame {
         updateSalesTableBtn1.setBackground(new java.awt.Color(248, 250, 252));
         updateSalesTableBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/update.png"))); // NOI18N
         updateSalesTableBtn1.setBorder(null);
+        updateSalesTableBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel14.setBackground(new java.awt.Color(248, 250, 252));
         jLabel14.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
@@ -473,7 +478,7 @@ public class HomeScreen extends javax.swing.JFrame {
 
         totalSalesBtn.setBackground(new java.awt.Color(255, 255, 255));
         totalSalesBtn.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-        totalSalesBtn.setForeground(new java.awt.Color(34, 40, 49));
+        totalSalesBtn.setForeground(new java.awt.Color(92, 179, 56));
         totalSalesBtn.setText("Total de ventas");
         totalSalesBtn.setBorder(null);
         totalSalesBtn.setContentAreaFilled(false);
@@ -483,7 +488,7 @@ public class HomeScreen extends javax.swing.JFrame {
 
         bestSellingJewelryBtn.setBackground(new java.awt.Color(255, 255, 255));
         bestSellingJewelryBtn.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-        bestSellingJewelryBtn.setForeground(new java.awt.Color(34, 40, 49));
+        bestSellingJewelryBtn.setForeground(new java.awt.Color(92, 179, 56));
         bestSellingJewelryBtn.setText("Joyas más vendidas");
         bestSellingJewelryBtn.setBorder(null);
         bestSellingJewelryBtn.setContentAreaFilled(false);
@@ -493,7 +498,7 @@ public class HomeScreen extends javax.swing.JFrame {
 
         topCustomersBtn.setBackground(new java.awt.Color(255, 255, 255));
         topCustomersBtn.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-        topCustomersBtn.setForeground(new java.awt.Color(34, 40, 49));
+        topCustomersBtn.setForeground(new java.awt.Color(92, 179, 56));
         topCustomersBtn.setText("Clientes con más compras");
         topCustomersBtn.setBorder(null);
         topCustomersBtn.setContentAreaFilled(false);
@@ -598,15 +603,17 @@ public class HomeScreen extends javax.swing.JFrame {
     private javax.swing.JButton editJewelBtn;
     private javax.swing.JButton editSaleBtn;
     private javax.swing.JPanel inventoryTab;
+    private javax.swing.JPanel inventoryTab1;
+    private javax.swing.JPanel inventoryTab2;
     private javax.swing.JTable inventoryTable;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -624,8 +631,6 @@ public class HomeScreen extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JPanel reportsTab;
-    private javax.swing.JPanel salesTab;
     private javax.swing.JTable salesTable;
     private javax.swing.JButton topCustomersBtn;
     private javax.swing.JButton totalSalesBtn;

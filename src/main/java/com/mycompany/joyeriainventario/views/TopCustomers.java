@@ -33,9 +33,9 @@ public class TopCustomers extends javax.swing.JFrame {
         exportToExcelTopCustomersBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        filterCustomerTopCustomersTableTxt = new javax.swing.JTextField();
+        filterCustomerBestSellingJewerlyTableTxt = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        filterDateBestTopCustomersTableTxt = new javax.swing.JTextField();
+        filterDateBestSellingJewerlyTableTxt = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         topCustomersTable = new javax.swing.JTable();
 
@@ -76,6 +76,7 @@ public class TopCustomers extends javax.swing.JFrame {
         exportToExcelTopCustomersBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/excel.png"))); // NOI18N
         exportToExcelTopCustomersBtn.setText("jButton1");
         exportToExcelTopCustomersBtn.setBorder(null);
+        exportToExcelTopCustomersBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel1.setBackground(new java.awt.Color(248, 250, 252));
         jLabel1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
@@ -87,18 +88,18 @@ public class TopCustomers extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(49, 54, 63));
         jLabel8.setText("Cliente:");
 
-        filterCustomerTopCustomersTableTxt.setBackground(new java.awt.Color(248, 250, 252));
-        filterCustomerTopCustomersTableTxt.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        filterCustomerTopCustomersTableTxt.setForeground(new java.awt.Color(49, 54, 63));
+        filterCustomerBestSellingJewerlyTableTxt.setBackground(new java.awt.Color(248, 250, 252));
+        filterCustomerBestSellingJewerlyTableTxt.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        filterCustomerBestSellingJewerlyTableTxt.setForeground(new java.awt.Color(49, 54, 63));
 
         jLabel9.setBackground(new java.awt.Color(248, 250, 252));
         jLabel9.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(49, 54, 63));
         jLabel9.setText("Fecha:");
 
-        filterDateBestTopCustomersTableTxt.setBackground(new java.awt.Color(248, 250, 252));
-        filterDateBestTopCustomersTableTxt.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        filterDateBestTopCustomersTableTxt.setForeground(new java.awt.Color(49, 54, 63));
+        filterDateBestSellingJewerlyTableTxt.setBackground(new java.awt.Color(248, 250, 252));
+        filterDateBestSellingJewerlyTableTxt.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        filterDateBestSellingJewerlyTableTxt.setForeground(new java.awt.Color(49, 54, 63));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -115,11 +116,11 @@ public class TopCustomers extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(filterCustomerTopCustomersTableTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(filterCustomerBestSellingJewerlyTableTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(filterDateBestTopCustomersTableTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(filterDateBestSellingJewerlyTableTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -133,9 +134,9 @@ public class TopCustomers extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(filterCustomerTopCustomersTableTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(filterCustomerBestSellingJewerlyTableTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
-                    .addComponent(filterDateBestTopCustomersTableTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(filterDateBestSellingJewerlyTableTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17))
         );
 
@@ -211,8 +212,8 @@ public class TopCustomers extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton exportToExcelTopCustomersBtn;
-    private javax.swing.JTextField filterCustomerTopCustomersTableTxt;
-    private javax.swing.JTextField filterDateBestTopCustomersTableTxt;
+    private javax.swing.JTextField filterCustomerBestSellingJewerlyTableTxt;
+    private javax.swing.JTextField filterDateBestSellingJewerlyTableTxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel8;
