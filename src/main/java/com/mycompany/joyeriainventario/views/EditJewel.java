@@ -45,6 +45,7 @@ public class EditJewel extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(630, 273));
 
         jPanel1.setBackground(new java.awt.Color(232, 249, 255));
+        jPanel1.setPreferredSize(new java.awt.Dimension(630, 273));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setBackground(new java.awt.Color(248, 250, 252));
@@ -143,7 +144,7 @@ public class EditJewel extends javax.swing.JFrame {
                 cancelJewelEditionBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(cancelJewelEditionBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 210, 90, 30));
+        jPanel1.add(cancelJewelEditionBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 200, 90, 30));
 
         confirmEditionJewelBtn.setBackground(new java.awt.Color(251, 251, 251));
         confirmEditionJewelBtn.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -155,7 +156,7 @@ public class EditJewel extends javax.swing.JFrame {
                 confirmEditionJewelBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(confirmEditionJewelBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 90, 30));
+        jPanel1.add(confirmEditionJewelBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, 90, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -165,7 +166,7 @@ public class EditJewel extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
