@@ -28,18 +28,18 @@ public class AddNewJewel extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jewelWeightTxt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jewelStockTxt = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        jewelMaterialTxt = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        jewelNameTxt = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jewelPriceTxt = new javax.swing.JTextField();
+        cancelJewelCreationBtn = new javax.swing.JButton();
+        createJewelBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(217, 234, 253));
@@ -53,10 +53,10 @@ public class AddNewJewel extends javax.swing.JFrame {
         jLabel1.setText("Stock:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, -1, -1));
 
-        jTextField1.setBackground(new java.awt.Color(248, 250, 252));
-        jTextField1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(49, 54, 63));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 230, 20));
+        jewelWeightTxt.setBackground(new java.awt.Color(248, 250, 252));
+        jewelWeightTxt.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jewelWeightTxt.setForeground(new java.awt.Color(49, 54, 63));
+        jPanel1.add(jewelWeightTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 230, 20));
 
         jLabel2.setBackground(new java.awt.Color(248, 250, 252));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -70,10 +70,10 @@ public class AddNewJewel extends javax.swing.JFrame {
         jLabel3.setText("Nombre:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
 
-        jTextField2.setBackground(new java.awt.Color(248, 250, 252));
-        jTextField2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(49, 54, 63));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 230, 20));
+        jewelStockTxt.setBackground(new java.awt.Color(248, 250, 252));
+        jewelStockTxt.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jewelStockTxt.setForeground(new java.awt.Color(49, 54, 63));
+        jPanel1.add(jewelStockTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 230, 20));
 
         jLabel4.setBackground(new java.awt.Color(248, 250, 252));
         jLabel4.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -81,10 +81,10 @@ public class AddNewJewel extends javax.swing.JFrame {
         jLabel4.setText("Material:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
 
-        jTextField3.setBackground(new java.awt.Color(248, 250, 252));
-        jTextField3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(49, 54, 63));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 230, 20));
+        jewelMaterialTxt.setBackground(new java.awt.Color(248, 250, 252));
+        jewelMaterialTxt.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jewelMaterialTxt.setForeground(new java.awt.Color(49, 54, 63));
+        jPanel1.add(jewelMaterialTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 230, 20));
 
         jLabel5.setBackground(new java.awt.Color(248, 250, 252));
         jLabel5.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -92,15 +92,15 @@ public class AddNewJewel extends javax.swing.JFrame {
         jLabel5.setText("Peso:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
 
-        jTextField4.setBackground(new java.awt.Color(248, 250, 252));
-        jTextField4.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(49, 54, 63));
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        jewelNameTxt.setBackground(new java.awt.Color(248, 250, 252));
+        jewelNameTxt.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jewelNameTxt.setForeground(new java.awt.Color(49, 54, 63));
+        jewelNameTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                jewelNameTxtActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 230, 20));
+        jPanel1.add(jewelNameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 230, 20));
 
         jLabel6.setBackground(new java.awt.Color(248, 250, 252));
         jLabel6.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -108,32 +108,34 @@ public class AddNewJewel extends javax.swing.JFrame {
         jLabel6.setText("Precio:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, -1, -1));
 
-        jTextField5.setBackground(new java.awt.Color(248, 250, 252));
-        jTextField5.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(49, 54, 63));
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, 230, 20));
+        jewelPriceTxt.setBackground(new java.awt.Color(248, 250, 252));
+        jewelPriceTxt.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jewelPriceTxt.setForeground(new java.awt.Color(49, 54, 63));
+        jPanel1.add(jewelPriceTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, 230, 20));
 
-        jButton1.setBackground(new java.awt.Color(251, 251, 251));
-        jButton1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(49, 54, 63));
-        jButton1.setText("Cancelar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        cancelJewelCreationBtn.setBackground(new java.awt.Color(251, 251, 251));
+        cancelJewelCreationBtn.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        cancelJewelCreationBtn.setForeground(new java.awt.Color(49, 54, 63));
+        cancelJewelCreationBtn.setText("Cancelar");
+        cancelJewelCreationBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cancelJewelCreationBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                cancelJewelCreationBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 210, 90, 30));
+        jPanel1.add(cancelJewelCreationBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 210, 90, 30));
 
-        jButton2.setBackground(new java.awt.Color(251, 251, 251));
-        jButton2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(49, 54, 63));
-        jButton2.setText("Aceptar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        createJewelBtn.setBackground(new java.awt.Color(251, 251, 251));
+        createJewelBtn.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        createJewelBtn.setForeground(new java.awt.Color(49, 54, 63));
+        createJewelBtn.setText("Aceptar");
+        createJewelBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        createJewelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                createJewelBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 90, 30));
+        jPanel1.add(createJewelBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 90, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -149,17 +151,17 @@ public class AddNewJewel extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void jewelNameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jewelNameTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_jewelNameTxtActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void cancelJewelCreationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelJewelCreationBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_cancelJewelCreationBtnActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void createJewelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createJewelBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_createJewelBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,8 +199,8 @@ public class AddNewJewel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton cancelJewelCreationBtn;
+    private javax.swing.JButton createJewelBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -206,10 +208,10 @@ public class AddNewJewel extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jewelMaterialTxt;
+    private javax.swing.JTextField jewelNameTxt;
+    private javax.swing.JTextField jewelPriceTxt;
+    private javax.swing.JTextField jewelStockTxt;
+    private javax.swing.JTextField jewelWeightTxt;
     // End of variables declaration//GEN-END:variables
 }
