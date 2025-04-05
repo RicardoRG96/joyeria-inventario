@@ -34,9 +34,11 @@ public class EditSale extends javax.swing.JFrame {
         editQuantitySaleTxt = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         editJewelSaleCbx = new javax.swing.JComboBox<>();
-        saveSaleEditionBtn = new javax.swing.JButton();
+        cancelSaleEditionBtn = new javax.swing.JButton();
+        saveSaleEditionBtn1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(630, 273));
 
         jPanel1.setBackground(new java.awt.Color(232, 249, 255));
         jPanel1.setForeground(new java.awt.Color(49, 54, 63));
@@ -69,7 +71,7 @@ public class EditSale extends javax.swing.JFrame {
         editQuantitySaleTxt.setBackground(new java.awt.Color(248, 250, 252));
         editQuantitySaleTxt.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         editQuantitySaleTxt.setForeground(new java.awt.Color(49, 54, 63));
-        jPanel1.add(editQuantitySaleTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 80, 20));
+        jPanel1.add(editQuantitySaleTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 130, 20));
 
         jLabel6.setBackground(new java.awt.Color(248, 250, 252));
         jLabel6.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -83,17 +85,29 @@ public class EditSale extends javax.swing.JFrame {
         editJewelSaleCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(editJewelSaleCbx, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 200, 20));
 
-        saveSaleEditionBtn.setBackground(new java.awt.Color(251, 251, 251));
-        saveSaleEditionBtn.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        saveSaleEditionBtn.setForeground(new java.awt.Color(49, 54, 63));
-        saveSaleEditionBtn.setText("Guardar");
-        saveSaleEditionBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        saveSaleEditionBtn.addActionListener(new java.awt.event.ActionListener() {
+        cancelSaleEditionBtn.setBackground(new java.awt.Color(251, 251, 251));
+        cancelSaleEditionBtn.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        cancelSaleEditionBtn.setForeground(new java.awt.Color(49, 54, 63));
+        cancelSaleEditionBtn.setText("Cancelar");
+        cancelSaleEditionBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cancelSaleEditionBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveSaleEditionBtnActionPerformed(evt);
+                cancelSaleEditionBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(saveSaleEditionBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 120, 30));
+        jPanel1.add(cancelSaleEditionBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 200, 120, 30));
+
+        saveSaleEditionBtn1.setBackground(new java.awt.Color(251, 251, 251));
+        saveSaleEditionBtn1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        saveSaleEditionBtn1.setForeground(new java.awt.Color(49, 54, 63));
+        saveSaleEditionBtn1.setText("Guardar");
+        saveSaleEditionBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        saveSaleEditionBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveSaleEditionBtn1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(saveSaleEditionBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 120, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -109,9 +123,13 @@ public class EditSale extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void saveSaleEditionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveSaleEditionBtnActionPerformed
+    private void cancelSaleEditionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelSaleEditionBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_saveSaleEditionBtnActionPerformed
+    }//GEN-LAST:event_cancelSaleEditionBtnActionPerformed
+
+    private void saveSaleEditionBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveSaleEditionBtn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_saveSaleEditionBtn1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,6 +167,7 @@ public class EditSale extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cancelSaleEditionBtn;
     private javax.swing.JComboBox<String> editCustomerSaleCbx;
     private javax.swing.JComboBox<String> editJewelSaleCbx;
     private javax.swing.JTextField editQuantitySaleTxt;
@@ -157,6 +176,6 @@ public class EditSale extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton saveSaleEditionBtn;
+    private javax.swing.JButton saveSaleEditionBtn1;
     // End of variables declaration//GEN-END:variables
 }

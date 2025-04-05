@@ -34,13 +34,15 @@ public class CreateSale extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         customerSaleCbx = new javax.swing.JComboBox<>();
         quantitySaleTxt = new javax.swing.JTextField();
-        createSaleBtn = new javax.swing.JButton();
+        cancelSaleBtn = new javax.swing.JButton();
+        createSaleBtn1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(232, 249, 255));
         setPreferredSize(new java.awt.Dimension(630, 273));
 
         jPanel1.setBackground(new java.awt.Color(232, 249, 255));
+        jPanel1.setMinimumSize(new java.awt.Dimension(630, 273));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setBackground(new java.awt.Color(248, 250, 252));
@@ -82,19 +84,31 @@ public class CreateSale extends javax.swing.JFrame {
         quantitySaleTxt.setBackground(new java.awt.Color(248, 250, 252));
         quantitySaleTxt.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         quantitySaleTxt.setForeground(new java.awt.Color(49, 54, 63));
-        jPanel1.add(quantitySaleTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 80, 20));
+        jPanel1.add(quantitySaleTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 130, 20));
 
-        createSaleBtn.setBackground(new java.awt.Color(251, 251, 251));
-        createSaleBtn.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        createSaleBtn.setForeground(new java.awt.Color(49, 54, 63));
-        createSaleBtn.setText("Crear pedido");
-        createSaleBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        createSaleBtn.addActionListener(new java.awt.event.ActionListener() {
+        cancelSaleBtn.setBackground(new java.awt.Color(251, 251, 251));
+        cancelSaleBtn.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        cancelSaleBtn.setForeground(new java.awt.Color(49, 54, 63));
+        cancelSaleBtn.setText("Cancelar");
+        cancelSaleBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cancelSaleBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createSaleBtnActionPerformed(evt);
+                cancelSaleBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(createSaleBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 120, 30));
+        jPanel1.add(cancelSaleBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 200, 120, 30));
+
+        createSaleBtn1.setBackground(new java.awt.Color(251, 251, 251));
+        createSaleBtn1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        createSaleBtn1.setForeground(new java.awt.Color(49, 54, 63));
+        createSaleBtn1.setText("Crear pedido");
+        createSaleBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        createSaleBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createSaleBtn1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(createSaleBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 120, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -110,9 +124,13 @@ public class CreateSale extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void createSaleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createSaleBtnActionPerformed
+    private void cancelSaleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelSaleBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_createSaleBtnActionPerformed
+    }//GEN-LAST:event_cancelSaleBtnActionPerformed
+
+    private void createSaleBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createSaleBtn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_createSaleBtn1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,7 +168,8 @@ public class CreateSale extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton createSaleBtn;
+    private javax.swing.JButton cancelSaleBtn;
+    private javax.swing.JButton createSaleBtn1;
     private javax.swing.JComboBox<String> customerSaleCbx;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;

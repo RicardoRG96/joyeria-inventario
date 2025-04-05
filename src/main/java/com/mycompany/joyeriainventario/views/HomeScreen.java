@@ -291,6 +291,7 @@ public class HomeScreen extends javax.swing.JFrame {
         );
 
         inventoryTable.setBackground(new java.awt.Color(248, 250, 252));
+        inventoryTable.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         inventoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -421,6 +422,7 @@ public class HomeScreen extends javax.swing.JFrame {
         jScrollPane2.setBackground(new java.awt.Color(248, 250, 252));
 
         salesTable.setBackground(new java.awt.Color(248, 250, 252));
+        salesTable.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         salesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
