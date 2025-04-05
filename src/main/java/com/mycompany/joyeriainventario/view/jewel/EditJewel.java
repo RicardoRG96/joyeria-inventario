@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.joyeriainventario.views;
+package com.mycompany.joyeriainventario.view.jewel;
 
 /**
  *
@@ -33,16 +33,15 @@ public class EditJewel extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         editJewelStockTxt = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        editJewelMaterialTxt = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         editJewelNameTxt = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         editJewelPriceTxt = new javax.swing.JTextField();
         cancelJewelEditionBtn = new javax.swing.JButton();
         confirmEditionJewelBtn = new javax.swing.JButton();
+        editJewelMaterialCbx = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(630, 273));
 
         jPanel1.setBackground(new java.awt.Color(232, 249, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(630, 273));
@@ -91,16 +90,6 @@ public class EditJewel extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(49, 54, 63));
         jLabel5.setText("Material:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
-
-        editJewelMaterialTxt.setBackground(new java.awt.Color(248, 250, 252));
-        editJewelMaterialTxt.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        editJewelMaterialTxt.setForeground(new java.awt.Color(49, 54, 63));
-        editJewelMaterialTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editJewelMaterialTxtActionPerformed(evt);
-            }
-        });
-        jPanel1.add(editJewelMaterialTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 230, 20));
 
         jLabel6.setBackground(new java.awt.Color(248, 250, 252));
         jLabel6.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -158,6 +147,12 @@ public class EditJewel extends javax.swing.JFrame {
         });
         jPanel1.add(confirmEditionJewelBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, 90, 30));
 
+        editJewelMaterialCbx.setBackground(new java.awt.Color(248, 250, 252));
+        editJewelMaterialCbx.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        editJewelMaterialCbx.setForeground(new java.awt.Color(49, 54, 63));
+        editJewelMaterialCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(editJewelMaterialCbx, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 230, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -179,10 +174,6 @@ public class EditJewel extends javax.swing.JFrame {
     private void editJewelStockTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editJewelStockTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_editJewelStockTxtActionPerformed
-
-    private void editJewelMaterialTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editJewelMaterialTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_editJewelMaterialTxtActionPerformed
 
     private void editJewelNameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editJewelNameTxtActionPerformed
         // TODO add your handling code here:
@@ -238,7 +229,7 @@ public class EditJewel extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelJewelEditionBtn;
     private javax.swing.JButton confirmEditionJewelBtn;
-    private javax.swing.JTextField editJewelMaterialTxt;
+    private javax.swing.JComboBox<String> editJewelMaterialCbx;
     private javax.swing.JTextField editJewelNameTxt;
     private javax.swing.JTextField editJewelPriceTxt;
     private javax.swing.JTextField editJewelStockTxt;

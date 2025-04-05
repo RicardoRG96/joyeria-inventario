@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.joyeriainventario.views;
+package com.mycompany.joyeriainventario.view.jewel;
 
 /**
  *
@@ -33,13 +33,13 @@ public class AddNewJewel extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jewelStockTxt = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jewelMaterialTxt = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jewelNameTxt = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jewelPriceTxt = new javax.swing.JTextField();
         cancelJewelCreationBtn = new javax.swing.JButton();
         createJewelBtn = new javax.swing.JButton();
+        jewelMaterialCbx = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(217, 234, 253));
@@ -80,11 +80,6 @@ public class AddNewJewel extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(49, 54, 63));
         jLabel4.setText("Material:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
-
-        jewelMaterialTxt.setBackground(new java.awt.Color(248, 250, 252));
-        jewelMaterialTxt.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jewelMaterialTxt.setForeground(new java.awt.Color(49, 54, 63));
-        jPanel1.add(jewelMaterialTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 230, 20));
 
         jLabel5.setBackground(new java.awt.Color(248, 250, 252));
         jLabel5.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -136,6 +131,12 @@ public class AddNewJewel extends javax.swing.JFrame {
             }
         });
         jPanel1.add(createJewelBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 90, 30));
+
+        jewelMaterialCbx.setBackground(new java.awt.Color(248, 250, 252));
+        jewelMaterialCbx.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jewelMaterialCbx.setForeground(new java.awt.Color(49, 54, 63));
+        jewelMaterialCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(jewelMaterialCbx, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 230, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -208,7 +209,7 @@ public class AddNewJewel extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jewelMaterialTxt;
+    private javax.swing.JComboBox<String> jewelMaterialCbx;
     private javax.swing.JTextField jewelNameTxt;
     private javax.swing.JTextField jewelPriceTxt;
     private javax.swing.JTextField jewelStockTxt;
