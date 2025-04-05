@@ -29,12 +29,12 @@ public class CreateSale extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jewelSaleCbx = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
-        confirmEditionJewelBtn = new javax.swing.JButton();
+        customerSaleCbx = new javax.swing.JComboBox<>();
+        quantitySaleTxt = new javax.swing.JTextField();
+        createSaleBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(232, 249, 255));
@@ -55,11 +55,11 @@ public class CreateSale extends javax.swing.JFrame {
         jLabel6.setText("Joya:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, -1, -1));
 
-        jComboBox1.setBackground(new java.awt.Color(248, 250, 252));
-        jComboBox1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(49, 54, 63));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 200, 20));
+        jewelSaleCbx.setBackground(new java.awt.Color(248, 250, 252));
+        jewelSaleCbx.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jewelSaleCbx.setForeground(new java.awt.Color(49, 54, 63));
+        jewelSaleCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(jewelSaleCbx, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 200, 20));
 
         jLabel7.setBackground(new java.awt.Color(248, 250, 252));
         jLabel7.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -73,28 +73,28 @@ public class CreateSale extends javax.swing.JFrame {
         jLabel8.setText("Cliente:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
 
-        jComboBox3.setBackground(new java.awt.Color(248, 250, 252));
-        jComboBox3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jComboBox3.setForeground(new java.awt.Color(49, 54, 63));
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 200, 20));
+        customerSaleCbx.setBackground(new java.awt.Color(248, 250, 252));
+        customerSaleCbx.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        customerSaleCbx.setForeground(new java.awt.Color(49, 54, 63));
+        customerSaleCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(customerSaleCbx, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 200, 20));
 
-        jTextField1.setBackground(new java.awt.Color(248, 250, 252));
-        jTextField1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(49, 54, 63));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 80, 20));
+        quantitySaleTxt.setBackground(new java.awt.Color(248, 250, 252));
+        quantitySaleTxt.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        quantitySaleTxt.setForeground(new java.awt.Color(49, 54, 63));
+        jPanel1.add(quantitySaleTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 80, 20));
 
-        confirmEditionJewelBtn.setBackground(new java.awt.Color(251, 251, 251));
-        confirmEditionJewelBtn.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        confirmEditionJewelBtn.setForeground(new java.awt.Color(49, 54, 63));
-        confirmEditionJewelBtn.setText("Crear pedido");
-        confirmEditionJewelBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        confirmEditionJewelBtn.addActionListener(new java.awt.event.ActionListener() {
+        createSaleBtn.setBackground(new java.awt.Color(251, 251, 251));
+        createSaleBtn.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        createSaleBtn.setForeground(new java.awt.Color(49, 54, 63));
+        createSaleBtn.setText("Crear pedido");
+        createSaleBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        createSaleBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmEditionJewelBtnActionPerformed(evt);
+                createSaleBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(confirmEditionJewelBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 120, 30));
+        jPanel1.add(createSaleBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 120, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -110,9 +110,9 @@ public class CreateSale extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void confirmEditionJewelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmEditionJewelBtnActionPerformed
+    private void createSaleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createSaleBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_confirmEditionJewelBtnActionPerformed
+    }//GEN-LAST:event_createSaleBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,14 +150,14 @@ public class CreateSale extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton confirmEditionJewelBtn;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JButton createSaleBtn;
+    private javax.swing.JComboBox<String> customerSaleCbx;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JComboBox<String> jewelSaleCbx;
+    private javax.swing.JTextField quantitySaleTxt;
     // End of variables declaration//GEN-END:variables
 }

@@ -52,7 +52,7 @@ public class EditJewel extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(49, 54, 63));
         jLabel2.setText("Editar Joya");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         jLabel3.setBackground(new java.awt.Color(248, 250, 252));
         jLabel3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
