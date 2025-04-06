@@ -1,5 +1,6 @@
 package com.mycompany.joyeriaInventario.model.entities;
 
+import com.mycompany.joyeriaInventario.model.vo.NameVO;
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -7,7 +8,7 @@ public class Customer {
 
     private Long id;
     
-    private String name;
+    private NameVO name;
     
     private String rut;
     
@@ -25,7 +26,7 @@ public class Customer {
     }
 
     public Customer(String name, String rut, String email, String phone, String address) {
-        this.name = name;
+        this.name = new NameVO(name);
         this.rut = rut;
         this.email = email;
         this.phone = phone;
@@ -41,11 +42,11 @@ public class Customer {
     }
 
     public String getName() {
-        return name;
+        return name.getName();
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = new NameVO(name);
     }
 
     public String getRut() {
@@ -103,15 +104,15 @@ public class Customer {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 41 * hash + Objects.hashCode(this.id);
-        hash = 41 * hash + Objects.hashCode(this.name);
-        hash = 41 * hash + Objects.hashCode(this.rut);
-        hash = 41 * hash + Objects.hashCode(this.email);
-        hash = 41 * hash + Objects.hashCode(this.phone);
-        hash = 41 * hash + Objects.hashCode(this.address);
-        hash = 41 * hash + Objects.hashCode(this.createdAt);
-        hash = 41 * hash + Objects.hashCode(this.updatedAt);
+        int hash = 3;
+        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + Objects.hashCode(this.name);
+        hash = 97 * hash + Objects.hashCode(this.rut);
+        hash = 97 * hash + Objects.hashCode(this.email);
+        hash = 97 * hash + Objects.hashCode(this.phone);
+        hash = 97 * hash + Objects.hashCode(this.address);
+        hash = 97 * hash + Objects.hashCode(this.createdAt);
+        hash = 97 * hash + Objects.hashCode(this.updatedAt);
         return hash;
     }
 
@@ -127,9 +128,6 @@ public class Customer {
             return false;
         }
         final Customer other = (Customer) obj;
-        if (!Objects.equals(this.name, other.name)) {
-            return false;
-        }
         if (!Objects.equals(this.rut, other.rut)) {
             return false;
         }
@@ -143,6 +141,9 @@ public class Customer {
             return false;
         }
         if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.name, other.name)) {
             return false;
         }
         if (!Objects.equals(this.createdAt, other.createdAt)) {

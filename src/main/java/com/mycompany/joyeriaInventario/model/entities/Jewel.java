@@ -3,6 +3,7 @@ package com.mycompany.joyeriaInventario.model.entities;
 import com.mycompany.joyeriaInventario.model.vo.JewelPriceVO;
 import com.mycompany.joyeriaInventario.model.vo.JewelStockVO;
 import com.mycompany.joyeriaInventario.model.vo.JewelWeightVO;
+import com.mycompany.joyeriaInventario.model.vo.NameVO;
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -10,7 +11,7 @@ public class Jewel {
 
     private Long id;
     
-    private String name;
+    private NameVO name;
     
     private Long materialId;
     
@@ -28,7 +29,7 @@ public class Jewel {
     }
 
     public Jewel(String name, Long materialId, double weight, double price, int stock) {
-        this.name = name;
+        this.name = new NameVO(name);
         this.materialId = materialId;
         this.weight = new JewelWeightVO(weight);
         this.price = new JewelPriceVO(price);
@@ -44,11 +45,11 @@ public class Jewel {
     }
 
     public String getName() {
-        return name;
+        return name.getName();
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = new NameVO(name);
     }
 
     public Long getMaterialId() {
@@ -107,14 +108,14 @@ public class Jewel {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 23 * hash + Objects.hashCode(this.id);
-        hash = 23 * hash + Objects.hashCode(this.name);
-        hash = 23 * hash + Objects.hashCode(this.materialId);
-        hash = 23 * hash + Objects.hashCode(this.weight);
-        hash = 23 * hash + Objects.hashCode(this.price);
-        hash = 23 * hash + Objects.hashCode(this.stock);
-        hash = 23 * hash + Objects.hashCode(this.createdAt);
-        hash = 23 * hash + Objects.hashCode(this.updatedAt);
+        hash = 31 * hash + Objects.hashCode(this.id);
+        hash = 31 * hash + Objects.hashCode(this.name);
+        hash = 31 * hash + Objects.hashCode(this.materialId);
+        hash = 31 * hash + Objects.hashCode(this.weight);
+        hash = 31 * hash + Objects.hashCode(this.price);
+        hash = 31 * hash + Objects.hashCode(this.stock);
+        hash = 31 * hash + Objects.hashCode(this.createdAt);
+        hash = 31 * hash + Objects.hashCode(this.updatedAt);
         return hash;
     }
 
@@ -130,10 +131,10 @@ public class Jewel {
             return false;
         }
         final Jewel other = (Jewel) obj;
-        if (!Objects.equals(this.name, other.name)) {
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
-        if (!Objects.equals(this.id, other.id)) {
+        if (!Objects.equals(this.name, other.name)) {
             return false;
         }
         if (!Objects.equals(this.materialId, other.materialId)) {
@@ -154,6 +155,4 @@ public class Jewel {
         return Objects.equals(this.updatedAt, other.updatedAt);
     }
 
-    
-    
 }
