@@ -1,4 +1,4 @@
-package com.mycompany.joyeriaInventario.model.dao.postgreSql;
+package com.mycompany.joyeriaInventario.model.dao.postgreSQL;
 
 import com.mycompany.joyeriaInventario.exception.common.DAOException;
 import com.mycompany.joyeriaInventario.model.dao.CustomerDAO;

@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PostgreSQLSaleDAO implements SaleDao {
@@ -74,23 +75,107 @@ public class PostgreSQLSaleDAO implements SaleDao {
     }
 
     @Override
-    public List<Sale> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<Sale> getAll() throws DAOException {
+       PreparedStatement preparedStatement = null;
+       ResultSet resultSet = null;
+       List<Sale> sales = new ArrayList<>();
+       try {
+           preparedStatement = conn.prepareStatement(GET_ALL);
+           resultSet = preparedStatement.executeQuery();
+           while (resultSet.next()) {
+               sales.add(convert(resultSet));
+           }
+       } catch (SQLException e) {
+           throw new DAOException("Error al intentar obtener todas las ordenes de venta", e);
+       } finally {
+           if (preparedStatement == null) {
+               try {
+                   preparedStatement.close();
+               } catch (SQLException e) {
+                   throw new DAOException("Error al intentar cerrar la conexion", e);
+               }
+           }
+           if (resultSet == null) {
+               try {
+                   resultSet.close();
+               } catch (SQLException e) {
+                   throw new DAOException("Error al intentar cerrar la conexion", e);
+               }
+           }
+       }
+       return sales;
     }
 
     @Override
-    public void insert(Sale sale) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void insert(Sale sale) throws DAOException {
+        PreparedStatement preparedStatement = null;
+        try {
+           preparedStatement = conn.prepareStatement(INSERT);
+           preparedStatement.setLong(1, sale.getCustomerId());
+           preparedStatement.setDouble(2, sale.getTotal());
+           boolean wasCreated = preparedStatement.executeUpdate() > 0;
+           if (!wasCreated) {
+               throw new DAOException("La orden venta no pudo ser ingresada");
+           }
+       } catch (SQLException e) {
+           throw new DAOException("Error al intentar crear la orden de venta", e);
+       } finally {
+           if (preparedStatement == null) {
+               try {
+                   preparedStatement.close();
+               } catch (SQLException e) {
+                   throw new DAOException("Error al intentar cerrar la conexion", e);
+               }
+           }
+       }
     }
 
     @Override
-    public void update(Long id, Sale sale) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void update(Long id, Sale sale) throws DAOException {
+        PreparedStatement preparedStatement = null;
+        try {
+           preparedStatement = conn.prepareStatement(UPDATE);
+           preparedStatement.setLong(1, sale.getCustomerId());
+           preparedStatement.setDouble(2, sale.getTotal());
+           preparedStatement.setLong(3, id);
+           boolean wasUpdated = preparedStatement.executeUpdate() > 0;
+           if (!wasUpdated) {
+               throw new DAOException("La orden venta no pudo ser actualizada");
+           }
+       } catch (SQLException e) {
+           throw new DAOException("Error al intentar actualizar la orden de venta", e);
+       } finally {
+           if (preparedStatement == null) {
+               try {
+                   preparedStatement.close();
+               } catch (SQLException e) {
+                   throw new DAOException("Error al intentar cerrar la conexion", e);
+               }
+           }
+       }
     }
 
     @Override
-    public void delete(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void delete(Long id) throws DAOException {
+        PreparedStatement preparedStatement = null;
+        try {
+           preparedStatement = conn.prepareStatement(DELETE);
+           preparedStatement.setLong(1, id);
+           boolean wasDeleted = preparedStatement.executeUpdate() > 0;
+           if (!wasDeleted) {
+               throw new DAOException("La orden venta no pudo ser eliminada");
+           }
+       } catch (SQLException e) {
+           throw new DAOException("Error al intentar eliminar la orden de venta", e);
+       } finally {
+           if (preparedStatement == null) {
+               try {
+                   preparedStatement.close();
+               } catch (SQLException e) {
+                   throw new DAOException("Error al intentar cerrar la conexion", e);
+               }
+           }
+       }
     }
     
 }

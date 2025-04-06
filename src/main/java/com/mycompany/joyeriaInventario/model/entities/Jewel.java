@@ -1,5 +1,8 @@
 package com.mycompany.joyeriaInventario.model.entities;
 
+import com.mycompany.joyeriaInventario.model.vo.JewelPriceVO;
+import com.mycompany.joyeriaInventario.model.vo.JewelStockVO;
+import com.mycompany.joyeriaInventario.model.vo.JewelWeightVO;
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -11,11 +14,11 @@ public class Jewel {
     
     private Long materialId;
     
-    private Double weight;
+    private JewelWeightVO weight;
     
-    private Double price;
+    private JewelPriceVO price;
     
-    private int stock;
+    private JewelStockVO stock;
     
     private Timestamp createdAt;
     
@@ -24,12 +27,12 @@ public class Jewel {
     public Jewel() {
     }
 
-    public Jewel(String name, Long materialId, Double weight, Double price, int stock) {
+    public Jewel(String name, Long materialId, double weight, double price, int stock) {
         this.name = name;
         this.materialId = materialId;
-        this.weight = weight;
-        this.price = price;
-        this.stock = stock;
+        this.weight = new JewelWeightVO(weight);
+        this.price = new JewelPriceVO(price);
+        this.stock = new JewelStockVO(stock);
     }
 
     public Long getId() {
@@ -56,28 +59,28 @@ public class Jewel {
         this.materialId = materialId;
     }
 
-    public Double getWeight() {
-        return weight;
+    public double getWeight() {
+        return weight.getWeight();
     }
 
-    public void setWeight(Double weight) {
-        this.weight = weight;
+    public void setWeight(double weight) {
+        this.weight = new JewelWeightVO(weight);
     }
 
-    public Double getPrice() {
-        return price;
+    public double getPrice() {
+        return price.getPrice();
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setPrice(double price) {
+        this.price = new JewelPriceVO(price);
     }
 
     public int getStock() {
-        return stock;
+        return stock.getStock();
     }
 
     public void setStock(int stock) {
-        this.stock = stock;
+        this.stock = new JewelStockVO(stock);
     }
 
     public Timestamp getCreatedAt() {
@@ -104,14 +107,14 @@ public class Jewel {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.id);
-        hash = 37 * hash + Objects.hashCode(this.name);
-        hash = 37 * hash + Objects.hashCode(this.materialId);
-        hash = 37 * hash + Objects.hashCode(this.weight);
-        hash = 37 * hash + Objects.hashCode(this.price);
-        hash = 37 * hash + this.stock;
-        hash = 37 * hash + Objects.hashCode(this.createdAt);
-        hash = 37 * hash + Objects.hashCode(this.updatedAt);
+        hash = 23 * hash + Objects.hashCode(this.id);
+        hash = 23 * hash + Objects.hashCode(this.name);
+        hash = 23 * hash + Objects.hashCode(this.materialId);
+        hash = 23 * hash + Objects.hashCode(this.weight);
+        hash = 23 * hash + Objects.hashCode(this.price);
+        hash = 23 * hash + Objects.hashCode(this.stock);
+        hash = 23 * hash + Objects.hashCode(this.createdAt);
+        hash = 23 * hash + Objects.hashCode(this.updatedAt);
         return hash;
     }
 
@@ -127,9 +130,6 @@ public class Jewel {
             return false;
         }
         final Jewel other = (Jewel) obj;
-        if (this.stock != other.stock) {
-            return false;
-        }
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }
@@ -145,10 +145,15 @@ public class Jewel {
         if (!Objects.equals(this.price, other.price)) {
             return false;
         }
+        if (!Objects.equals(this.stock, other.stock)) {
+            return false;
+        }
         if (!Objects.equals(this.createdAt, other.createdAt)) {
             return false;
         }
         return Objects.equals(this.updatedAt, other.updatedAt);
     }
+
+    
     
 }
