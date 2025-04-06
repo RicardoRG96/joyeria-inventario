@@ -1,5 +1,6 @@
 package com.mycompany.joyeriaInventario.model.entities;
 
+import com.mycompany.joyeriaInventario.model.vo.SaleQuantityVO;
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -11,7 +12,7 @@ public class SaleItem {
     
     private Long jewelId;
     
-    private int quantity;
+    private SaleQuantityVO quantity;
     
     private Double price;
     
@@ -27,7 +28,7 @@ public class SaleItem {
     public SaleItem(Long saleId, Long jewelId, int quantity, Double price, Double subTotal) {
         this.saleId = saleId;
         this.jewelId = jewelId;
-        this.quantity = quantity;
+        this.quantity = new SaleQuantityVO(quantity);
         this.price = price;
         this.subTotal = subTotal;
     }
@@ -57,11 +58,11 @@ public class SaleItem {
     }
 
     public int getQuantity() {
-        return quantity;
+        return quantity.getQuantity();
     }
 
     public void setQuantity(int quantity) {
-        this.quantity = quantity;
+        this.quantity = new SaleQuantityVO(quantity);
     }
 
     public Double getPrice() {
@@ -103,15 +104,15 @@ public class SaleItem {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.id);
-        hash = 53 * hash + Objects.hashCode(this.saleId);
-        hash = 53 * hash + Objects.hashCode(this.jewelId);
-        hash = 53 * hash + this.quantity;
-        hash = 53 * hash + Objects.hashCode(this.price);
-        hash = 53 * hash + Objects.hashCode(this.subTotal);
-        hash = 53 * hash + Objects.hashCode(this.createdAt);
-        hash = 53 * hash + Objects.hashCode(this.updatedAt);
+        int hash = 5;
+        hash = 59 * hash + Objects.hashCode(this.id);
+        hash = 59 * hash + Objects.hashCode(this.saleId);
+        hash = 59 * hash + Objects.hashCode(this.jewelId);
+        hash = 59 * hash + Objects.hashCode(this.quantity);
+        hash = 59 * hash + Objects.hashCode(this.price);
+        hash = 59 * hash + Objects.hashCode(this.subTotal);
+        hash = 59 * hash + Objects.hashCode(this.createdAt);
+        hash = 59 * hash + Objects.hashCode(this.updatedAt);
         return hash;
     }
 
@@ -127,9 +128,6 @@ public class SaleItem {
             return false;
         }
         final SaleItem other = (SaleItem) obj;
-        if (this.quantity != other.quantity) {
-            return false;
-        }
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
@@ -137,6 +135,9 @@ public class SaleItem {
             return false;
         }
         if (!Objects.equals(this.jewelId, other.jewelId)) {
+            return false;
+        }
+        if (!Objects.equals(this.quantity, other.quantity)) {
             return false;
         }
         if (!Objects.equals(this.price, other.price)) {
@@ -150,5 +151,6 @@ public class SaleItem {
         }
         return Objects.equals(this.updatedAt, other.updatedAt);
     }
+
     
 }
