@@ -1,6 +1,7 @@
-package com.mycompany.joyeriaInventario.model.dao;
+package com.mycompany.joyeriaInventario.model.dao.postgreSQL;
 
 import com.mycompany.joyeriaInventario.exception.common.DAOException;
+import com.mycompany.joyeriaInventario.model.dao.SaleDao;
 import com.mycompany.joyeriaInventario.model.entities.Sale;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

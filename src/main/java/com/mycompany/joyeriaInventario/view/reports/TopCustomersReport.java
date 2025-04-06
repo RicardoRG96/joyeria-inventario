@@ -8,12 +8,12 @@ package com.mycompany.joyeriainventario.view.reports;
  *
  * @author ricar
  */
-public class BestSellingJewerly extends javax.swing.JFrame {
+public class TopCustomersReport extends javax.swing.JFrame {
 
     /**
-     * Creates new form BestSellingJewerly
+     * Creates new form TopCustomers
      */
-    public BestSellingJewerly() {
+    public TopCustomersReport() {
         initComponents();
     }
 
@@ -30,14 +30,14 @@ public class BestSellingJewerly extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        exportToExcelBestSellingJewerlyBtn = new javax.swing.JButton();
+        exportToExcelTopCustomersBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         filterCustomerBestSellingJewerlyTableTxt = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         filterDateBestSellingJewerlyTableTxt = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        bestSellingJewerlyTable = new javax.swing.JTable();
+        topCustomersTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,7 +49,7 @@ public class BestSellingJewerly extends javax.swing.JFrame {
         jLabel2.setBackground(new java.awt.Color(217, 234, 253));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(49, 54, 63));
-        jLabel2.setText("Joyas más vendidas");
+        jLabel2.setText("Clientes con más compras");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -72,11 +72,11 @@ public class BestSellingJewerly extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(248, 250, 252));
 
-        exportToExcelBestSellingJewerlyBtn.setBackground(new java.awt.Color(248, 250, 252));
-        exportToExcelBestSellingJewerlyBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/excel.png"))); // NOI18N
-        exportToExcelBestSellingJewerlyBtn.setText("jButton1");
-        exportToExcelBestSellingJewerlyBtn.setBorder(null);
-        exportToExcelBestSellingJewerlyBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        exportToExcelTopCustomersBtn.setBackground(new java.awt.Color(248, 250, 252));
+        exportToExcelTopCustomersBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/excel.png"))); // NOI18N
+        exportToExcelTopCustomersBtn.setText("jButton1");
+        exportToExcelTopCustomersBtn.setBorder(null);
+        exportToExcelTopCustomersBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel1.setBackground(new java.awt.Color(248, 250, 252));
         jLabel1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
@@ -109,7 +109,7 @@ public class BestSellingJewerly extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(54, 54, 54)
-                        .addComponent(exportToExcelBestSellingJewerlyBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(exportToExcelTopCustomersBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -126,7 +126,7 @@ public class BestSellingJewerly extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(exportToExcelBestSellingJewerlyBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(exportToExcelTopCustomersBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap())
@@ -144,9 +144,9 @@ public class BestSellingJewerly extends javax.swing.JFrame {
 
         jScrollPane1.setForeground(new java.awt.Color(248, 250, 252));
 
-        bestSellingJewerlyTable.setBackground(new java.awt.Color(248, 250, 252));
-        bestSellingJewerlyTable.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        bestSellingJewerlyTable.setModel(new javax.swing.table.DefaultTableModel(
+        topCustomersTable.setBackground(new java.awt.Color(248, 250, 252));
+        topCustomersTable.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        topCustomersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -157,7 +157,7 @@ public class BestSellingJewerly extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(bestSellingJewerlyTable);
+        jScrollPane1.setViewportView(topCustomersTable);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 750, 380));
 
@@ -192,27 +192,27 @@ public class BestSellingJewerly extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BestSellingJewerly.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TopCustomersReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BestSellingJewerly.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TopCustomersReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BestSellingJewerly.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TopCustomersReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BestSellingJewerly.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TopCustomersReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BestSellingJewerly().setVisible(true);
+                new TopCustomersReport().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable bestSellingJewerlyTable;
-    private javax.swing.JButton exportToExcelBestSellingJewerlyBtn;
+    private javax.swing.JButton exportToExcelTopCustomersBtn;
     private javax.swing.JTextField filterCustomerBestSellingJewerlyTableTxt;
     private javax.swing.JTextField filterDateBestSellingJewerlyTableTxt;
     private javax.swing.JLabel jLabel1;
@@ -223,5 +223,6 @@ public class BestSellingJewerly extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable topCustomersTable;
     // End of variables declaration//GEN-END:variables
 }
