@@ -16,7 +16,7 @@ public class PostgreSQLJewelDAO implements JewelDAO {
     
     private final String GET_ONE = "SELECT * FROM jewelry WHERE id = ?";
     
-    private final String GET_ALL = "SELECT * FROM jewelry";
+    private final String GET_ALL = "SELECT * FROM jewelry ORDER BY id ASC";
     
     private final String GET_BY_NAME = "SELECT * FROM jewelry WHERE name = ?";
 

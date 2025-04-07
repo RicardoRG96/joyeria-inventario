@@ -15,7 +15,7 @@ public class PostgreSQLMaterialDAO implements MaterialDAO {
 
     private final String GET_ONE = "SELECT * FROM materials WHERE id = ?";
     
-    private final String GET_ALL = "SELECT * FROM materials";
+    private final String GET_ALL = "SELECT * FROM materials ORDER BY id ASC";
     
     private final String GET_BY_NAME = "SELECT * FROM materials WHERE name = ?";
 

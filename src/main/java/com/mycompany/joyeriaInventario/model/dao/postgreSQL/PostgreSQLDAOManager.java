@@ -9,11 +9,13 @@ import com.mycompany.joyeriaInventario.model.dao.JewelDAO;
 import com.mycompany.joyeriaInventario.model.dao.MaterialDAO;
 import com.mycompany.joyeriaInventario.model.dao.SaleDao;
 import com.mycompany.joyeriaInventario.model.dao.SaleItemDAO;
+import com.mycompany.joyeriaInventario.model.entities.Jewel;
 import com.mycompany.joyeriaInventario.model.entities.Material;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PostgreSQLDAOManager implements DAOManager {
     
@@ -88,10 +90,13 @@ public class PostgreSQLDAOManager implements DAOManager {
     public static void main(String[] args) throws SQLException, DAOException, InvalidInputException {
         DAOManager daoManager = 
                 new PostgreSQLDAOManager("localhost", "5432", "joyeria_inventario", "postgres", "ricardo1996");
-        List<Material> items = daoManager.getMaterialDAO().getAll();
-        String materialName = daoManager.getMaterialDAO().getById(1L).getName();
-        System.out.println(materialName);
-//        System.out.println(items);
+        List<String> items = daoManager.getJewelDAO().getAll()
+                .stream()
+                .map(jewel -> jewel.getName())
+                .collect(Collectors.toList());
+//        String materialName = daoManager.getMaterialDAO().getById(1L).getName();
+//        System.out.println(materialName);
+        System.out.println(items);
     }
 
     

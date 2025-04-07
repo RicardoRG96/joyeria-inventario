@@ -14,7 +14,7 @@ public class PostgreSQLSaleDAO implements SaleDao {
     
     private final String GET_ONE = "SELECT * FROM sales WHERE id = ?";
     
-    private final String GET_ALL = "SELECT * FROM sales";
+    private final String GET_ALL = "SELECT * FROM sales ORDER BY id ASC";
 
     private final String INSERT = "INSERT INTO sales (customer_id, total) VALUES (?, ?)";
     

@@ -1,6 +1,7 @@
 package com.mycompany.joyeriaInventario.view.jewel;
 
 import com.mycompany.joyeriaInventario.controller.JewelController;
+import com.mycompany.joyeriaInventario.controller.MaterialController;
 import com.mycompany.joyeriaInventario.exception.common.DAOException;
 import com.mycompany.joyeriaInventario.exception.common.InvalidInputException;
 import com.mycompany.joyeriaInventario.model.dto.JewelDTO;
@@ -14,17 +15,21 @@ import javax.swing.JOptionPane;
 
 public class CreateJewelView extends javax.swing.JFrame {
 
-    private JewelController jewelController;
+    private final JewelController jewelController;
+    
+    private final MaterialController materialController;
     
     public CreateJewelView() throws SQLException, DAOException, InvalidInputException {
         initComponents();
         this.jewelController = new JewelController();
+        this.materialController = new MaterialController();
         loadMaterials();
+        jewelMaterialCbx.setSelectedItem(null);
     }
     
     private void loadMaterials() {
         try {
-            List<Material> materials = jewelController.getAllMaterials();
+            List<Material> materials = materialController.getAllMaterials();
             List<String> materialNames = materials.stream()
                             .map(m -> m.getName())
                             .collect(Collectors.toList());
@@ -132,7 +137,7 @@ public class CreateJewelView extends javax.swing.JFrame {
                 cancelJewelCreationBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(cancelJewelCreationBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 210, 90, 30));
+        jPanel1.add(cancelJewelCreationBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 210, 100, 30));
 
         createJewelBtn.setBackground(new java.awt.Color(251, 251, 251));
         createJewelBtn.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -144,7 +149,7 @@ public class CreateJewelView extends javax.swing.JFrame {
                 createJewelBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(createJewelBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 90, 30));
+        jPanel1.add(createJewelBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 100, 30));
 
         jewelMaterialCbx.setBackground(new java.awt.Color(248, 250, 252));
         jewelMaterialCbx.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
@@ -212,11 +217,11 @@ public class CreateJewelView extends javax.swing.JFrame {
         if (question == 0) {
             try {
                 JewelDTO jewelDTO = new JewelDTO();
-                jewelDTO.setName(jewelNameTxt.getText());
+                jewelDTO.setName(name);
                 jewelDTO.setMaterialName(jewelMaterialCbx.getSelectedItem().toString());
-                jewelDTO.setWeight(Double.parseDouble(jewelWeightTxt.getText()));
-                jewelDTO.setPrice(Double.parseDouble(jewelPriceTxt.getText()));
-                jewelDTO.setStock(Integer.parseInt(jewelStockTxt.getText()));
+                jewelDTO.setWeight(Double.parseDouble(weight));
+                jewelDTO.setPrice(Double.parseDouble(price));
+                jewelDTO.setStock(Integer.parseInt(stock));
                 jewelController.createJewel(jewelDTO);
                 setVisible(false);
             } catch (DAOException e) {

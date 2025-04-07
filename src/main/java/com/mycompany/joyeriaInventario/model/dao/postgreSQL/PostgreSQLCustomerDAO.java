@@ -15,7 +15,7 @@ public class PostgreSQLCustomerDAO implements CustomerDAO {
 
     private final String GET_ONE = "SELECT * FROM customers WHERE id = ?";
     
-    private final String GET_ALL = "SELECT * FROM customers";
+    private final String GET_ALL = "SELECT * FROM customers ORDER BY id ASC";
 
     private final String INSERT = "INSERT INTO customers (name, rut, email, phone, address) VALUES (?, ?, ?, ?, ?)";
     

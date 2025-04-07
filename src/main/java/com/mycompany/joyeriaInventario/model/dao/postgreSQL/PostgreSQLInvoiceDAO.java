@@ -16,7 +16,7 @@ public class PostgreSQLInvoiceDAO implements InvoiceDAO{
 
     private final String GET_ONE = "SELECT * FROM invoices WHERE id = ?";
     
-    private final String GET_ALL = "SELECT * FROM invoices";
+    private final String GET_ALL = "SELECT * FROM invoices ORDER BY id ASC";
 
     private final String INSERT = 
             "INSERT INTO invoices (sale_id, invoice_ number, customer_name, customer_rut, billing_address, total, tax, issue_date, status) "

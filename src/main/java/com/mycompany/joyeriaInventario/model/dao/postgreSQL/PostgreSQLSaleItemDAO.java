@@ -15,7 +15,7 @@ public class PostgreSQLSaleItemDAO implements SaleItemDAO {
     
     private final String GET_ONE = "SELECT * FROM sale_items WHERE id = ?";
     
-    private final String GET_ALL = "SELECT * FROM sale_items";
+    private final String GET_ALL = "SELECT * FROM sale_items ORDER BY id ASC";
 
     private final String INSERT = 
             "INSERT INTO sale_items (sale_id, jewel_id, quantity, price, subtotal) VALUES (?, ?, ?, ?, ?)";

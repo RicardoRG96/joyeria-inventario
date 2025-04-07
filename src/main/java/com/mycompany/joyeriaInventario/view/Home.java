@@ -1,16 +1,36 @@
 package com.mycompany.joyeriaInventario.view;
 
+import com.mycompany.joyeriaInventario.controller.JewelController;
+import com.mycompany.joyeriaInventario.controller.MaterialController;
 import com.mycompany.joyeriaInventario.exception.common.DAOException;
 import com.mycompany.joyeriaInventario.exception.common.InvalidInputException;
+import com.mycompany.joyeriaInventario.model.entities.Jewel;
+import com.mycompany.joyeriaInventario.model.entities.Material;
 import com.mycompany.joyeriaInventario.view.jewel.CreateJewelView;
+import com.mycompany.joyeriaInventario.view.jewel.UpdateJewelView;
+import com.mycompany.joyeriaInventario.view.listener.UpdateableList;
+import com.mycompany.joyeriaInventario.view.tableModel.JewelryTableModel;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
-public class Home extends javax.swing.JFrame {
+public class Home extends javax.swing.JFrame implements UpdateableList {
+    
+    private final JewelController jewelController;
+    
+    private final MaterialController materialController;
+    
+    private final JewelryTableModel jewelryTableModel; 
 
-    public Home() {
+    public Home() throws SQLException {
         initComponents();
+        this.jewelController = new JewelController();
+        this.materialController = new MaterialController();
+        this.jewelryTableModel = new JewelryTableModel();
+        inventoryTable.setModel(jewelryTableModel);
+        loadJewelsInTable();
     }
 
     @SuppressWarnings("unchecked")
@@ -239,6 +259,11 @@ public class Home extends javax.swing.JFrame {
         editJewelBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/edit.png"))); // NOI18N
         editJewelBtn.setBorder(null);
         editJewelBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        editJewelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editJewelBtnActionPerformed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(34, 40, 49));
@@ -556,20 +581,52 @@ public class Home extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    @Override
+    public void updateList() {
+        loadJewelsInTable();
+    }
+    
+    private void loadJewelsInTable() {
+        try {
+            List<Jewel> jewels = jewelController.getAllJewels();
+            List<Material> materials = materialController.getAllMaterials();
+            jewelryTableModel.setJewels(jewels);
+            jewelryTableModel.setMaterials(materials);
+        } catch (DAOException | InvalidInputException e) {
+            JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
     private void addJewelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJewelBtnActionPerformed
         try {
             CreateJewelView createJewelView = new CreateJewelView();
             createJewelView.setVisible(true);
             createJewelView.setLocationRelativeTo(null);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (DAOException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InvalidInputException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DAOException | InvalidInputException | SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_addJewelBtnActionPerformed
 
+    private void editJewelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editJewelBtnActionPerformed
+        try {
+            openUpdateJewelForm();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_editJewelBtnActionPerformed
+
+    private void openUpdateJewelForm() throws SQLException {
+        int row = inventoryTable.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione un producto.");
+            return;
+        }
+        Jewel selectedJewel = jewelryTableModel.getJewelInRow(row);
+        UpdateJewelView updateJewelView = new UpdateJewelView(this, selectedJewel, this);
+        updateJewelView.setVisible(true);
+        updateJewelView.setLocationRelativeTo(null);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -601,7 +658,11 @@ public class Home extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Home().setVisible(true);
+                try {
+                    new Home().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -649,4 +710,5 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton updateSalesTableBtn1;
     private javax.swing.JButton updateStockBtn;
     // End of variables declaration//GEN-END:variables
+
 }
