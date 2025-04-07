@@ -1,15 +1,21 @@
 package com.mycompany.joyeriaInventario.view;
 
+import com.mycompany.joyeriaInventario.controller.CustomerController;
 import com.mycompany.joyeriaInventario.controller.JewelController;
 import com.mycompany.joyeriaInventario.controller.MaterialController;
+import com.mycompany.joyeriaInventario.controller.SaleController;
 import com.mycompany.joyeriaInventario.exception.common.DAOException;
 import com.mycompany.joyeriaInventario.exception.common.InvalidInputException;
+import com.mycompany.joyeriaInventario.model.entities.Customer;
 import com.mycompany.joyeriaInventario.model.entities.Jewel;
 import com.mycompany.joyeriaInventario.model.entities.Material;
+import com.mycompany.joyeriaInventario.model.entities.Sale;
 import com.mycompany.joyeriaInventario.view.jewel.CreateJewelView;
 import com.mycompany.joyeriaInventario.view.jewel.UpdateJewelView;
 import com.mycompany.joyeriaInventario.view.listener.UpdateableList;
+import com.mycompany.joyeriaInventario.view.sale.CreateSales;
 import com.mycompany.joyeriaInventario.view.tableModel.JewelryTableModel;
+import com.mycompany.joyeriaInventario.view.tableModel.SalesTableModel;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -20,17 +26,29 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
     
     private final JewelController jewelController;
     
+    private final SaleController saleController;
+    
     private final MaterialController materialController;
     
-    private final JewelryTableModel jewelryTableModel; 
+    private final CustomerController customerController;
+    
+    private final JewelryTableModel jewelryTableModel;
+    
+    private final SalesTableModel salesTableModel;
 
     public Home() throws SQLException {
         initComponents();
         this.jewelController = new JewelController();
+        this.saleController = new SaleController();
         this.materialController = new MaterialController();
+        this.customerController = new CustomerController();
         this.jewelryTableModel = new JewelryTableModel();
+        this.salesTableModel = new SalesTableModel();
+        
         inventoryTable.setModel(jewelryTableModel);
+        salesTable.setModel(salesTableModel);
         loadJewelsInTable();
+        loadSalesInTable();
     }
 
     @SuppressWarnings("unchecked")
@@ -394,6 +412,11 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
         addNewSaleBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add-sale.png"))); // NOI18N
         addNewSaleBtn.setBorder(null);
         addNewSaleBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        addNewSaleBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addNewSaleBtnActionPerformed(evt);
+            }
+        });
 
         jLabel10.setBackground(new java.awt.Color(248, 250, 252));
         jLabel10.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
@@ -627,6 +650,17 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
         }
     }
     
+    private void loadSalesInTable() {
+        try {
+            List<Sale> sales = saleController.getAllSales();
+            List<Customer> customers = customerController.getAllCustomers();
+            salesTableModel.setSales(sales);
+            salesTableModel.setCustomers(customers);
+        } catch (DAOException | InvalidInputException e) {
+            JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
     private void addJewelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJewelBtnActionPerformed
         try {
             openCreateJewelForm();
@@ -649,6 +683,18 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
         }
     }//GEN-LAST:event_editJewelBtnActionPerformed
 
+    private void openUpdateJewelForm() throws SQLException {
+        int row = inventoryTable.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione un producto.");
+            return;
+        }
+        Jewel selectedJewel = jewelryTableModel.getJewelInRow(row);
+        UpdateJewelView updateJewelView = new UpdateJewelView(this, selectedJewel, this);
+        updateJewelView.setVisible(true);
+        updateJewelView.setLocationRelativeTo(null);
+    }
+    
     private void deleteJewelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteJewelBtnActionPerformed
         int row = inventoryTable.getSelectedRow();
         try {
@@ -673,16 +719,18 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
         
     }//GEN-LAST:event_updateStockBtnActionPerformed
 
-    private void openUpdateJewelForm() throws SQLException {
-        int row = inventoryTable.getSelectedRow();
-        if (row == -1) {
-            JOptionPane.showMessageDialog(this, "Seleccione un producto.");
-            return;
+    private void addNewSaleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewSaleBtnActionPerformed
+        try {
+            openCreateSaleForm();
+        } catch (DAOException | InvalidInputException | SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-        Jewel selectedJewel = jewelryTableModel.getJewelInRow(row);
-        UpdateJewelView updateJewelView = new UpdateJewelView(this, selectedJewel, this);
-        updateJewelView.setVisible(true);
-        updateJewelView.setLocationRelativeTo(null);
+    }//GEN-LAST:event_addNewSaleBtnActionPerformed
+
+    private void openCreateSaleForm() throws SQLException, DAOException, InvalidInputException {
+        CreateSales createSalesView = new CreateSales(this, this);
+        createSalesView.setVisible(true);
+        createSalesView.setLocationRelativeTo(null);
     }
     
     /**

@@ -57,7 +57,7 @@ public class SalesTableModel extends AbstractTableModel {
                 .getName();
     }
     
-    public Sale getJewelInRow(int row) {
+    public Sale getSaleInRow(int row) {
         return sales.get(row);
     }
     

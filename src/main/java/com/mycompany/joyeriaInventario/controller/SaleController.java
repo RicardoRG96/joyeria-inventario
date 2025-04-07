@@ -69,11 +69,11 @@ public class SaleController {
                 manager.getSaleDAO().delete(id);
             }
         } catch (InvalidInputException | SaleNotFoundException e) {
-            JOptionPane.showMessageDialog(null, "Error al intentar eliminar el pedido de venta: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Pedido se encuentra facturado, no puede eliminarse " + e.getMessage());
         }
     }
     
-    private boolean validateSaleHasInvoices(Long saleId) throws DAOException, SaleNotFoundException, InvalidInputException {
+    public boolean validateSaleHasInvoices(Long saleId) throws DAOException, SaleNotFoundException, InvalidInputException {
         List<Invoice> invoices = manager.getInvoiceDAO().getBySaleId(saleId);
         return invoices.size() > 0;
     }

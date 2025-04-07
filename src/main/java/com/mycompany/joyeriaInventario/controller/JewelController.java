@@ -2,6 +2,7 @@ package com.mycompany.joyeriaInventario.controller;
 
 import com.mycompany.joyeriaInventario.exception.common.DAOException;
 import com.mycompany.joyeriaInventario.exception.common.InvalidInputException;
+import com.mycompany.joyeriaInventario.exception.jewel.JewelNotFoundException;
 import com.mycompany.joyeriaInventario.model.dao.DAOManager;
 import com.mycompany.joyeriaInventario.model.dao.postgreSQL.PostgreSQLDAOManager;
 import com.mycompany.joyeriaInventario.model.dto.JewelDTO;
@@ -16,6 +17,26 @@ public class JewelController {
 
     public JewelController() throws SQLException {
         this.manager = new PostgreSQLDAOManager("localhost", "5432", "joyeria_inventario", "postgres", "ricardo1996");
+    }
+    
+    public Jewel getJewelById(Long id) throws DAOException {
+        Jewel jewel = null;
+        try {
+            jewel = manager.getJewelDAO().getById(id);
+        } catch (InvalidInputException | JewelNotFoundException e) {
+            JOptionPane.showMessageDialog(null, "Error al obtener joya: " + e.getMessage());
+        }
+        return jewel;
+    }
+    
+    public Jewel getJewelByName(String name) throws DAOException {
+        Jewel jewel = null;
+        try {
+            jewel = manager.getJewelDAO().getByName(name);
+        } catch (InvalidInputException | JewelNotFoundException e) {
+            JOptionPane.showMessageDialog(null, "Error al obtener joya: " + e.getMessage());
+        }
+        return jewel;
     }
     
     public void createJewel(JewelDTO jewelDTO) throws DAOException {

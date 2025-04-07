@@ -120,6 +120,40 @@ public class PostgreSQLInvoiceDAO implements InvoiceDAO{
        }
        return invoices;
     }
+    
+    @Override
+    public List<Invoice> getBySaleId(Long saleId) 
+            throws DAOException, SaleNotFoundException, InvalidInputException {
+       PreparedStatement preparedStatement = null;
+       ResultSet resultSet = null;
+       List<Invoice> invoices = new ArrayList<>();
+       try {
+           preparedStatement = conn.prepareStatement(GET_BY_SALE_ID);
+           preparedStatement.setLong(1, saleId);
+           resultSet = preparedStatement.executeQuery();
+           while (resultSet.next()) {
+               invoices.add(convert(resultSet));
+           }
+       } catch (SQLException e) {
+           throw new SaleNotFoundException("Error al intentar obtener las facturas asociadas a la venta indicada", e);
+       } finally {
+           if (preparedStatement == null) {
+               try {
+                   preparedStatement.close();
+               } catch (SQLException e) {
+                   throw new DAOException("Error al intentar cerrar la conexion", e);
+               }
+           }
+           if (resultSet == null) {
+               try {
+                   resultSet.close();
+               } catch (SQLException e) {
+                   throw new DAOException("Error al intentar cerrar la conexion", e);
+               }
+           }
+       }
+       return invoices;
+    }
 
     @Override
     public void insert(Invoice invoice) throws DAOException {
@@ -210,37 +244,4 @@ public class PostgreSQLInvoiceDAO implements InvoiceDAO{
        }
     }
 
-    @Override
-    public List<Invoice> getBySaleId(Long saleId) 
-            throws DAOException, SaleNotFoundException, InvalidInputException {
-       PreparedStatement preparedStatement = null;
-       ResultSet resultSet = null;
-       List<Invoice> invoices = new ArrayList<>();
-       try {
-           preparedStatement = conn.prepareStatement(GET_BY_SALE_ID);
-           resultSet = preparedStatement.executeQuery();
-           while (resultSet.next()) {
-               invoices.add(convert(resultSet));
-           }
-       } catch (SQLException e) {
-           throw new SaleNotFoundException("Error al intentar obtener las facturas asociadas a la venta indicada", e);
-       } finally {
-           if (preparedStatement == null) {
-               try {
-                   preparedStatement.close();
-               } catch (SQLException e) {
-                   throw new DAOException("Error al intentar cerrar la conexion", e);
-               }
-           }
-           if (resultSet == null) {
-               try {
-                   resultSet.close();
-               } catch (SQLException e) {
-                   throw new DAOException("Error al intentar cerrar la conexion", e);
-               }
-           }
-       }
-       return invoices;
-    }
-    
 }

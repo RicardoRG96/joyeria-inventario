@@ -2,6 +2,7 @@ package com.mycompany.joyeriaInventario.model.dao.postgreSQL;
 
 import com.mycompany.joyeriaInventario.exception.common.DAOException;
 import com.mycompany.joyeriaInventario.exception.common.InvalidInputException;
+import com.mycompany.joyeriaInventario.exception.saleItem.SaleItemNotFoundException;
 import com.mycompany.joyeriaInventario.model.dao.SaleItemDAO;
 import com.mycompany.joyeriaInventario.model.entities.SaleItem;
 import java.sql.Connection;
@@ -16,6 +17,10 @@ public class PostgreSQLSaleItemDAO implements SaleItemDAO {
     private final String GET_ONE = "SELECT * FROM sale_items WHERE id = ?";
     
     private final String GET_ALL = "SELECT * FROM sale_items ORDER BY id ASC";
+    
+    private final String GET_BY_SALE_ID = "SELECT * FROM sale_items WHERE sale_id = ?";
+    
+    private final String GET_BY_JEWEL_ID = "SELECT * FROM sale_items WHERE jewel_id = ?";
 
     private final String INSERT = 
             "INSERT INTO sale_items (sale_id, jewel_id, quantity, price, subtotal) VALUES (?, ?, ?, ?, ?)";
@@ -32,7 +37,7 @@ public class PostgreSQLSaleItemDAO implements SaleItemDAO {
     }
 
     @Override
-    public SaleItem getById(Long id) throws DAOException, InvalidInputException {
+    public SaleItem getById(Long id) throws DAOException, InvalidInputException, SaleItemNotFoundException {
        PreparedStatement preparedStatement = null;
        ResultSet resultSet = null;
        SaleItem saleItem = null;
@@ -43,7 +48,7 @@ public class PostgreSQLSaleItemDAO implements SaleItemDAO {
            if (resultSet.next()) {
                saleItem = convert(resultSet);
            } else {
-               throw new DAOException("No se ha encontrado item de la orden de venta");
+               throw new SaleItemNotFoundException("No se ha encontrado item de la orden de venta");
            }
        } catch (SQLException e) {
            throw new DAOException("Error al intentar obtener el item de la orden de venta", e);
@@ -87,6 +92,72 @@ public class PostgreSQLSaleItemDAO implements SaleItemDAO {
        List<SaleItem> saleItems = new ArrayList<>();
        try {
            preparedStatement = conn.prepareStatement(GET_ALL);
+           resultSet = preparedStatement.executeQuery();
+           while (resultSet.next()) {
+               saleItems.add(convert(resultSet));
+           }
+       } catch (SQLException e) {
+           throw new DAOException("Error al intentar obtener todos los items", e);
+       } finally {
+           if (preparedStatement == null) {
+               try {
+                   preparedStatement.close();
+               } catch (SQLException e) {
+                   throw new DAOException("Error al intentar cerrar la conexion", e);
+               }
+           }
+           if (resultSet == null) {
+               try {
+                   resultSet.close();
+               } catch (SQLException e) {
+                   throw new DAOException("Error al intentar cerrar la conexion", e);
+               }
+           }
+       }
+       return saleItems;
+    }
+    
+    @Override
+    public List<SaleItem> getBySaleId(Long saleId) throws DAOException, SaleItemNotFoundException, InvalidInputException {
+       PreparedStatement preparedStatement = null;
+       ResultSet resultSet = null;
+       List<SaleItem> saleItems = new ArrayList<>();
+       try {
+           preparedStatement = conn.prepareStatement(GET_BY_SALE_ID);
+           preparedStatement.setLong(1, saleId);
+           resultSet = preparedStatement.executeQuery();
+           while (resultSet.next()) {
+               saleItems.add(convert(resultSet));
+           }
+       } catch (SQLException e) {
+           throw new DAOException("Error al intentar obtener todos los items", e);
+       } finally {
+           if (preparedStatement == null) {
+               try {
+                   preparedStatement.close();
+               } catch (SQLException e) {
+                   throw new DAOException("Error al intentar cerrar la conexion", e);
+               }
+           }
+           if (resultSet == null) {
+               try {
+                   resultSet.close();
+               } catch (SQLException e) {
+                   throw new DAOException("Error al intentar cerrar la conexion", e);
+               }
+           }
+       }
+       return saleItems;
+    }
+
+    @Override
+    public List<SaleItem> getByJewelId(Long jewelId) throws DAOException, SaleItemNotFoundException, InvalidInputException {
+       PreparedStatement preparedStatement = null;
+       ResultSet resultSet = null;
+       List<SaleItem> saleItems = new ArrayList<>();
+       try {
+           preparedStatement = conn.prepareStatement(GET_BY_JEWEL_ID);
+           preparedStatement.setLong(1, jewelId);
            resultSet = preparedStatement.executeQuery();
            while (resultSet.next()) {
                saleItems.add(convert(resultSet));
@@ -189,5 +260,5 @@ public class PostgreSQLSaleItemDAO implements SaleItemDAO {
            }
        }
     }
-    
+
 }
