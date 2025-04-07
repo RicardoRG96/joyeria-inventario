@@ -1,5 +1,6 @@
 package com.mycompany.joyeriaInventario.model.entities;
 
+import com.mycompany.joyeriaInventario.exception.common.InvalidInputException;
 import com.mycompany.joyeriaInventario.model.vo.JewelPriceVO;
 import com.mycompany.joyeriaInventario.model.vo.JewelStockVO;
 import com.mycompany.joyeriaInventario.model.vo.JewelWeightVO;
@@ -28,7 +29,7 @@ public class Jewel {
     public Jewel() {
     }
 
-    public Jewel(String name, Long materialId, double weight, double price, int stock) {
+    public Jewel(String name, Long materialId, double weight, double price, int stock) throws InvalidInputException {
         this.name = new NameVO(name);
         this.materialId = materialId;
         this.weight = new JewelWeightVO(weight);
@@ -48,7 +49,7 @@ public class Jewel {
         return name.getName();
     }
 
-    public void setName(String name) {
+    public void setName(String name) throws InvalidInputException {
         this.name = new NameVO(name);
     }
 
@@ -64,7 +65,7 @@ public class Jewel {
         return weight.getWeight();
     }
 
-    public void setWeight(double weight) {
+    public void setWeight(double weight) throws InvalidInputException {
         this.weight = new JewelWeightVO(weight);
     }
 
@@ -72,7 +73,7 @@ public class Jewel {
         return price.getPrice();
     }
 
-    public void setPrice(double price) {
+    public void setPrice(double price) throws InvalidInputException {
         this.price = new JewelPriceVO(price);
     }
 
@@ -80,7 +81,7 @@ public class Jewel {
         return stock.getStock();
     }
 
-    public void setStock(int stock) {
+    public void setStock(int stock) throws InvalidInputException {
         this.stock = new JewelStockVO(stock);
     }
 

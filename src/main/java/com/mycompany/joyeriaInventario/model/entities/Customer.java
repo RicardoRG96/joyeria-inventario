@@ -1,5 +1,6 @@
 package com.mycompany.joyeriaInventario.model.entities;
 
+import com.mycompany.joyeriaInventario.exception.common.InvalidInputException;
 import com.mycompany.joyeriaInventario.model.vo.NameVO;
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -25,7 +26,7 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(String name, String rut, String email, String phone, String address) {
+    public Customer(String name, String rut, String email, String phone, String address) throws InvalidInputException {
         this.name = new NameVO(name);
         this.rut = rut;
         this.email = email;
@@ -45,7 +46,7 @@ public class Customer {
         return name.getName();
     }
 
-    public void setName(String name) {
+    public void setName(String name) throws InvalidInputException {
         this.name = new NameVO(name);
     }
 

@@ -1,25 +1,26 @@
 package com.mycompany.joyeriaInventario.model.vo;
 
+import com.mycompany.joyeriaInventario.exception.common.InvalidInputException;
 import java.util.Objects;
 
 public class NameVO {
 
     private String name;
     
-    public NameVO(String name) throws IllegalArgumentException {
+    public NameVO(String name) throws InvalidInputException {
         validate(name);
         this.name = name.trim();
     }
     
-    private void validate(String name) throws IllegalArgumentException {
+    private void validate(String name) throws InvalidInputException {
         if (name == null || name.trim().isEmpty()) {
-            throw new IllegalArgumentException("El nombre del cliente no puede estar vacío.");
+            throw new InvalidInputException("El nombre del cliente no puede estar vacío.");
         }
         if (name.length() < 2 || name.length() > 100) {
-            throw new IllegalArgumentException("El nombre debe tener entre 2 y 100 caracteres.");
+            throw new InvalidInputException("El nombre debe tener entre 2 y 100 caracteres.");
         }
         if (!name.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+")) {
-            throw new IllegalArgumentException("El nombre solo puede contener letras y espacios.");
+            throw new InvalidInputException("El nombre solo puede contener letras y espacios.");
         }
     }
 

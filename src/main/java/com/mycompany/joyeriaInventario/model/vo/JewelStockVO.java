@@ -1,12 +1,14 @@
 package com.mycompany.joyeriaInventario.model.vo;
 
+import com.mycompany.joyeriaInventario.exception.common.InvalidInputException;
+
 public class JewelStockVO {
     
     private int stock;
     
-    public JewelStockVO(int stock) {
+    public JewelStockVO(int stock) throws InvalidInputException {
         if (stock < 0) {
-            throw new IllegalArgumentException("El stock no puede ser menor a cero");
+            throw new InvalidInputException("El stock no puede ser menor a cero");
         }
         this.stock = stock;
     }

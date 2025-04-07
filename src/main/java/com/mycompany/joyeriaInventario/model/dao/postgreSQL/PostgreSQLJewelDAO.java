@@ -1,6 +1,8 @@
 package com.mycompany.joyeriaInventario.model.dao.postgreSQL;
 
 import com.mycompany.joyeriaInventario.exception.common.DAOException;
+import com.mycompany.joyeriaInventario.exception.common.InvalidInputException;
+import com.mycompany.joyeriaInventario.exception.jewel.JewelNotFoundException;
 import com.mycompany.joyeriaInventario.model.dao.JewelDAO;
 import com.mycompany.joyeriaInventario.model.entities.Jewel;
 import java.sql.Connection;
@@ -15,6 +17,8 @@ public class PostgreSQLJewelDAO implements JewelDAO {
     private final String GET_ONE = "SELECT * FROM jewelry WHERE id = ?";
     
     private final String GET_ALL = "SELECT * FROM jewelry";
+    
+    private final String GET_BY_NAME = "SELECT * FROM jewelry WHERE name = ?";
 
     private final String INSERT = "INSERT INTO jewelry (name, material_id, weight, price, stock) VALUES (?, ?, ?, ?, ?)";
     
@@ -30,7 +34,7 @@ public class PostgreSQLJewelDAO implements JewelDAO {
     }
 
     @Override
-    public Jewel getById(Long id) throws DAOException {
+    public Jewel getById(Long id) throws DAOException, JewelNotFoundException, InvalidInputException {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         Jewel jewel = null;
@@ -41,7 +45,7 @@ public class PostgreSQLJewelDAO implements JewelDAO {
             if (resultSet.next()) {
                 jewel = convert(resultSet);
             } else {
-                throw new DAOException("No se ha encontrado el producto");
+                throw new JewelNotFoundException("No se ha encontrado el producto");
             }
         } catch (SQLException e) {
             throw new DAOException("Error al intentar obtener el producto", e);
@@ -65,7 +69,7 @@ public class PostgreSQLJewelDAO implements JewelDAO {
         return jewel;
     }
     
-    private Jewel convert(ResultSet rs) throws SQLException {
+    private Jewel convert(ResultSet rs) throws SQLException, InvalidInputException {
         String name = rs.getString("name");
         Long materialId = rs.getLong("material_id");
         Double weight = rs.getDouble("weight");
@@ -80,7 +84,7 @@ public class PostgreSQLJewelDAO implements JewelDAO {
     }
 
     @Override
-    public List<Jewel> getAll() throws DAOException {
+    public List<Jewel> getAll() throws DAOException, InvalidInputException {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         List<Jewel> jewels = new ArrayList<>();
@@ -110,6 +114,42 @@ public class PostgreSQLJewelDAO implements JewelDAO {
             
         }
         return jewels;
+    }
+    
+    @Override
+    public Jewel getByName(String name) throws DAOException, JewelNotFoundException, InvalidInputException {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        Jewel jewel = null;
+        try {
+            preparedStatement = conn.prepareStatement(GET_BY_NAME);
+            preparedStatement.setString(1, name);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                jewel = convert(resultSet);
+            } else {
+                throw new JewelNotFoundException("No se ha encontrado el producto");
+            }
+        } catch (SQLException e) {
+            throw new DAOException("Error al intentar obtener el producto", e);
+        } finally {
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException ex) {
+                    throw new DAOException("Error al intentar cerrar la conexion", ex);
+                }
+            }
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException ex) {
+                    throw new DAOException("Error al intentar cerrar la conexion", ex);  
+                }
+            }
+            
+        }
+        return jewel;
     }
 
     @Override

@@ -1,8 +1,11 @@
-package com.mycompany.joyeriainventario;
+package com.mycompany.joyeriaInventario;
+
+import com.mycompany.joyeriaInventario.view.Home;
 
 public class JewelryInventory {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Home home = new Home();
+        home.setVisible(true);
     }
 }

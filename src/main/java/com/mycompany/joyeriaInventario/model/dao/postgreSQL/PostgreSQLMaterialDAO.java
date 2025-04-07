@@ -1,6 +1,7 @@
 package com.mycompany.joyeriaInventario.model.dao.postgreSQL;
 
 import com.mycompany.joyeriaInventario.exception.common.DAOException;
+import com.mycompany.joyeriaInventario.exception.common.InvalidInputException;
 import com.mycompany.joyeriaInventario.model.dao.MaterialDAO;
 import com.mycompany.joyeriaInventario.model.entities.Material;
 import java.sql.Connection;
@@ -15,6 +16,8 @@ public class PostgreSQLMaterialDAO implements MaterialDAO {
     private final String GET_ONE = "SELECT * FROM materials WHERE id = ?";
     
     private final String GET_ALL = "SELECT * FROM materials";
+    
+    private final String GET_BY_NAME = "SELECT * FROM materials WHERE name = ?";
 
     private final String INSERT = "INSERT INTO materials (name, description) VALUES (?, ?)";
     
@@ -29,7 +32,7 @@ public class PostgreSQLMaterialDAO implements MaterialDAO {
     }
 
     @Override
-    public Material getById(Long id) throws DAOException {
+    public Material getById(Long id) throws DAOException, InvalidInputException {
        PreparedStatement preparedStatement = null;
        ResultSet resultSet = null;
        Material material = null;
@@ -63,7 +66,7 @@ public class PostgreSQLMaterialDAO implements MaterialDAO {
        return material;
     }
     
-    private Material convert(ResultSet rs) throws SQLException {
+    private Material convert(ResultSet rs) throws SQLException, InvalidInputException {
         String name = rs.getString("name");
         String description = rs.getString("description");
         Material material = new Material(name, description);
@@ -75,7 +78,7 @@ public class PostgreSQLMaterialDAO implements MaterialDAO {
     }
 
     @Override
-    public List<Material> getAll() throws DAOException {
+    public List<Material> getAll() throws DAOException, InvalidInputException {
        PreparedStatement preparedStatement = null;
        ResultSet resultSet = null;
        List<Material> materials = new ArrayList<>();
@@ -104,6 +107,41 @@ public class PostgreSQLMaterialDAO implements MaterialDAO {
            }
        }
        return materials;
+    }
+    
+    @Override
+    public Material getByName(String name) throws DAOException, InvalidInputException {
+       PreparedStatement preparedStatement = null;
+       ResultSet resultSet = null;
+       Material material = null;
+       try {
+           preparedStatement = conn.prepareStatement(GET_BY_NAME);
+           preparedStatement.setString(1, name);
+           resultSet = preparedStatement.executeQuery();
+           if (resultSet.next()) {
+               material = convert(resultSet);
+           } else {
+               throw new DAOException("No se ha encontrado el material");
+           }
+       } catch (SQLException e) {
+           throw new DAOException("Error al intentar obtener el material de la joya", e);
+       } finally {
+           if (preparedStatement == null) {
+               try {
+                   preparedStatement.close();
+               } catch (SQLException e) {
+                   throw new DAOException("Error al intentar cerrar la conexion", e);
+               }
+           }
+           if (resultSet == null) {
+               try {
+                   resultSet.close();
+               } catch (SQLException e) {
+                   throw new DAOException("Error al intentar cerrar la conexion", e);
+               }
+           }
+       }
+       return material;
     }
 
     @Override

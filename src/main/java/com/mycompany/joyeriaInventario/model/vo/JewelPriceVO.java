@@ -1,12 +1,14 @@
 package com.mycompany.joyeriaInventario.model.vo;
 
+import com.mycompany.joyeriaInventario.exception.common.InvalidInputException;
+
 public class JewelPriceVO {
 
     private double price;
 
-    public JewelPriceVO(double price) {
+    public JewelPriceVO(double price) throws InvalidInputException {
         if (price <= 0) {
-            throw new IllegalArgumentException("El precio debe ser mayor a cero");
+            throw new InvalidInputException("El precio debe ser mayor a cero");
         }
         this.price = price;
     }

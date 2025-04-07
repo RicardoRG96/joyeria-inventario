@@ -1,6 +1,5 @@
 package com.mycompany.joyeriaInventario.model.dao.postgreSQL;
 
-import com.mycompany.joyeriaInventario.exception.common.DAOException;
 import com.mycompany.joyeriaInventario.model.dao.CustomerDAO;
 import com.mycompany.joyeriaInventario.model.dao.DAOManager;
 import com.mycompany.joyeriaInventario.model.dao.InvoiceDAO;
@@ -8,13 +7,9 @@ import com.mycompany.joyeriaInventario.model.dao.JewelDAO;
 import com.mycompany.joyeriaInventario.model.dao.MaterialDAO;
 import com.mycompany.joyeriaInventario.model.dao.SaleDao;
 import com.mycompany.joyeriaInventario.model.dao.SaleItemDAO;
-import com.mycompany.joyeriaInventario.model.entities.Customer;
-import com.mycompany.joyeriaInventario.model.entities.Jewel;
-import com.mycompany.joyeriaInventario.model.entities.Sale;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.List;
 
 public class PostgreSQLDAOManager implements DAOManager {
     

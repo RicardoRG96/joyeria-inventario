@@ -1,16 +1,17 @@
 package com.mycompany.joyeriaInventario.model.dao;
 
 import com.mycompany.joyeriaInventario.exception.common.DAOException;
+import com.mycompany.joyeriaInventario.exception.common.InvalidInputException;
 import com.mycompany.joyeriaInventario.model.entities.Sale;
 import java.util.List;
 
 public interface SaleDao extends DAO<Sale, Long> {
     
     @Override
-    Sale getById(Long id) throws DAOException;
+    Sale getById(Long id) throws DAOException, InvalidInputException;
     
     @Override
-    List<Sale> getAll() throws DAOException;
+    List<Sale> getAll() throws DAOException, InvalidInputException;
     
     @Override
     void insert(Sale sale) throws DAOException;

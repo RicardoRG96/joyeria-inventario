@@ -1,12 +1,14 @@
 package com.mycompany.joyeriaInventario.model.dao.postgreSQL;
 
 import com.mycompany.joyeriaInventario.exception.common.DAOException;
+import com.mycompany.joyeriaInventario.exception.common.InvalidInputException;
 import com.mycompany.joyeriaInventario.model.dao.CustomerDAO;
 import com.mycompany.joyeriaInventario.model.entities.Customer;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PostgreSQLCustomerDAO implements CustomerDAO {
@@ -29,7 +31,7 @@ public class PostgreSQLCustomerDAO implements CustomerDAO {
     }
 
     @Override
-    public Customer getById(Long id) throws DAOException {
+    public Customer getById(Long id) throws DAOException, InvalidInputException {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         Customer customer = null;
@@ -63,7 +65,7 @@ public class PostgreSQLCustomerDAO implements CustomerDAO {
         return customer;
     }
     
-    private Customer convert(ResultSet rs) throws SQLException {
+    private Customer convert(ResultSet rs) throws SQLException, InvalidInputException {
         String name = rs.getString("name");
         String rut = rs.getString("rut");
         String email = rs.getString("email");
@@ -78,10 +80,10 @@ public class PostgreSQLCustomerDAO implements CustomerDAO {
     }
 
     @Override
-    public List<Customer> getAll() throws DAOException {
+    public List<Customer> getAll() throws DAOException, InvalidInputException {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        List<Customer> customers = null;
+        List<Customer> customers = new ArrayList<>();
         try {
             preparedStatement = conn.prepareStatement(GET_ALL);
             resultSet = preparedStatement.executeQuery();

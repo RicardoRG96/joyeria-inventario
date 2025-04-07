@@ -1,6 +1,7 @@
 package com.mycompany.joyeriaInventario.model.dao.postgreSQL;
 
 import com.mycompany.joyeriaInventario.exception.common.DAOException;
+import com.mycompany.joyeriaInventario.exception.common.InvalidInputException;
 import com.mycompany.joyeriaInventario.model.dao.SaleItemDAO;
 import com.mycompany.joyeriaInventario.model.entities.SaleItem;
 import java.sql.Connection;
@@ -31,7 +32,7 @@ public class PostgreSQLSaleItemDAO implements SaleItemDAO {
     }
 
     @Override
-    public SaleItem getById(Long id) throws DAOException {
+    public SaleItem getById(Long id) throws DAOException, InvalidInputException {
        PreparedStatement preparedStatement = null;
        ResultSet resultSet = null;
        SaleItem saleItem = null;
@@ -65,7 +66,7 @@ public class PostgreSQLSaleItemDAO implements SaleItemDAO {
        return saleItem;
     }
     
-    private SaleItem convert(ResultSet rs) throws SQLException {
+    private SaleItem convert(ResultSet rs) throws SQLException, InvalidInputException {
         Long saleId = rs.getLong("sale_id");
         Long jewelId = rs.getLong("jewel_id");
         int quantity = rs.getInt("quantity");
@@ -80,7 +81,7 @@ public class PostgreSQLSaleItemDAO implements SaleItemDAO {
     }
 
     @Override
-    public List<SaleItem> getAll() throws DAOException {
+    public List<SaleItem> getAll() throws DAOException, InvalidInputException {
        PreparedStatement preparedStatement = null;
        ResultSet resultSet = null;
        List<SaleItem> saleItems = new ArrayList<>();

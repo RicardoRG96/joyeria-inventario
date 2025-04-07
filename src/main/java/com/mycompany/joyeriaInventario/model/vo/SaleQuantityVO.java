@@ -1,12 +1,14 @@
 package com.mycompany.joyeriaInventario.model.vo;
 
+import com.mycompany.joyeriaInventario.exception.common.InvalidInputException;
+
 public class SaleQuantityVO {
 
     private int quantity;
 
-    public SaleQuantityVO(int quantity) {
+    public SaleQuantityVO(int quantity) throws InvalidInputException {
         if (quantity <= 0) {
-            throw new IllegalArgumentException("La cantidad debe ser mayor a cero");
+            throw new InvalidInputException("La cantidad debe ser mayor a cero");
         }
         this.quantity = quantity;
     }

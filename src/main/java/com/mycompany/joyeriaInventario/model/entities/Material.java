@@ -1,5 +1,7 @@
 package com.mycompany.joyeriaInventario.model.entities;
 
+import com.mycompany.joyeriaInventario.exception.common.InvalidInputException;
+import com.mycompany.joyeriaInventario.model.vo.NameVO;
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -7,7 +9,7 @@ public class Material {
 
     private Long id;
     
-    private String name;
+    private NameVO name;
     
     private String description;
     
@@ -18,8 +20,8 @@ public class Material {
     public Material() {
     }
 
-    public Material(String name, String description) {
-        this.name = name;
+    public Material(String name, String description) throws InvalidInputException {
+        this.name = new NameVO(name);
         this.description = description;
     }
 
@@ -32,11 +34,11 @@ public class Material {
     }
 
     public String getName() {
-        return name;
+        return name.getName();
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String name) throws InvalidInputException {
+        this.name = new NameVO(name);
     }
 
     public String getDescription() {
@@ -71,11 +73,11 @@ public class Material {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.id);
-        hash = 79 * hash + Objects.hashCode(this.name);
-        hash = 79 * hash + Objects.hashCode(this.description);
-        hash = 79 * hash + Objects.hashCode(this.createdAt);
-        hash = 79 * hash + Objects.hashCode(this.updatedAt);
+        hash = 17 * hash + Objects.hashCode(this.id);
+        hash = 17 * hash + Objects.hashCode(this.name);
+        hash = 17 * hash + Objects.hashCode(this.description);
+        hash = 17 * hash + Objects.hashCode(this.createdAt);
+        hash = 17 * hash + Objects.hashCode(this.updatedAt);
         return hash;
     }
 
@@ -91,13 +93,13 @@ public class Material {
             return false;
         }
         final Material other = (Material) obj;
-        if (!Objects.equals(this.name, other.name)) {
-            return false;
-        }
         if (!Objects.equals(this.description, other.description)) {
             return false;
         }
         if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.name, other.name)) {
             return false;
         }
         if (!Objects.equals(this.createdAt, other.createdAt)) {

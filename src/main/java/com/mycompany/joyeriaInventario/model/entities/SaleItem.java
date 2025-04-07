@@ -1,5 +1,7 @@
 package com.mycompany.joyeriaInventario.model.entities;
 
+import com.mycompany.joyeriaInventario.exception.common.InvalidInputException;
+import com.mycompany.joyeriaInventario.model.vo.JewelPriceVO;
 import com.mycompany.joyeriaInventario.model.vo.SaleQuantityVO;
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -14,7 +16,7 @@ public class SaleItem {
     
     private SaleQuantityVO quantity;
     
-    private Double price;
+    private JewelPriceVO price;
     
     private Double subTotal;
     
@@ -25,11 +27,11 @@ public class SaleItem {
     public SaleItem() {
     }
 
-    public SaleItem(Long saleId, Long jewelId, int quantity, Double price, Double subTotal) {
+    public SaleItem(Long saleId, Long jewelId, int quantity, Double price, Double subTotal) throws InvalidInputException {
         this.saleId = saleId;
         this.jewelId = jewelId;
         this.quantity = new SaleQuantityVO(quantity);
-        this.price = price;
+        this.price = new JewelPriceVO(price);
         this.subTotal = subTotal;
     }
 
@@ -61,16 +63,16 @@ public class SaleItem {
         return quantity.getQuantity();
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(int quantity) throws InvalidInputException {
         this.quantity = new SaleQuantityVO(quantity);
     }
 
     public Double getPrice() {
-        return price;
+        return price.getPrice();
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setPrice(Double price) throws InvalidInputException {
+        this.price = new JewelPriceVO(price);
     }
 
     public Double getSubTotal() {

@@ -1,6 +1,7 @@
 package com.mycompany.joyeriaInventario.model.dao.postgreSQL;
 
 import com.mycompany.joyeriaInventario.exception.common.DAOException;
+import com.mycompany.joyeriaInventario.exception.common.InvalidInputException;
 import com.mycompany.joyeriaInventario.model.dao.InvoiceDAO;
 import com.mycompany.joyeriaInventario.model.entities.Invoice;
 import java.sql.Connection;
@@ -35,7 +36,7 @@ public class PostgreSQLInvoiceDAO implements InvoiceDAO{
     }
 
     @Override
-    public Invoice getById(Long id) throws DAOException {
+    public Invoice getById(Long id) throws DAOException, InvalidInputException {
        PreparedStatement preparedStatement = null;
        ResultSet resultSet = null;
        Invoice invoice = null;
@@ -69,7 +70,7 @@ public class PostgreSQLInvoiceDAO implements InvoiceDAO{
        return invoice;
     }
     
-    private Invoice convert(ResultSet rs) throws SQLException {
+    private Invoice convert(ResultSet rs) throws SQLException, InvalidInputException {
         Long saleId = rs.getLong("sale_id");
         String invoiceNumber = rs.getString("invoice_number");
         String customerName = rs.getString("customer_name");
@@ -86,7 +87,7 @@ public class PostgreSQLInvoiceDAO implements InvoiceDAO{
     }
 
     @Override
-    public List<Invoice> getAll() throws DAOException {
+    public List<Invoice> getAll() throws DAOException, InvalidInputException {
        PreparedStatement preparedStatement = null;
        ResultSet resultSet = null;
        List<Invoice> invoices = new ArrayList<>();

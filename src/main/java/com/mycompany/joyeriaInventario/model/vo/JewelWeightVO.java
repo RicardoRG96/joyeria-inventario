@@ -1,12 +1,14 @@
 package com.mycompany.joyeriaInventario.model.vo;
 
+import com.mycompany.joyeriaInventario.exception.common.InvalidInputException;
+
 public class JewelWeightVO {
     
     private double weight;
 
-    public JewelWeightVO(double weight) {
+    public JewelWeightVO(double weight) throws InvalidInputException {
         if (weight <= 0) {
-            throw new IllegalArgumentException("El peso debe ser mayor a cero");
+            throw new InvalidInputException("El peso debe ser mayor a cero");
         }
         this.weight = weight;
     }

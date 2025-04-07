@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.joyeriainventario.view.jewel;
+package com.mycompany.joyeriaInventario.view.jewel;
 
 /**
  *
  * @author ricar
  */
-public class EditJewelry extends javax.swing.JFrame {
+public class UpdateJewelView extends javax.swing.JFrame {
 
     /**
      * Creates new form EditJewel
      */
-    public EditJewelry() {
+    public UpdateJewelView() {
         initComponents();
     }
 
@@ -34,12 +34,12 @@ public class EditJewelry extends javax.swing.JFrame {
         editJewelStockTxt = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        editJewelNameTxt = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         editJewelPriceTxt = new javax.swing.JTextField();
         cancelJewelEditionBtn = new javax.swing.JButton();
         confirmEditionJewelBtn = new javax.swing.JButton();
         editJewelMaterialCbx = new javax.swing.JComboBox<>();
+        editJewelNameTxt1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,16 +97,6 @@ public class EditJewelry extends javax.swing.JFrame {
         jLabel6.setText("Nombre:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
 
-        editJewelNameTxt.setBackground(new java.awt.Color(248, 250, 252));
-        editJewelNameTxt.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        editJewelNameTxt.setForeground(new java.awt.Color(49, 54, 63));
-        editJewelNameTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editJewelNameTxtActionPerformed(evt);
-            }
-        });
-        jPanel1.add(editJewelNameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 230, 20));
-
         jLabel7.setBackground(new java.awt.Color(248, 250, 252));
         jLabel7.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(49, 54, 63));
@@ -153,6 +143,16 @@ public class EditJewelry extends javax.swing.JFrame {
         editJewelMaterialCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(editJewelMaterialCbx, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 230, -1));
 
+        editJewelNameTxt1.setBackground(new java.awt.Color(248, 250, 252));
+        editJewelNameTxt1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        editJewelNameTxt1.setForeground(new java.awt.Color(49, 54, 63));
+        editJewelNameTxt1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editJewelNameTxt1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(editJewelNameTxt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 230, 20));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -175,10 +175,6 @@ public class EditJewelry extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_editJewelStockTxtActionPerformed
 
-    private void editJewelNameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editJewelNameTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_editJewelNameTxtActionPerformed
-
     private void editJewelPriceTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editJewelPriceTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_editJewelPriceTxtActionPerformed
@@ -190,6 +186,10 @@ public class EditJewelry extends javax.swing.JFrame {
     private void confirmEditionJewelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmEditionJewelBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_confirmEditionJewelBtnActionPerformed
+
+    private void editJewelNameTxt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editJewelNameTxt1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editJewelNameTxt1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -208,21 +208,23 @@ public class EditJewelry extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditJewelry.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateJewelView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditJewelry.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateJewelView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditJewelry.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateJewelView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditJewelry.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateJewelView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditJewelry().setVisible(true);
+                new UpdateJewelView().setVisible(true);
             }
         });
     }
@@ -231,7 +233,7 @@ public class EditJewelry extends javax.swing.JFrame {
     private javax.swing.JButton cancelJewelEditionBtn;
     private javax.swing.JButton confirmEditionJewelBtn;
     private javax.swing.JComboBox<String> editJewelMaterialCbx;
-    private javax.swing.JTextField editJewelNameTxt;
+    private javax.swing.JTextField editJewelNameTxt1;
     private javax.swing.JTextField editJewelPriceTxt;
     private javax.swing.JTextField editJewelStockTxt;
     private javax.swing.JTextField editJewelWeightTxt;

@@ -1,5 +1,7 @@
 package com.mycompany.joyeriaInventario.model.entities;
 
+import com.mycompany.joyeriaInventario.exception.common.InvalidInputException;
+import com.mycompany.joyeriaInventario.model.vo.NameVO;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -12,7 +14,7 @@ public class Invoice {
     
     private String invoiceNumber;
     
-    private String customerName;
+    private NameVO customerName;
     
     private String customerRut;
     
@@ -33,10 +35,10 @@ public class Invoice {
     public Invoice() {
     }
 
-    public Invoice(Long saleId, String invoiceNumber, String customerName, String customerRut, String billingAddress, Double total, Double tax, Date issueDate, String status) {
+    public Invoice(Long saleId, String invoiceNumber, String customerName, String customerRut, String billingAddress, Double total, Double tax, Date issueDate, String status) throws InvalidInputException {
         this.saleId = saleId;
         this.invoiceNumber = invoiceNumber;
-        this.customerName = customerName;
+        this.customerName = new NameVO(customerName);
         this.customerRut = customerRut;
         this.billingAddress = billingAddress;
         this.total = total;
@@ -70,11 +72,11 @@ public class Invoice {
     }
 
     public String getCustomerName() {
-        return customerName;
+        return customerName.getName();
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public void setCustomerName(String customerName) throws InvalidInputException {
+        this.customerName = new NameVO(customerName);
     }
 
     public String getCustomerRut() {
@@ -148,19 +150,19 @@ public class Invoice {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 59 * hash + Objects.hashCode(this.id);
-        hash = 59 * hash + Objects.hashCode(this.saleId);
-        hash = 59 * hash + Objects.hashCode(this.invoiceNumber);
-        hash = 59 * hash + Objects.hashCode(this.customerName);
-        hash = 59 * hash + Objects.hashCode(this.customerRut);
-        hash = 59 * hash + Objects.hashCode(this.billingAddress);
-        hash = 59 * hash + Objects.hashCode(this.total);
-        hash = 59 * hash + Objects.hashCode(this.tax);
-        hash = 59 * hash + Objects.hashCode(this.issueDate);
-        hash = 59 * hash + Objects.hashCode(this.status);
-        hash = 59 * hash + Objects.hashCode(this.createdAt);
-        hash = 59 * hash + Objects.hashCode(this.updatedAt);
+        int hash = 7;
+        hash = 47 * hash + Objects.hashCode(this.id);
+        hash = 47 * hash + Objects.hashCode(this.saleId);
+        hash = 47 * hash + Objects.hashCode(this.invoiceNumber);
+        hash = 47 * hash + Objects.hashCode(this.customerName);
+        hash = 47 * hash + Objects.hashCode(this.customerRut);
+        hash = 47 * hash + Objects.hashCode(this.billingAddress);
+        hash = 47 * hash + Objects.hashCode(this.total);
+        hash = 47 * hash + Objects.hashCode(this.tax);
+        hash = 47 * hash + Objects.hashCode(this.issueDate);
+        hash = 47 * hash + Objects.hashCode(this.status);
+        hash = 47 * hash + Objects.hashCode(this.createdAt);
+        hash = 47 * hash + Objects.hashCode(this.updatedAt);
         return hash;
     }
 
@@ -179,9 +181,6 @@ public class Invoice {
         if (!Objects.equals(this.invoiceNumber, other.invoiceNumber)) {
             return false;
         }
-        if (!Objects.equals(this.customerName, other.customerName)) {
-            return false;
-        }
         if (!Objects.equals(this.customerRut, other.customerRut)) {
             return false;
         }
@@ -195,6 +194,9 @@ public class Invoice {
             return false;
         }
         if (!Objects.equals(this.saleId, other.saleId)) {
+            return false;
+        }
+        if (!Objects.equals(this.customerName, other.customerName)) {
             return false;
         }
         if (!Objects.equals(this.total, other.total)) {
