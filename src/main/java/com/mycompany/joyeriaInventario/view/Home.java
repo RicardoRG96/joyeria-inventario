@@ -599,14 +599,18 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
     
     private void addJewelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJewelBtnActionPerformed
         try {
-            CreateJewelView createJewelView = new CreateJewelView();
-            createJewelView.setVisible(true);
-            createJewelView.setLocationRelativeTo(null);
+            openCreateJewelForm();
         } catch (DAOException | InvalidInputException | SQLException e) {
             JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_addJewelBtnActionPerformed
 
+    private void openCreateJewelForm() throws SQLException, DAOException, InvalidInputException {
+        CreateJewelView createJewelView = new CreateJewelView(this, this);
+        createJewelView.setVisible(true);
+        createJewelView.setLocationRelativeTo(null);
+    }
+    
     private void editJewelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editJewelBtnActionPerformed
         try {
             openUpdateJewelForm();

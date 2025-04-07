@@ -225,11 +225,10 @@ public class UpdateJewelView extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelJewelEditionBtnActionPerformed
 
     private void confirmEditionJewelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmEditionJewelBtnActionPerformed
-        validateNoEmptyInputs();
         save();
     }//GEN-LAST:event_confirmEditionJewelBtnActionPerformed
-
-    private void validateNoEmptyInputs() {
+    
+    private void save() {
         String materialName = editJewelMaterialCbx.getSelectedItem().toString();
         String name = editJewelNameTxt.getText();
         String price = editJewelPriceTxt.getText();
@@ -255,14 +254,6 @@ public class UpdateJewelView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "El peso es obligatorio");
             return;
         }
-    }
-    
-    private void save() {
-        String materialName = editJewelMaterialCbx.getSelectedItem().toString();
-        String name = editJewelNameTxt.getText();
-        String price = editJewelPriceTxt.getText();
-        String stock = editJewelStockTxt.getText();
-        String weight = editJewelWeightTxt.getText();
         int question = JOptionPane.showConfirmDialog(null, "¿Está seguro que los datos están correctos?");
         if (question == 0) {
             try {
@@ -273,7 +264,7 @@ public class UpdateJewelView extends javax.swing.JFrame {
                 jewelDTO.setWeight(Double.parseDouble(weight));
                 jewelDTO.setPrice(Double.parseDouble(price));
                 jewelDTO.setStock(Integer.parseInt(stock));
-                
+
                 jewelController.updateJewel(jewelId, jewelDTO);
                 callback.updateList();
                 dispose();
