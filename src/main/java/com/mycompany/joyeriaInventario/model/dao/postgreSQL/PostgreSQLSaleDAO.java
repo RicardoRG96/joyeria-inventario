@@ -1,6 +1,7 @@
 package com.mycompany.joyeriaInventario.model.dao.postgreSQL;
 
 import com.mycompany.joyeriaInventario.exception.common.DAOException;
+import com.mycompany.joyeriaInventario.exception.sale.SaleNotFoundException;
 import com.mycompany.joyeriaInventario.model.dao.SaleDao;
 import com.mycompany.joyeriaInventario.model.entities.Sale;
 import java.sql.Connection;
@@ -29,7 +30,7 @@ public class PostgreSQLSaleDAO implements SaleDao {
     }
     
     @Override
-    public Sale getById(Long id) throws DAOException {
+    public Sale getById(Long id) throws DAOException, SaleNotFoundException {
        PreparedStatement preparedStatement = null;
        ResultSet resultSet = null;
        Sale sale = null;
@@ -40,7 +41,7 @@ public class PostgreSQLSaleDAO implements SaleDao {
            if (resultSet.next()) {
                sale = convert(resultSet);
            } else {
-               throw new DAOException("No se ha encontrado la orden de venta");
+               throw new SaleNotFoundException("No se ha encontrado la orden de venta");
            }
        } catch (SQLException e) {
            throw new DAOException("Error en SQL", e);

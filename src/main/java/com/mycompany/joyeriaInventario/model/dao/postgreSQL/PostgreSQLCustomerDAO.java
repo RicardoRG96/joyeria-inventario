@@ -2,6 +2,8 @@ package com.mycompany.joyeriaInventario.model.dao.postgreSQL;
 
 import com.mycompany.joyeriaInventario.exception.common.DAOException;
 import com.mycompany.joyeriaInventario.exception.common.InvalidInputException;
+import com.mycompany.joyeriaInventario.exception.customer.CustomerNotFoundException;
+import com.mycompany.joyeriaInventario.exception.sale.SaleNotFoundException;
 import com.mycompany.joyeriaInventario.model.dao.CustomerDAO;
 import com.mycompany.joyeriaInventario.model.entities.Customer;
 import java.sql.Connection;
@@ -16,6 +18,8 @@ public class PostgreSQLCustomerDAO implements CustomerDAO {
     private final String GET_ONE = "SELECT * FROM customers WHERE id = ?";
     
     private final String GET_ALL = "SELECT * FROM customers ORDER BY id ASC";
+    
+    private final String GET_BY_NAME = "SELECT * FROM customers WHERE name = ?";
 
     private final String INSERT = "INSERT INTO customers (name, rut, email, phone, address) VALUES (?, ?, ?, ?, ?)";
     
@@ -31,7 +35,8 @@ public class PostgreSQLCustomerDAO implements CustomerDAO {
     }
 
     @Override
-    public Customer getById(Long id) throws DAOException, InvalidInputException {
+    public Customer getById(Long id) 
+            throws DAOException, InvalidInputException, CustomerNotFoundException {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         Customer customer = null;
@@ -42,7 +47,7 @@ public class PostgreSQLCustomerDAO implements CustomerDAO {
             if (resultSet.next()) {
                 customer = convert(resultSet);
             } else {
-                throw new DAOException("No se ha encontrado el cliente");
+                throw new CustomerNotFoundException("No se ha encontrado el cliente");
             }
         } catch (SQLException e) {
             throw new DAOException("Error al intentar obtener el cliente", e);
@@ -65,7 +70,8 @@ public class PostgreSQLCustomerDAO implements CustomerDAO {
         return customer;
     }
     
-    private Customer convert(ResultSet rs) throws SQLException, InvalidInputException {
+    private Customer convert(ResultSet rs) 
+            throws SQLException, InvalidInputException {
         String name = rs.getString("name");
         String rut = rs.getString("rut");
         String email = rs.getString("email");
@@ -78,9 +84,10 @@ public class PostgreSQLCustomerDAO implements CustomerDAO {
         
         return customer;
     }
-
+    
     @Override
-    public List<Customer> getAll() throws DAOException, InvalidInputException {
+    public List<Customer> getAll() 
+            throws DAOException, InvalidInputException {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         List<Customer> customers = new ArrayList<>();
@@ -111,6 +118,42 @@ public class PostgreSQLCustomerDAO implements CustomerDAO {
         return customers;
     }
 
+    @Override
+    public Customer getByName(String name) 
+            throws DAOException, CustomerNotFoundException, InvalidInputException {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        Customer customer = null;
+        try {
+            preparedStatement = conn.prepareStatement(GET_BY_NAME);
+            preparedStatement.setString(1, name);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                customer = convert(resultSet);
+            } else {
+                throw new CustomerNotFoundException("No se ha encontrado el cliente");
+            }
+        } catch (SQLException e) {
+            throw new DAOException("Error al intentar obtener el cliente", e);
+        } finally {
+            if (preparedStatement == null) {
+               try {
+                   preparedStatement.close();
+               } catch (SQLException e) {
+                   throw new DAOException("Error al intentar cerrar la conexion", e);
+               }
+           }
+           if (resultSet == null) {
+               try {
+                   resultSet.close();
+               } catch (SQLException e) {
+                   throw new DAOException("Error al intentar cerrar la conexion", e);
+               }
+           }
+        }
+        return customer;
+    }
+    
     @Override
     public void insert(Customer customer) throws DAOException {
         PreparedStatement preparedStatement = null;
@@ -188,5 +231,5 @@ public class PostgreSQLCustomerDAO implements CustomerDAO {
             }
         }
     }
-    
+
 }

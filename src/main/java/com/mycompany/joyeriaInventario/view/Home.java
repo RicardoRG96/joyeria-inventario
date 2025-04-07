@@ -237,6 +237,11 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
         updateStockBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/update.png"))); // NOI18N
         updateStockBtn.setBorder(null);
         updateStockBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        updateStockBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateStockBtnActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(34, 40, 49));
@@ -317,20 +322,40 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
                     .addComponent(jLabel7)))
         );
 
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+
         inventoryTable.setBackground(new java.awt.Color(248, 250, 252));
         inventoryTable.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         inventoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "Nombre", "Material", "Peso", "Precio", "Stock"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(inventoryTable);
+        if (inventoryTable.getColumnModel().getColumnCount() > 0) {
+            inventoryTable.getColumnModel().getColumn(0).setPreferredWidth(10);
+            inventoryTable.getColumnModel().getColumn(1).setPreferredWidth(40);
+            inventoryTable.getColumnModel().getColumn(2).setPreferredWidth(35);
+            inventoryTable.getColumnModel().getColumn(3).setPreferredWidth(25);
+            inventoryTable.getColumnModel().getColumn(4).setPreferredWidth(25);
+            inventoryTable.getColumnModel().getColumn(5).setPreferredWidth(20);
+        }
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -642,6 +667,11 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
         }
         
     }//GEN-LAST:event_deleteJewelBtnActionPerformed
+
+    private void updateStockBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateStockBtnActionPerformed
+        updateList();
+        
+    }//GEN-LAST:event_updateStockBtnActionPerformed
 
     private void openUpdateJewelForm() throws SQLException {
         int row = inventoryTable.getSelectedRow();

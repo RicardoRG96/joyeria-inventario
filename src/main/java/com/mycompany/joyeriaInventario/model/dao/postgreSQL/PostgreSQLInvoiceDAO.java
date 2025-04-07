@@ -2,6 +2,7 @@ package com.mycompany.joyeriaInventario.model.dao.postgreSQL;
 
 import com.mycompany.joyeriaInventario.exception.common.DAOException;
 import com.mycompany.joyeriaInventario.exception.common.InvalidInputException;
+import com.mycompany.joyeriaInventario.exception.sale.SaleNotFoundException;
 import com.mycompany.joyeriaInventario.model.dao.InvoiceDAO;
 import com.mycompany.joyeriaInventario.model.entities.Invoice;
 import java.sql.Connection;
@@ -17,6 +18,8 @@ public class PostgreSQLInvoiceDAO implements InvoiceDAO{
     private final String GET_ONE = "SELECT * FROM invoices WHERE id = ?";
     
     private final String GET_ALL = "SELECT * FROM invoices ORDER BY id ASC";
+    
+    private final String GET_BY_SALE_ID = "SELECT * FROM invoices WHERE sale_id = ?";
 
     private final String INSERT = 
             "INSERT INTO invoices (sale_id, invoice_ number, customer_name, customer_rut, billing_address, total, tax, issue_date, status) "
@@ -205,6 +208,39 @@ public class PostgreSQLInvoiceDAO implements InvoiceDAO{
                }
            }
        }
+    }
+
+    @Override
+    public List<Invoice> getBySaleId(Long saleId) 
+            throws DAOException, SaleNotFoundException, InvalidInputException {
+       PreparedStatement preparedStatement = null;
+       ResultSet resultSet = null;
+       List<Invoice> invoices = new ArrayList<>();
+       try {
+           preparedStatement = conn.prepareStatement(GET_BY_SALE_ID);
+           resultSet = preparedStatement.executeQuery();
+           while (resultSet.next()) {
+               invoices.add(convert(resultSet));
+           }
+       } catch (SQLException e) {
+           throw new SaleNotFoundException("Error al intentar obtener las facturas asociadas a la venta indicada", e);
+       } finally {
+           if (preparedStatement == null) {
+               try {
+                   preparedStatement.close();
+               } catch (SQLException e) {
+                   throw new DAOException("Error al intentar cerrar la conexion", e);
+               }
+           }
+           if (resultSet == null) {
+               try {
+                   resultSet.close();
+               } catch (SQLException e) {
+                   throw new DAOException("Error al intentar cerrar la conexion", e);
+               }
+           }
+       }
+       return invoices;
     }
     
 }
