@@ -248,6 +248,11 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
         deleteJewelBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/delete.png"))); // NOI18N
         deleteJewelBtn.setBorder(null);
         deleteJewelBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        deleteJewelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteJewelBtnActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(34, 40, 49));
@@ -618,6 +623,25 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
             JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_editJewelBtnActionPerformed
+
+    private void deleteJewelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteJewelBtnActionPerformed
+        int row = inventoryTable.getSelectedRow();
+        try {
+            if (row == -1) {
+                JOptionPane.showMessageDialog(this, "Seleccione un producto.");
+                return;
+            }
+            int question = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea eliminar?");
+            if (question == 0) {
+                Long selectedJewelId = jewelryTableModel.getJewelInRow(row).getId();
+                jewelController.deleteJewel(selectedJewelId);
+                updateList();
+            }
+        } catch (DAOException e) {
+            JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_deleteJewelBtnActionPerformed
 
     private void openUpdateJewelForm() throws SQLException {
         int row = inventoryTable.getSelectedRow();

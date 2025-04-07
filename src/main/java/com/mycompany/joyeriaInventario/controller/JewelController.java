@@ -6,7 +6,6 @@ import com.mycompany.joyeriaInventario.model.dao.DAOManager;
 import com.mycompany.joyeriaInventario.model.dao.postgreSQL.PostgreSQLDAOManager;
 import com.mycompany.joyeriaInventario.model.dto.JewelDTO;
 import com.mycompany.joyeriaInventario.model.entities.Jewel;
-import com.mycompany.joyeriaInventario.model.entities.Material;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.*;
@@ -40,7 +39,6 @@ public class JewelController {
        try {
             Jewel jewel = new Jewel();
             Long materialId = manager.getMaterialDAO().getByName(jewelDTO.getMaterialName()).getId();
-//            Long jewelId = manager.getJewelDAO().getByName(jewelDTO.getName()).getId();
 
             jewel.setName(jewelDTO.getName());
             jewel.setMaterialId(materialId);
@@ -56,6 +54,10 @@ public class JewelController {
     
     public List<Jewel> getAllJewels() throws DAOException, InvalidInputException {
         return manager.getJewelDAO().getAll();
+    }
+    
+    public void deleteJewel(Long id) throws DAOException {
+        manager.getJewelDAO().delete(id);
     }
     
 }
