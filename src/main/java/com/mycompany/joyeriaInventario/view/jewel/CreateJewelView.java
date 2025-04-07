@@ -4,9 +4,12 @@ import com.mycompany.joyeriaInventario.controller.JewelController;
 import com.mycompany.joyeriaInventario.exception.common.DAOException;
 import com.mycompany.joyeriaInventario.exception.common.InvalidInputException;
 import com.mycompany.joyeriaInventario.model.dto.JewelDTO;
+import com.mycompany.joyeriaInventario.model.entities.Material;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javax.swing.JOptionPane;
 
 public class CreateJewelView extends javax.swing.JFrame {
@@ -16,7 +19,21 @@ public class CreateJewelView extends javax.swing.JFrame {
     public CreateJewelView() throws SQLException, DAOException, InvalidInputException {
         initComponents();
         this.jewelController = new JewelController();
-//        jewelController.loadAllMaterials();
+        loadMaterials();
+    }
+    
+    private void loadMaterials() {
+        try {
+            List<Material> materials = jewelController.getAllMaterials();
+            List<String> materialNames = materials.stream()
+                            .map(m -> m.getName())
+                            .collect(Collectors.toList());
+            
+            materialNames.stream()
+                    .forEach(material -> jewelMaterialCbx.addItem(material));
+        } catch (DAOException | InvalidInputException e) {
+            JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -132,7 +149,6 @@ public class CreateJewelView extends javax.swing.JFrame {
         jewelMaterialCbx.setBackground(new java.awt.Color(248, 250, 252));
         jewelMaterialCbx.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jewelMaterialCbx.setForeground(new java.awt.Color(49, 54, 63));
-        jewelMaterialCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jewelMaterialCbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jewelMaterialCbxActionPerformed(evt);
@@ -166,25 +182,46 @@ public class CreateJewelView extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelJewelCreationBtnActionPerformed
 
     private void createJewelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createJewelBtnActionPerformed
-        if (jewelMaterialCbx.getSelectedItem() != null) {
-            int question = JOptionPane.showConfirmDialog(null, "¿Está seguro que los datos están correctos?");
-            if (question == 0) {
-                try {
-                    JewelDTO jewelDTO = new JewelDTO();
-                    jewelDTO.setName(jewelNameTxt.getText());
-                    jewelDTO.setMaterialName(jewelMaterialCbx.getSelectedItem().toString());
-                    jewelDTO.setWeight(Double.parseDouble(jewelWeightTxt.getText()));
-                    jewelDTO.setPrice(Double.parseDouble(jewelPriceTxt.getText()));
-                    jewelDTO.setStock(Integer.parseInt(jewelStockTxt.getText()));
-                    jewelController.createJewel(jewelDTO);
-                    setVisible(false);
-                } catch (DAOException e) {
-                    e.printStackTrace();
-                }
+        String materialName = jewelMaterialCbx.getSelectedItem().toString();
+        String name = jewelNameTxt.getText();
+        String price = jewelPriceTxt.getText();
+        String stock = jewelStockTxt.getText();
+        String weight = jewelWeightTxt.getText();
+        if (materialName.isBlank()) {
+            JOptionPane.showMessageDialog(this, "El nombre del material es obligatorio");
+            return;
+        }
+        if (name.isBlank()) {
+            JOptionPane.showMessageDialog(this, "El nombre de la joya es obligatorio");
+            return;
+        }
+        if (price.isBlank()) {
+            JOptionPane.showMessageDialog(this, "El precio es obligatorio");
+            return;
+        }
+        if (stock.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar stock del producto");
+            return;
+        }
+        if (weight.isBlank()) {
+            JOptionPane.showMessageDialog(this, "El peso es obligatorio");
+            return;
+        }
+        
+        int question = JOptionPane.showConfirmDialog(null, "¿Está seguro que los datos están correctos?");
+        if (question == 0) {
+            try {
+                JewelDTO jewelDTO = new JewelDTO();
+                jewelDTO.setName(jewelNameTxt.getText());
+                jewelDTO.setMaterialName(jewelMaterialCbx.getSelectedItem().toString());
+                jewelDTO.setWeight(Double.parseDouble(jewelWeightTxt.getText()));
+                jewelDTO.setPrice(Double.parseDouble(jewelPriceTxt.getText()));
+                jewelDTO.setStock(Integer.parseInt(jewelStockTxt.getText()));
+                jewelController.createJewel(jewelDTO);
+                setVisible(false);
+            } catch (DAOException e) {
+                JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
-            
-        } else {
-            JOptionPane.showMessageDialog(null, "Debe rellenar todos los campos");
         }
         
     }//GEN-LAST:event_createJewelBtnActionPerformed

@@ -1,7 +1,7 @@
 package com.mycompany.joyeriaInventario.model.entities;
 
 import com.mycompany.joyeriaInventario.exception.common.InvalidInputException;
-import com.mycompany.joyeriaInventario.model.vo.NameVO;
+import com.mycompany.joyeriaInventario.model.vo.MaterialNameVO;
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -9,7 +9,7 @@ public class Material {
 
     private Long id;
     
-    private NameVO name;
+    private MaterialNameVO name;
     
     private String description;
     
@@ -21,7 +21,7 @@ public class Material {
     }
 
     public Material(String name, String description) throws InvalidInputException {
-        this.name = new NameVO(name);
+        this.name = new MaterialNameVO(name);
         this.description = description;
     }
 
@@ -38,7 +38,7 @@ public class Material {
     }
 
     public void setName(String name) throws InvalidInputException {
-        this.name = new NameVO(name);
+        this.name = new MaterialNameVO(name);
     }
 
     public String getDescription() {

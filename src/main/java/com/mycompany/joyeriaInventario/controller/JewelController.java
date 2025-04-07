@@ -55,7 +55,7 @@ public class JewelController {
        }
     }
     
-    public List<Material> loadAllMaterials() throws DAOException, InvalidInputException {
+    public List<Material> getAllMaterials() throws DAOException, InvalidInputException {
         return manager.getMaterialDAO().getAll();
     }
     
