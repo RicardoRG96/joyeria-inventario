@@ -4,9 +4,11 @@ import com.mycompany.joyeriaInventario.exception.common.DAOException;
 import com.mycompany.joyeriaInventario.model.dao.TopCustomerViewDAO;
 import com.mycompany.joyeriaInventario.model.views.TopCustomerView;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,14 +36,14 @@ public class PostgreSQLTopCustomerViewDAO implements TopCustomerViewDAO {
        } catch (SQLException e) {
            throw new DAOException("Error al intentar obtener los clientes con más compras", e);
        } finally {
-           if (preparedStatement == null) {
+           if (preparedStatement != null) {
                try {
                    preparedStatement.close();
                } catch (SQLException e) {
                    throw new DAOException("Error al intentar cerrar la conexion", e);
                }
            }
-           if (resultSet == null) {
+           if (resultSet != null) {
                try {
                    resultSet.close();
                } catch (SQLException e) {
@@ -60,6 +62,57 @@ public class PostgreSQLTopCustomerViewDAO implements TopCustomerViewDAO {
         TopCustomerView topCustomerView = new TopCustomerView(customerId, customerName, totalSales, totalSpent);
         
         return topCustomerView;
+    }
+
+    @Override
+    public List<TopCustomerView> findByFilters(String customerName, LocalDate fromDate, LocalDate toDate) 
+            throws DAOException {
+       ResultSet resultSet = null;
+       List<TopCustomerView> topCustomersView = new ArrayList<>();
+       StringBuilder sql = new StringBuilder(
+            "SELECT c.id AS customer_id, c.name, COUNT(s.id) AS total_sale, SUM(s.total) AS total_spent " +
+            "FROM sales s " +
+            "JOIN customers c ON s.customer_id = c.id " +
+            "WHERE 1=1 " +
+            "GROUP BY c.id, c.name "
+        );
+           
+           if (customerName != null && !customerName.isBlank()) {
+                sql.append("AND LOWER(c.name) LIKE ? ");
+            }
+            if (fromDate != null) {
+                sql.append("AND s.created_at >= ? ");
+            }
+            if (toDate != null) {
+                sql.append("AND s.created_at <= ? ");
+            }
+       try (PreparedStatement preparedStatement = conn.prepareStatement(sql.toString())) { 
+            int paramIndex = 1;
+            if (customerName != null && !customerName.isBlank()) {
+                preparedStatement.setString(paramIndex++, "%" + customerName.toLowerCase() + "%");
+            }
+            if (fromDate != null) {
+                preparedStatement.setDate(paramIndex++, Date.valueOf(fromDate));
+            }
+            if (toDate != null) {
+                preparedStatement.setDate(paramIndex++, Date.valueOf(toDate));
+            }
+           resultSet = preparedStatement.executeQuery();
+           while (resultSet.next()) {
+               topCustomersView.add(convert(resultSet));
+           }
+       } catch (SQLException e) {
+           throw new DAOException("Error al intentar filtrar los clientes con más compras", e);
+       } finally {
+           if (resultSet != null) {
+               try {
+                   resultSet.close();
+               } catch (SQLException e) {
+                   throw new DAOException("Error al intentar cerrar la conexion", e);
+               }
+           }
+       }
+       return topCustomersView;
     }
     
 }

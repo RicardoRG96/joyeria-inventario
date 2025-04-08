@@ -15,6 +15,7 @@ import com.mycompany.joyeriaInventario.view.jewel.UpdateJewelView;
 import com.mycompany.joyeriaInventario.view.listener.UpdateableList;
 import com.mycompany.joyeriaInventario.view.reports.TopCustomersReport;
 import com.mycompany.joyeriaInventario.view.reports.TopJewerly;
+import com.mycompany.joyeriaInventario.view.reports.TotalSalesReport;
 import com.mycompany.joyeriaInventario.view.sale.CreateSales;
 import com.mycompany.joyeriaInventario.view.tableModel.JewelryTableModel;
 import com.mycompany.joyeriaInventario.view.tableModel.SalesTableModel;
@@ -809,9 +810,19 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
     }//GEN-LAST:event_updateSaleBtnActionPerformed
 
     private void totalSalesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalSalesBtnActionPerformed
-        // TODO add your handling code here:
+        try {
+            openTotalSalesReport();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_totalSalesBtnActionPerformed
 
+    private void openTotalSalesReport() throws SQLException {
+        TotalSalesReport totalSalesReport = new TotalSalesReport();
+        totalSalesReport.setVisible(true);
+        totalSalesReport.setLocationRelativeTo(null);
+    }
+    
     private void topCustomersBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_topCustomersBtnActionPerformed
         try {
             openTopCustomersReport();

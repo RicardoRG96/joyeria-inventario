@@ -34,14 +34,14 @@ public class PostgreSQLTopJewelViewDAO implements TopJewelViewDAO {
        } catch (SQLException e) {
            throw new DAOException("Error al intentar obtener las joyas más vendidas", e);
        } finally {
-           if (preparedStatement == null) {
+           if (preparedStatement != null) {
                try {
                    preparedStatement.close();
                } catch (SQLException e) {
                    throw new DAOException("Error al intentar cerrar la conexion", e);
                }
            }
-           if (resultSet == null) {
+           if (resultSet != null) {
                try {
                    resultSet.close();
                } catch (SQLException e) {

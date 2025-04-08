@@ -59,14 +59,14 @@ public class PostgreSQLSaleItemDAO implements SaleItemDAO {
        } catch (SQLException e) {
            throw new DAOException("Error al intentar obtener el item de la orden de venta", e);
        } finally {
-           if (preparedStatement == null) {
+           if (preparedStatement != null) {
                try {
                    preparedStatement.close();
                } catch (SQLException e) {
                    throw new DAOException("Error al intentar cerrar la conexion", e);
                }
            }
-           if (resultSet == null) {
+           if (resultSet != null) {
                try {
                    resultSet.close();
                } catch (SQLException e) {
@@ -105,14 +105,14 @@ public class PostgreSQLSaleItemDAO implements SaleItemDAO {
        } catch (SQLException e) {
            throw new DAOException("Error al intentar obtener todos los items", e);
        } finally {
-           if (preparedStatement == null) {
+           if (preparedStatement != null) {
                try {
                    preparedStatement.close();
                } catch (SQLException e) {
                    throw new DAOException("Error al intentar cerrar la conexion", e);
                }
            }
-           if (resultSet == null) {
+           if (resultSet != null) {
                try {
                    resultSet.close();
                } catch (SQLException e) {
@@ -138,14 +138,14 @@ public class PostgreSQLSaleItemDAO implements SaleItemDAO {
        } catch (SQLException e) {
            throw new DAOException("Error al intentar obtener todos los items", e);
        } finally {
-           if (preparedStatement == null) {
+           if (preparedStatement != null) {
                try {
                    preparedStatement.close();
                } catch (SQLException e) {
                    throw new DAOException("Error al intentar cerrar la conexion", e);
                }
            }
-           if (resultSet == null) {
+           if (resultSet != null) {
                try {
                    resultSet.close();
                } catch (SQLException e) {
@@ -178,7 +178,7 @@ public class PostgreSQLSaleItemDAO implements SaleItemDAO {
                    throw new DAOException("Error al intentar cerrar la conexion", e);
                }
            }
-           if (resultSet == null) {
+           if (resultSet != null) {
                try {
                    resultSet.close();
                } catch (SQLException e) {
@@ -206,7 +206,7 @@ public class PostgreSQLSaleItemDAO implements SaleItemDAO {
        } catch (SQLException e) {
            throw new DAOException("Error al intentar crear item de venta", e);
        } finally {
-           if (preparedStatement == null) {
+           if (preparedStatement != null) {
                try {
                    preparedStatement.close();
                } catch (SQLException e) {
@@ -234,7 +234,7 @@ public class PostgreSQLSaleItemDAO implements SaleItemDAO {
        } catch (SQLException e) {
            throw new DAOException("Error al intentar actualizar item de venta", e);
        } finally {
-           if (preparedStatement == null) {
+           if (preparedStatement != null) {
                try {
                    preparedStatement.close();
                } catch (SQLException e) {
@@ -257,7 +257,7 @@ public class PostgreSQLSaleItemDAO implements SaleItemDAO {
        } catch (SQLException e) {
            throw new DAOException("Error al intentar eliminar item de venta", e);
        } finally {
-           if (preparedStatement == null) {
+           if (preparedStatement != null) {
                try {
                    preparedStatement.close();
                } catch (SQLException e) {
@@ -281,7 +281,7 @@ public class PostgreSQLSaleItemDAO implements SaleItemDAO {
        } catch (SQLException e) {
            throw new DAOException("Error al intentar actualizar item de venta", e);
        } finally {
-           if (preparedStatement == null) {
+           if (preparedStatement != null) {
                try {
                    preparedStatement.close();
                } catch (SQLException e) {
@@ -305,7 +305,7 @@ public class PostgreSQLSaleItemDAO implements SaleItemDAO {
        } catch (SQLException e) {
            throw new DAOException("Error al intentar eliminar item de venta", e);
        } finally {
-           if (preparedStatement == null) {
+           if (preparedStatement != null) {
                try {
                    preparedStatement.close();
                } catch (SQLException e) {

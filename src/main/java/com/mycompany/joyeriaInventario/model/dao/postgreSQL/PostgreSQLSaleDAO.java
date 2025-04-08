@@ -47,14 +47,14 @@ public class PostgreSQLSaleDAO implements SaleDao {
        } catch (SQLException e) {
            throw new DAOException("Error en SQL", e);
        } finally {
-           if (preparedStatement == null) {
+           if (preparedStatement != null) {
                try {
                    preparedStatement.close();
                } catch (SQLException e) {
                    throw new DAOException("Error en SQL", e);
                }
            }
-           if (resultSet == null) {
+           if (resultSet != null) {
                try {
                    resultSet.close();
                } catch (SQLException e) {
@@ -90,14 +90,14 @@ public class PostgreSQLSaleDAO implements SaleDao {
        } catch (SQLException e) {
            throw new DAOException("Error al intentar obtener todas las ordenes de venta", e);
        } finally {
-           if (preparedStatement == null) {
+           if (preparedStatement != null) {
                try {
                    preparedStatement.close();
                } catch (SQLException e) {
                    throw new DAOException("Error al intentar cerrar la conexion", e);
                }
            }
-           if (resultSet == null) {
+           if (resultSet != null) {
                try {
                    resultSet.close();
                } catch (SQLException e) {
@@ -122,7 +122,7 @@ public class PostgreSQLSaleDAO implements SaleDao {
        } catch (SQLException e) {
            throw new DAOException("Error al intentar crear la orden de venta", e);
        } finally {
-           if (preparedStatement == null) {
+           if (preparedStatement != null) {
                try {
                    preparedStatement.close();
                } catch (SQLException e) {
@@ -147,7 +147,7 @@ public class PostgreSQLSaleDAO implements SaleDao {
        } catch (SQLException e) {
            throw new DAOException("Error al intentar actualizar la orden de venta", e);
        } finally {
-           if (preparedStatement == null) {
+           if (preparedStatement != null) {
                try {
                    preparedStatement.close();
                } catch (SQLException e) {
@@ -170,7 +170,7 @@ public class PostgreSQLSaleDAO implements SaleDao {
        } catch (SQLException e) {
            throw new DAOException("Error al intentar eliminar la orden de venta", e);
        } finally {
-           if (preparedStatement == null) {
+           if (preparedStatement != null) {
                try {
                    preparedStatement.close();
                } catch (SQLException e) {
@@ -201,7 +201,7 @@ public class PostgreSQLSaleDAO implements SaleDao {
        } catch (SQLException e) {
            throw new DAOException("Error al intentar crear la orden de venta", e);
        } finally {
-           if (preparedStatement == null) {
+           if (preparedStatement != null) {
                try {
                    preparedStatement.close();
                } catch (SQLException e) {

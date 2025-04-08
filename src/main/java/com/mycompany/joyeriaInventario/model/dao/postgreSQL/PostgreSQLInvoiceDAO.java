@@ -55,14 +55,14 @@ public class PostgreSQLInvoiceDAO implements InvoiceDAO{
        } catch (SQLException e) {
            throw new DAOException("Error al intentar obtener la factura de la orden de venta", e);
        } finally {
-           if (preparedStatement == null) {
+           if (preparedStatement != null) {
                try {
                    preparedStatement.close();
                } catch (SQLException e) {
                    throw new DAOException("Error al intentar cerrar la conexion", e);
                }
            }
-           if (resultSet == null) {
+           if (resultSet != null) {
                try {
                    resultSet.close();
                } catch (SQLException e) {
@@ -103,14 +103,14 @@ public class PostgreSQLInvoiceDAO implements InvoiceDAO{
        } catch (SQLException e) {
            throw new DAOException("Error al intentar obtener todas las facturas", e);
        } finally {
-           if (preparedStatement == null) {
+           if (preparedStatement != null) {
                try {
                    preparedStatement.close();
                } catch (SQLException e) {
                    throw new DAOException("Error al intentar cerrar la conexion", e);
                }
            }
-           if (resultSet == null) {
+           if (resultSet != null) {
                try {
                    resultSet.close();
                } catch (SQLException e) {
@@ -137,14 +137,14 @@ public class PostgreSQLInvoiceDAO implements InvoiceDAO{
        } catch (SQLException e) {
            throw new SaleNotFoundException("Error al intentar obtener las facturas asociadas a la venta indicada", e);
        } finally {
-           if (preparedStatement == null) {
+           if (preparedStatement != null) {
                try {
                    preparedStatement.close();
                } catch (SQLException e) {
                    throw new DAOException("Error al intentar cerrar la conexion", e);
                }
            }
-           if (resultSet == null) {
+           if (resultSet != null) {
                try {
                    resultSet.close();
                } catch (SQLException e) {
@@ -177,7 +177,7 @@ public class PostgreSQLInvoiceDAO implements InvoiceDAO{
        } catch (SQLException e) {
            throw new DAOException("Error al intentar insertar la factura", e);
        } finally {
-           if (preparedStatement == null) {
+           if (preparedStatement != null) {
                try {
                    preparedStatement.close();
                } catch (SQLException e) {
@@ -210,7 +210,7 @@ public class PostgreSQLInvoiceDAO implements InvoiceDAO{
        } catch (SQLException e) {
            throw new DAOException("Error al intentar actualizar la factura", e);
        } finally {
-           if (preparedStatement == null) {
+           if (preparedStatement != null) {
                try {
                    preparedStatement.close();
                } catch (SQLException e) {
@@ -234,7 +234,7 @@ public class PostgreSQLInvoiceDAO implements InvoiceDAO{
        } catch (SQLException e) {
            throw new DAOException("Error al intentar eliminar la factura", e);
        } finally {
-           if (preparedStatement == null) {
+           if (preparedStatement != null) {
                try {
                    preparedStatement.close();
                } catch (SQLException e) {

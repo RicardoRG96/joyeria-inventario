@@ -48,14 +48,14 @@ public class PostgreSQLMaterialDAO implements MaterialDAO {
        } catch (SQLException e) {
            throw new DAOException("Error al intentar obtener el material de la joya", e);
        } finally {
-           if (preparedStatement == null) {
+           if (preparedStatement != null) {
                try {
                    preparedStatement.close();
                } catch (SQLException e) {
                    throw new DAOException("Error al intentar cerrar la conexion", e);
                }
            }
-           if (resultSet == null) {
+           if (resultSet != null) {
                try {
                    resultSet.close();
                } catch (SQLException e) {
@@ -91,14 +91,14 @@ public class PostgreSQLMaterialDAO implements MaterialDAO {
        } catch (SQLException e) {
            throw new DAOException("Error al intentar obtener todos los materiales", e);
        } finally {
-           if (preparedStatement == null) {
+           if (preparedStatement != null) {
                try {
                    preparedStatement.close();
                } catch (SQLException e) {
                    throw new DAOException("Error al intentar cerrar la conexion", e);
                }
            }
-           if (resultSet == null) {
+           if (resultSet != null) {
                try {
                    resultSet.close();
                } catch (SQLException e) {
@@ -126,14 +126,14 @@ public class PostgreSQLMaterialDAO implements MaterialDAO {
        } catch (SQLException e) {
            throw new DAOException("Error al intentar obtener el material de la joya", e);
        } finally {
-           if (preparedStatement == null) {
+           if (preparedStatement != null) {
                try {
                    preparedStatement.close();
                } catch (SQLException e) {
                    throw new DAOException("Error al intentar cerrar la conexion", e);
                }
            }
-           if (resultSet == null) {
+           if (resultSet != null) {
                try {
                    resultSet.close();
                } catch (SQLException e) {
@@ -159,7 +159,7 @@ public class PostgreSQLMaterialDAO implements MaterialDAO {
        } catch (SQLException e) {
            throw new DAOException("Error al intentar crear material", e);
        } finally {
-           if (preparedStatement == null) {
+           if (preparedStatement != null) {
                try {
                    preparedStatement.close();
                } catch (SQLException e) {
@@ -185,7 +185,7 @@ public class PostgreSQLMaterialDAO implements MaterialDAO {
        } catch (SQLException e) {
            throw new DAOException("Error al intentar actualizar material", e);
        } finally {
-           if (preparedStatement == null) {
+           if (preparedStatement != null) {
                try {
                    preparedStatement.close();
                } catch (SQLException e) {
@@ -209,7 +209,7 @@ public class PostgreSQLMaterialDAO implements MaterialDAO {
        } catch (SQLException e) {
            throw new DAOException("Error al intentar eliminar material", e);
        } finally {
-           if (preparedStatement == null) {
+           if (preparedStatement != null) {
                try {
                    preparedStatement.close();
                } catch (SQLException e) {

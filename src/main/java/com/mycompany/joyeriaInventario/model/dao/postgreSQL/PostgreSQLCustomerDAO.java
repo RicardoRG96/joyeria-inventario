@@ -52,14 +52,14 @@ public class PostgreSQLCustomerDAO implements CustomerDAO {
         } catch (SQLException e) {
             throw new DAOException("Error al intentar obtener el cliente", e);
         } finally {
-            if (preparedStatement == null) {
+            if (preparedStatement != null) {
                try {
                    preparedStatement.close();
                } catch (SQLException e) {
                    throw new DAOException("Error al intentar cerrar la conexion", e);
                }
            }
-           if (resultSet == null) {
+           if (resultSet != null) {
                try {
                    resultSet.close();
                } catch (SQLException e) {
@@ -100,14 +100,14 @@ public class PostgreSQLCustomerDAO implements CustomerDAO {
         } catch (SQLException e) {
             throw new DAOException("Error al intentar obtener todos los clientes", e);
         } finally {
-            if (preparedStatement == null) {
+            if (preparedStatement != null) {
                try {
                    preparedStatement.close();
                } catch (SQLException e) {
                    throw new DAOException("Error al intentar cerrar la conexion", e);
                }
            }
-           if (resultSet == null) {
+           if (resultSet != null) {
                try {
                    resultSet.close();
                } catch (SQLException e) {
@@ -136,14 +136,14 @@ public class PostgreSQLCustomerDAO implements CustomerDAO {
         } catch (SQLException e) {
             throw new DAOException("Error al intentar obtener el cliente", e);
         } finally {
-            if (preparedStatement == null) {
+            if (preparedStatement != null) {
                try {
                    preparedStatement.close();
                } catch (SQLException e) {
                    throw new DAOException("Error al intentar cerrar la conexion", e);
                }
            }
-           if (resultSet == null) {
+           if (resultSet != null) {
                try {
                    resultSet.close();
                } catch (SQLException e) {
@@ -171,7 +171,7 @@ public class PostgreSQLCustomerDAO implements CustomerDAO {
         } catch (SQLException e) {
             throw new DAOException("Error al intentar crear a cliente", e);
         } finally {
-            if (preparedStatement == null) {
+            if (preparedStatement != null) {
                try {
                    preparedStatement.close();
                } catch (SQLException e) {
@@ -199,7 +199,7 @@ public class PostgreSQLCustomerDAO implements CustomerDAO {
         } catch (SQLException e) {
             throw new DAOException("Error al intentar actualizar a cliente", e);
         } finally {
-            if (preparedStatement == null) {
+            if (preparedStatement != null) {
                try {
                    preparedStatement.close();
                } catch (SQLException e) {
@@ -222,7 +222,7 @@ public class PostgreSQLCustomerDAO implements CustomerDAO {
         } catch (SQLException e) {
             throw new DAOException("Error al intentar eliminar a cliente", e);
         } finally {
-            if (preparedStatement == null) {
+            if (preparedStatement != null) {
                try {
                    preparedStatement.close();
                } catch (SQLException e) {

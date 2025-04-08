@@ -38,7 +38,9 @@ public class TopJewerly extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         filterCustomerBestSellingJewerlyTableTxt = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        filterDateBestSellingJewerlyTableTxt = new javax.swing.JTextField();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jLabel10 = new javax.swing.JLabel();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         bestSellingJewerlyTable = new javax.swing.JTable();
 
@@ -98,11 +100,18 @@ public class TopJewerly extends javax.swing.JFrame {
         jLabel9.setBackground(new java.awt.Color(248, 250, 252));
         jLabel9.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(49, 54, 63));
-        jLabel9.setText("Fecha:");
+        jLabel9.setText("Desde:");
 
-        filterDateBestSellingJewerlyTableTxt.setBackground(new java.awt.Color(248, 250, 252));
-        filterDateBestSellingJewerlyTableTxt.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        filterDateBestSellingJewerlyTableTxt.setForeground(new java.awt.Color(49, 54, 63));
+        jDateChooser1.setBackground(new java.awt.Color(248, 250, 252));
+        jDateChooser1.setForeground(new java.awt.Color(49, 54, 63));
+
+        jLabel10.setBackground(new java.awt.Color(248, 250, 252));
+        jLabel10.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(49, 54, 63));
+        jLabel10.setText("Hasta:");
+
+        jDateChooser2.setBackground(new java.awt.Color(248, 250, 252));
+        jDateChooser2.setForeground(new java.awt.Color(49, 54, 63));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -116,15 +125,19 @@ public class TopJewerly extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(32, 32, 32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(filterCustomerBestSellingJewerlyTableTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(filterCustomerBestSellingJewerlyTableTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(filterDateBestSellingJewerlyTableTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,15 +148,18 @@ public class TopJewerly extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(filterCustomerBestSellingJewerlyTableTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9)
-                    .addComponent(filterDateBestSellingJewerlyTableTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel8)
+                        .addComponent(filterCustomerBestSellingJewerlyTableTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel9)))
+                .addGap(15, 15, 15))
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 640, 50));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 750, 50));
 
         jScrollPane1.setForeground(new java.awt.Color(248, 250, 252));
 
@@ -182,8 +198,10 @@ public class TopJewerly extends javax.swing.JFrame {
     private javax.swing.JTable bestSellingJewerlyTable;
     private javax.swing.JButton exportToExcelBestSellingJewerlyBtn;
     private javax.swing.JTextField filterCustomerBestSellingJewerlyTableTxt;
-    private javax.swing.JTextField filterDateBestSellingJewerlyTableTxt;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
