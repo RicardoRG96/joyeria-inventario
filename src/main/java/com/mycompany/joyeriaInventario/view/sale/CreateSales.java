@@ -6,19 +6,16 @@ import com.mycompany.joyeriaInventario.controller.SaleController;
 import com.mycompany.joyeriaInventario.controller.SaleItemController;
 import com.mycompany.joyeriaInventario.exception.common.DAOException;
 import com.mycompany.joyeriaInventario.exception.common.InvalidInputException;
+import com.mycompany.joyeriaInventario.exception.jewel.InsufficientStockException;
 import com.mycompany.joyeriaInventario.model.dto.SaleDTO;
 import com.mycompany.joyeriaInventario.model.dto.SaleItemDTO;
 import com.mycompany.joyeriaInventario.model.entities.Customer;
 import com.mycompany.joyeriaInventario.model.entities.Jewel;
-import com.mycompany.joyeriaInventario.model.entities.SaleItem;
 import com.mycompany.joyeriaInventario.view.listener.UpdateableList;
 import com.mycompany.joyeriaInventario.view.tableModel.SaleItemTableEntity;
 import com.mycompany.joyeriaInventario.view.tableModel.SaleItemsTableModel;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -163,7 +160,7 @@ public class CreateSales extends javax.swing.JFrame {
                 totalAmountTxtActionPerformed(evt);
             }
         });
-        jPanel1.add(totalAmountTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 440, 70, 20));
+        jPanel1.add(totalAmountTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 440, 110, 20));
 
         cancelSaleBtn.setBackground(new java.awt.Color(251, 251, 251));
         cancelSaleBtn.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -338,15 +335,29 @@ public class CreateSales extends javax.swing.JFrame {
             saleItem.setQuantity(jewelQuantity);
             saleItem.setPrice(jewelPrice);
             saleItem.setSubtotal(subtotal);
+            if (isJewelAlreadyInOrder(jewelName)) {
+                JOptionPane.showMessageDialog(this, "La joya seleccionada ya se encuentra en la orden");
+                return;
+            }
+            jewelController.checkAvailableStock(jewelName, Integer.parseInt(jewelQuantity));
             saleItemsTableModel.addItems(saleItem);
             
         } catch (DAOException e) {
             JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (InsufficientStockException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     
     private Double calculateSubtotal(double price, int quantity) {
         return price * quantity;
+    }
+    
+    private boolean isJewelAlreadyInOrder(String jewelName) {
+        return saleItemsTableModel.getSaleItems()
+                .stream()
+                .map(j -> j.getJewelName())
+                .anyMatch(name -> name.equals(jewelName));
     }
    
     private void createSaleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createSaleBtnActionPerformed
@@ -416,11 +427,13 @@ public class CreateSales extends javax.swing.JFrame {
                         saleItemDTO.setQuantity(Integer.parseInt(item.getQuantity()));
                         saleItemDTO.setPrice(Double.parseDouble(item.getPrice()));
                         saleItemDTO.setSubtotal(Double.parseDouble(item.getSubtotal()));
-                        
                         try {
                             saleItemController.createSaleItem(saleItemDTO);
+                            jewelController.updateJewelStock(item.getJewelName(), Integer.parseInt(item.getQuantity()));
                         } catch (DAOException e) {
                             JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                        } catch (InsufficientStockException e) {
+                            JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                         }
                     });
     }

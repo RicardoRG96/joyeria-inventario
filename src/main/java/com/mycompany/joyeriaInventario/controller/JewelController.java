@@ -2,6 +2,7 @@ package com.mycompany.joyeriaInventario.controller;
 
 import com.mycompany.joyeriaInventario.exception.common.DAOException;
 import com.mycompany.joyeriaInventario.exception.common.InvalidInputException;
+import com.mycompany.joyeriaInventario.exception.jewel.InsufficientStockException;
 import com.mycompany.joyeriaInventario.exception.jewel.JewelNotFoundException;
 import com.mycompany.joyeriaInventario.model.dao.DAOManager;
 import com.mycompany.joyeriaInventario.model.dao.postgreSQL.PostgreSQLDAOManager;
@@ -79,6 +80,35 @@ public class JewelController {
     
     public void deleteJewel(Long id) throws DAOException {
         manager.getJewelDAO().delete(id);
+    }
+    
+    public void checkAvailableStock(String jewelName, int quantity) throws InsufficientStockException, DAOException {
+        try {
+            Jewel jewel = manager.getJewelDAO().getByName(jewelName);
+            int availableStock = jewel.getStock();
+            if (quantity > availableStock) {
+                throw new InsufficientStockException("No hay suficiente stock para el producto: " +
+                            jewel.getName());
+            } 
+        } catch (InvalidInputException | JewelNotFoundException e) {
+            JOptionPane.showMessageDialog(null, "Error al obtener joya: " + e.getMessage());
+        }
+    }
+    
+    public void updateJewelStock(String jewelName, int quantityToDeduct) throws DAOException, InsufficientStockException {
+        try {
+            Jewel jewel = manager.getJewelDAO().getByName(jewelName);
+            Long jewelId = jewel.getId();
+            int updatedStockQuantity = jewel.getStock() - quantityToDeduct;
+            if (updatedStockQuantity < 0) {
+                throw new InsufficientStockException("No hay suficiente stock para el producto: " +
+                            jewel.getName());
+            }
+            jewel.setStock(updatedStockQuantity);
+            manager.getJewelDAO().update(jewelId, jewel);
+        } catch (InvalidInputException | JewelNotFoundException e) {
+            JOptionPane.showMessageDialog(null, "Error al obtener joya: " + e.getMessage());
+        }
     }
     
 }

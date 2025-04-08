@@ -414,6 +414,11 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
         addNewSaleBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add-sale.png"))); // NOI18N
         addNewSaleBtn.setBorder(null);
         addNewSaleBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        addNewSaleBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addNewSaleBtnActionPerformed(evt);
+            }
+        });
 
         jLabel10.setBackground(new java.awt.Color(248, 250, 252));
         jLabel10.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
@@ -759,6 +764,14 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
             JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_deleteSaleBtnActionPerformed
+
+    private void addNewSaleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewSaleBtnActionPerformed
+        try {
+            openCreateSaleForm();
+        } catch (DAOException | InvalidInputException | SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_addNewSaleBtnActionPerformed
 
     private void openCreateSaleForm() throws SQLException, DAOException, InvalidInputException {
         CreateSales createSalesView = new CreateSales(this, this);
