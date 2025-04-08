@@ -17,6 +17,8 @@ public interface SaleDao extends DAO<Sale, Long> {
     @Override
     void insert(Sale sale) throws DAOException;
     
+    Long insertWithReturningId(Sale sale) throws DAOException;
+    
     @Override
     void update(Long id, Sale sale) throws DAOException;
     

@@ -3,9 +3,11 @@ package com.mycompany.joyeriaInventario.view.sale;
 import com.mycompany.joyeriaInventario.controller.CustomerController;
 import com.mycompany.joyeriaInventario.controller.JewelController;
 import com.mycompany.joyeriaInventario.controller.SaleController;
+import com.mycompany.joyeriaInventario.controller.SaleItemController;
 import com.mycompany.joyeriaInventario.exception.common.DAOException;
 import com.mycompany.joyeriaInventario.exception.common.InvalidInputException;
 import com.mycompany.joyeriaInventario.model.dto.SaleDTO;
+import com.mycompany.joyeriaInventario.model.dto.SaleItemDTO;
 import com.mycompany.joyeriaInventario.model.entities.Customer;
 import com.mycompany.joyeriaInventario.model.entities.Jewel;
 import com.mycompany.joyeriaInventario.model.entities.SaleItem;
@@ -15,6 +17,8 @@ import com.mycompany.joyeriaInventario.view.tableModel.SaleItemsTableModel;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -27,6 +31,8 @@ public class CreateSales extends javax.swing.JFrame {
     
     private final JewelController jewelController;
     
+    private final SaleItemController saleItemController;
+    
     private final SaleItemsTableModel saleItemsTableModel;
   
     private UpdateableList callback;
@@ -35,6 +41,7 @@ public class CreateSales extends javax.swing.JFrame {
         this.saleController = new SaleController();
         this.customerController = new CustomerController();
         this.jewelController = new JewelController();
+        this.saleItemController = new SaleItemController();
         this.callback = callback;
         this.saleItemsTableModel = new SaleItemsTableModel();
         
@@ -97,7 +104,7 @@ public class CreateSales extends javax.swing.JFrame {
         totalAmountTxt = new javax.swing.JTextField();
         cancelSaleBtn = new javax.swing.JButton();
         addProductToOrderSaleBtn = new javax.swing.JButton();
-        createSaleBtn2 = new javax.swing.JButton();
+        createSaleBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         saleItemsTable = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
@@ -182,17 +189,17 @@ public class CreateSales extends javax.swing.JFrame {
         });
         jPanel1.add(addProductToOrderSaleBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 60, -1, 20));
 
-        createSaleBtn2.setBackground(new java.awt.Color(251, 251, 251));
-        createSaleBtn2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        createSaleBtn2.setForeground(new java.awt.Color(49, 54, 63));
-        createSaleBtn2.setText("Crear pedido");
-        createSaleBtn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        createSaleBtn2.addActionListener(new java.awt.event.ActionListener() {
+        createSaleBtn.setBackground(new java.awt.Color(251, 251, 251));
+        createSaleBtn.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        createSaleBtn.setForeground(new java.awt.Color(49, 54, 63));
+        createSaleBtn.setText("Crear pedido");
+        createSaleBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        createSaleBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createSaleBtn2ActionPerformed(evt);
+                createSaleBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(createSaleBtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 430, 120, 30));
+        jPanel1.add(createSaleBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 430, 120, 30));
 
         jScrollPane1.setBackground(new java.awt.Color(248, 250, 252));
 
@@ -342,10 +349,10 @@ public class CreateSales extends javax.swing.JFrame {
         return price * quantity;
     }
    
-    private void createSaleBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createSaleBtn2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_createSaleBtn2ActionPerformed
-
+    private void createSaleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createSaleBtnActionPerformed
+        save();
+    }//GEN-LAST:event_createSaleBtnActionPerformed
+    
     private void deleteSaleItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteSaleItemActionPerformed
         deleteLineFromSaleItemsTable();
         totalAmountTxt.setText(String.valueOf(calculateSaleTotalAmount()));
@@ -387,10 +394,10 @@ public class CreateSales extends javax.swing.JFrame {
             try {
                 SaleDTO saleDTO = new SaleDTO();
                 saleDTO.setCustomerName(customerName);
-                // crear metodo par calcular el total y setearlo al DTO y tambien al textField de la vista
                 saleDTO.setTotal(Double.parseDouble(total));
                 
-                saleController.createSale(saleDTO);
+                Long cratedSaleId = saleController.createSaleWithReturningId(saleDTO);
+                saveSaleItems(cratedSaleId);
                 callback.updateList();
                 dispose();
             } catch (DAOException e) {
@@ -399,10 +406,29 @@ public class CreateSales extends javax.swing.JFrame {
         }
     }
     
+    private void saveSaleItems(Long saleId) {
+        List<SaleItemTableEntity> saleItemsFromTable = saleItemsTableModel.getSaleItems();
+        saleItemsFromTable.stream()
+                    .forEach(item -> {
+                        SaleItemDTO saleItemDTO = new SaleItemDTO();
+                        saleItemDTO.setSaleId(saleId);
+                        saleItemDTO.setJewelName(item.getJewelName());
+                        saleItemDTO.setQuantity(Integer.parseInt(item.getQuantity()));
+                        saleItemDTO.setPrice(Double.parseDouble(item.getPrice()));
+                        saleItemDTO.setSubtotal(Double.parseDouble(item.getSubtotal()));
+                        
+                        try {
+                            saleItemController.createSaleItem(saleItemDTO);
+                        } catch (DAOException e) {
+                            JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    });
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addProductToOrderSaleBtn;
     private javax.swing.JButton cancelSaleBtn;
-    private javax.swing.JButton createSaleBtn2;
+    private javax.swing.JButton createSaleBtn;
     private javax.swing.JComboBox<String> customerSaleCbx;
     private javax.swing.JButton deleteSaleItem;
     private javax.swing.JLabel jLabel1;

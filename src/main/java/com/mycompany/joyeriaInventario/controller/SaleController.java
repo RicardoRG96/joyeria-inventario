@@ -49,6 +49,22 @@ public class SaleController {
         }
     }
     
+    public Long createSaleWithReturningId(SaleDTO saleDTO) throws DAOException {
+        Long createdSaleId = null;
+        try {
+            Sale sale = new Sale();
+            Long customerId = manager.getCustomerDAO().getByName(saleDTO.getCustomerName()).getId();
+
+            sale.setCustomerId(customerId);
+            sale.setTotal(saleDTO.getTotal());
+
+            createdSaleId = manager.getSaleDAO().insertWithReturningId(sale);
+        } catch (InvalidInputException | CustomerNotFoundException e) {
+            JOptionPane.showMessageDialog(null, "Error al crear el pedido de venta: " + e.getMessage());
+        }
+        return createdSaleId;
+    }
+    
     public void updateSale(Long id, SaleDTO saleDTO) throws DAOException {
         try {
             Sale sale = new Sale();
@@ -67,9 +83,11 @@ public class SaleController {
         try {
             if (!validateSaleHasInvoices(id)) {
                 manager.getSaleDAO().delete(id);
+            } else {
+                JOptionPane.showMessageDialog(null, "Pedido se encuentra facturado, no puede eliminarse");
             }
         } catch (InvalidInputException | SaleNotFoundException e) {
-            JOptionPane.showMessageDialog(null, "Pedido se encuentra facturado, no puede eliminarse " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al intentar eliminar venta: " + e.getMessage());
         }
     }
     

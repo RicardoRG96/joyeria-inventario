@@ -83,12 +83,14 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
         jPanel8 = new javax.swing.JPanel();
         addNewSaleBtn = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        updateSalesTableBtn = new javax.swing.JButton();
+        invoiceBtn = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
-        editSaleBtn = new javax.swing.JButton();
+        updateSaleBtn = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
-        updateSalesTableBtn1 = new javax.swing.JButton();
+        updateSalesTableBtn = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
+        deleteSaleBtn = new javax.swing.JButton();
+        jLabel18 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         salesTable = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
@@ -412,46 +414,57 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
         addNewSaleBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add-sale.png"))); // NOI18N
         addNewSaleBtn.setBorder(null);
         addNewSaleBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        addNewSaleBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addNewSaleBtnActionPerformed(evt);
-            }
-        });
 
         jLabel10.setBackground(new java.awt.Color(248, 250, 252));
         jLabel10.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(49, 54, 63));
         jLabel10.setText("Nueva venta");
 
-        updateSalesTableBtn.setBackground(new java.awt.Color(248, 250, 252));
-        updateSalesTableBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/invoice.png"))); // NOI18N
-        updateSalesTableBtn.setBorder(null);
-        updateSalesTableBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        invoiceBtn.setBackground(new java.awt.Color(248, 250, 252));
+        invoiceBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/invoice.png"))); // NOI18N
+        invoiceBtn.setText("ALTER TABLE sale_items ADD CONSTRAINT sale_items_sale_id_fkey FOREIGN KEY (sale_id) REFERENCES sales(id) ON DELETE CASCADE;");
+        invoiceBtn.setBorder(null);
+        invoiceBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel12.setBackground(new java.awt.Color(248, 250, 252));
         jLabel12.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(49, 54, 63));
         jLabel12.setText("Actualizar");
 
-        editSaleBtn.setBackground(new java.awt.Color(248, 250, 252));
-        editSaleBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/edit.png"))); // NOI18N
-        editSaleBtn.setBorder(null);
-        editSaleBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        updateSaleBtn.setBackground(new java.awt.Color(248, 250, 252));
+        updateSaleBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/edit.png"))); // NOI18N
+        updateSaleBtn.setBorder(null);
+        updateSaleBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel13.setBackground(new java.awt.Color(248, 250, 252));
         jLabel13.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(49, 54, 63));
         jLabel13.setText("Editar");
 
-        updateSalesTableBtn1.setBackground(new java.awt.Color(248, 250, 252));
-        updateSalesTableBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/update.png"))); // NOI18N
-        updateSalesTableBtn1.setBorder(null);
-        updateSalesTableBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        updateSalesTableBtn.setBackground(new java.awt.Color(248, 250, 252));
+        updateSalesTableBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/update.png"))); // NOI18N
+        updateSalesTableBtn.setBorder(null);
+        updateSalesTableBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel14.setBackground(new java.awt.Color(248, 250, 252));
         jLabel14.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(49, 54, 63));
         jLabel14.setText("Factura");
+
+        deleteSaleBtn.setBackground(new java.awt.Color(248, 250, 252));
+        deleteSaleBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/delete.png"))); // NOI18N
+        deleteSaleBtn.setBorder(null);
+        deleteSaleBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        deleteSaleBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteSaleBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel18.setBackground(new java.awt.Color(248, 250, 252));
+        jLabel18.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(49, 54, 63));
+        jLabel18.setText("Eliminar");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -471,30 +484,41 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel12))
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(editSaleBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(updateSaleBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(41, 41, 41)
-                        .addComponent(updateSalesTableBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(updateSalesTableBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel14)
+                    .addComponent(invoiceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(updateSalesTableBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14))
-                .addContainerGap(81, Short.MAX_VALUE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(deleteSaleBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(16, Short.MAX_VALUE))))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(updateSalesTableBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(invoiceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(deleteSaleBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(addNewSaleBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(editSaleBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(updateSalesTableBtn1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(updateSaleBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateSalesTableBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(8, 8, 8)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -526,11 +550,10 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(98, 98, 98)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -637,6 +660,7 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
     @Override
     public void updateList() {
         loadJewelsInTable();
+        loadSalesInTable();
     }
     
     private void loadJewelsInTable() {
@@ -711,7 +735,6 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
         } catch (DAOException e) {
             JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
     }//GEN-LAST:event_deleteJewelBtnActionPerformed
 
     private void updateStockBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateStockBtnActionPerformed
@@ -719,13 +742,23 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
         
     }//GEN-LAST:event_updateStockBtnActionPerformed
 
-    private void addNewSaleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewSaleBtnActionPerformed
+    private void deleteSaleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteSaleBtnActionPerformed
+        int row = salesTable.getSelectedRow();
         try {
-            openCreateSaleForm();
-        } catch (DAOException | InvalidInputException | SQLException e) {
+            if (row == -1) {
+                JOptionPane.showMessageDialog(this, "Seleccione una venta.");
+                return;
+            }
+            int question = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea eliminar?");
+            if (question == 0) {
+                Long selectedSaleId = salesTableModel.getSaleInRow(row).getId();
+                saleController.deleteSale(selectedSaleId);
+                updateList();
+            }
+        } catch (DAOException e) {
             JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_addNewSaleBtnActionPerformed
+    }//GEN-LAST:event_deleteSaleBtnActionPerformed
 
     private void openCreateSaleForm() throws SQLException, DAOException, InvalidInputException {
         CreateSales createSalesView = new CreateSales(this, this);
@@ -778,12 +811,13 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
     private javax.swing.JButton addNewSaleBtn;
     private javax.swing.JButton bestSellingJewelryBtn;
     private javax.swing.JButton deleteJewelBtn;
+    private javax.swing.JButton deleteSaleBtn;
     private javax.swing.JButton editJewelBtn;
-    private javax.swing.JButton editSaleBtn;
     private javax.swing.JPanel inventoryTab;
     private javax.swing.JPanel inventoryTab1;
     private javax.swing.JPanel inventoryTab2;
     private javax.swing.JTable inventoryTable;
+    private javax.swing.JButton invoiceBtn;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -792,6 +826,7 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -812,8 +847,8 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
     private javax.swing.JTable salesTable;
     private javax.swing.JButton topCustomersBtn;
     private javax.swing.JButton totalSalesBtn;
+    private javax.swing.JButton updateSaleBtn;
     private javax.swing.JButton updateSalesTableBtn;
-    private javax.swing.JButton updateSalesTableBtn1;
     private javax.swing.JButton updateStockBtn;
     // End of variables declaration//GEN-END:variables
 

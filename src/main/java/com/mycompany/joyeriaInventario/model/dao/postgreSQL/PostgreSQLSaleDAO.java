@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -168,6 +169,37 @@ public class PostgreSQLSaleDAO implements SaleDao {
            }
        } catch (SQLException e) {
            throw new DAOException("Error al intentar eliminar la orden de venta", e);
+       } finally {
+           if (preparedStatement == null) {
+               try {
+                   preparedStatement.close();
+               } catch (SQLException e) {
+                   throw new DAOException("Error al intentar cerrar la conexion", e);
+               }
+           }
+       }
+    }
+
+    @Override
+    public Long insertWithReturningId(Sale sale) throws DAOException {
+       PreparedStatement preparedStatement = null;
+        try {
+           preparedStatement = conn.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
+           preparedStatement.setLong(1, sale.getCustomerId());
+           preparedStatement.setDouble(2, sale.getTotal());
+           boolean wasCreated = preparedStatement.executeUpdate() > 0;
+           if (!wasCreated) {
+               throw new DAOException("La orden venta no pudo ser ingresada");
+           }
+           try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    return generatedKeys.getLong(1);
+                } else {
+                    throw new DAOException("No se pudo obtener el ID de la venta generada.");
+                }
+            }
+       } catch (SQLException e) {
+           throw new DAOException("Error al intentar crear la orden de venta", e);
        } finally {
            if (preparedStatement == null) {
                try {
