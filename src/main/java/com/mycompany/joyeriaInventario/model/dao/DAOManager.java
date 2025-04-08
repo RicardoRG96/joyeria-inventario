@@ -14,4 +14,8 @@ public interface DAOManager {
     
     InvoiceDAO getInvoiceDAO();
     
+    TopCustomerViewDAO getTopCustomerViewDAO();
+    
+    TopJewelViewDAO getTopJewelViewDAO();
+    
 }

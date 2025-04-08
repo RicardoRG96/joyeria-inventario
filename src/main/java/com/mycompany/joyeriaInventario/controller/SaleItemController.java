@@ -98,4 +98,20 @@ public class SaleItemController {
         manager.getSaleDAO().delete(id);
     }
     
+    public void deleteBySaleIdAndJewelId(Long saleId, Long jewelId) {
+        try {
+            manager.getSaleItemDAO().deleteBySaleIdAndJewelId(saleId, jewelId);
+        } catch (DAOException e) {
+            JOptionPane.showMessageDialog(null, "Error al intentar eliminar item de venta: " + e.getMessage());
+        }
+    }
+    
+    public void updateBySaleIdAndJewelId(Long saleId, Long jewelId) {
+        try {
+            manager.getSaleItemDAO().updateBySaleIdAndJewelId(saleId, jewelId);
+        } catch (DAOException e) {
+            JOptionPane.showMessageDialog(null, "Error al intentar actualizar item de venta: " + e.getMessage());
+        }
+    }
+    
 }

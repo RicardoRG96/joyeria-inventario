@@ -6,15 +6,19 @@ import com.mycompany.joyeriaInventario.controller.SaleController;
 import com.mycompany.joyeriaInventario.controller.SaleItemController;
 import com.mycompany.joyeriaInventario.exception.common.DAOException;
 import com.mycompany.joyeriaInventario.exception.common.InvalidInputException;
+import com.mycompany.joyeriaInventario.exception.customer.CustomerNotFoundException;
 import com.mycompany.joyeriaInventario.exception.jewel.InsufficientStockException;
 import com.mycompany.joyeriaInventario.model.dto.SaleDTO;
 import com.mycompany.joyeriaInventario.model.dto.SaleItemDTO;
 import com.mycompany.joyeriaInventario.model.entities.Customer;
 import com.mycompany.joyeriaInventario.model.entities.Jewel;
+import com.mycompany.joyeriaInventario.model.entities.Sale;
+import com.mycompany.joyeriaInventario.model.entities.SaleItem;
 import com.mycompany.joyeriaInventario.view.listener.UpdateableList;
 import com.mycompany.joyeriaInventario.view.tableModel.SaleItemTableEntity;
 import com.mycompany.joyeriaInventario.view.tableModel.SaleItemsTableModel;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.swing.JFrame;
@@ -30,26 +34,32 @@ public class CreateSales extends javax.swing.JFrame {
     
     private final SaleItemController saleItemController;
     
+    private final Sale sale;
+    
     private final SaleItemsTableModel saleItemsTableModel;
   
     private UpdateableList callback;
     
-    public CreateSales(JFrame parent, UpdateableList callback) throws SQLException {
+    public CreateSales(JFrame parent, Sale sale, UpdateableList callback) 
+            throws SQLException {
         this.saleController = new SaleController();
         this.customerController = new CustomerController();
         this.jewelController = new JewelController();
         this.saleItemController = new SaleItemController();
+        this.sale = sale;
         this.callback = callback;
         this.saleItemsTableModel = new SaleItemsTableModel();
         
         initComponents();
         saleItemsTable.setModel(saleItemsTableModel);
-        loadCustomers();
-        loadJewelry();
+        loadCustomersInComboBox();
+        loadJewelryInComboBox();
+        loadSaleItemsToEditInTable();
+        loadSaleItemDataInComboBoxAndTextField();
         totalAmountTxt.setText(String.valueOf(calculateSaleTotalAmount()));
     }
     
-    private void loadCustomers() {
+    private void loadCustomersInComboBox() {
         try {
             List<Customer> customers = customerController.getAllCustomers();
             List<String> customerNames = customers.stream()
@@ -59,11 +69,12 @@ public class CreateSales extends javax.swing.JFrame {
             customerNames.stream()
                     .forEach(customer -> customerSaleCbx.addItem(customer));
         } catch (DAOException | InvalidInputException e) {
-            JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, 
+                    "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     
-    private void loadJewelry() {
+    private void loadJewelryInComboBox() {
         try {
             List<Jewel> jewels = jewelController.getAllJewels();
             List<String> jewelsNames = jewels.stream()
@@ -73,8 +84,63 @@ public class CreateSales extends javax.swing.JFrame {
             jewelsNames.stream()
                     .forEach(jewel -> jewelSaleCbx.addItem(jewel));
         } catch (DAOException | InvalidInputException e) {
-            JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, 
+                    "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+    
+    private void loadSaleItemsToEditInTable() {
+        if (sale == null) {
+            return;
+        }
+        try {
+            Long saleSelectedOnHomeView = sale.getId();
+            List<SaleItem> saleItemsOfSaleSelectedOnHomeView = 
+                    saleItemController.getSaleItemBySaleId(saleSelectedOnHomeView);
+            
+            List<SaleItemTableEntity> saleItemsTableEntity = 
+                    convertToSaleItemTableEntity(saleItemsOfSaleSelectedOnHomeView);
+            saleItemsTableEntity.stream()
+                    .forEach(item -> saleItemsTableModel.addItems(item));
+            
+        } catch (DAOException e) {
+            JOptionPane.showMessageDialog(this, 
+                    "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }   
+    }
+    
+    private void loadSaleItemDataInComboBoxAndTextField() {
+        try {
+            if (sale != null) {
+                int row = 0;
+                SaleItemTableEntity selectedSaleItem = saleItemsTableModel.getSaleItemInRow(row);
+                String customerName = customerController.getCustomerName(sale.getCustomerId());
+                String jewelName = selectedSaleItem.getJewelName();
+                String quantity = selectedSaleItem.getQuantity();
+                customerSaleCbx.setSelectedItem(customerName);
+                jewelSaleCbx.setSelectedItem(jewelName);
+                quantitySaleTxt.setText(quantity);
+                saleItemsTable.setRowSelectionInterval(0, 0);
+                saleItemsTable.requestFocus();
+            }
+        } catch (DAOException | InvalidInputException | CustomerNotFoundException e) {
+            JOptionPane.showMessageDialog(this, 
+                    "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private List<SaleItemTableEntity> convertToSaleItemTableEntity(List<SaleItem> saleItems) throws DAOException {
+        List<SaleItemTableEntity> saleItemsTableEntity = new ArrayList<>();
+        for (SaleItem saleItem : saleItems) {
+            SaleItemTableEntity saleItemTableEntity = new SaleItemTableEntity();
+            String jewelName = jewelController.getJewelById(saleItem.getJewelId()).getName();
+            saleItemTableEntity.setJewelName(jewelName);
+            saleItemTableEntity.setQuantity(String.valueOf(saleItem.getQuantity()));
+            saleItemTableEntity.setPrice(String.valueOf(saleItem.getPrice()));
+            saleItemTableEntity.setSubtotal(String.valueOf(saleItem.getSubTotal()));
+            saleItemsTableEntity.add(saleItemTableEntity);
+        }
+        return saleItemsTableEntity;
     }
     
     private Double calculateSaleTotalAmount() {
@@ -222,6 +288,11 @@ public class CreateSales extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        saleItemsTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                saleItemsTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(saleItemsTable);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 710, 300));
@@ -335,15 +406,30 @@ public class CreateSales extends javax.swing.JFrame {
             saleItem.setQuantity(jewelQuantity);
             saleItem.setPrice(jewelPrice);
             saleItem.setSubtotal(subtotal);
-            if (isJewelAlreadyInOrder(jewelName)) {
+            if (
+                isJewelAlreadyInOrder(jewelName) &&
+                !wasRowSelected()
+            ) {
                 JOptionPane.showMessageDialog(this, "La joya seleccionada ya se encuentra en la orden");
+                return;
+            }
+            if (
+                isJewelAlreadyInOrder(jewelName) &&
+                wasRowSelected()
+            ) {
+                int row = saleItemsTable.getSelectedRow();
+                subtotal = String.valueOf(calculateSubtotal(price, Integer.valueOf(jewelQuantity)));
+                jewelController.checkAvailableStock(jewelName, Integer.parseInt(jewelQuantity));
+                saleItemsTableModel.updateItemQuantity(row, jewelQuantity);
+                saleItemsTableModel.updateItemSubtotal(row, subtotal);
                 return;
             }
             jewelController.checkAvailableStock(jewelName, Integer.parseInt(jewelQuantity));
             saleItemsTableModel.addItems(saleItem);
             
         } catch (DAOException e) {
-            JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, 
+                    "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         } catch (InsufficientStockException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -351,6 +437,10 @@ public class CreateSales extends javax.swing.JFrame {
     
     private Double calculateSubtotal(double price, int quantity) {
         return price * quantity;
+    }
+    
+    private boolean wasRowSelected() {
+        return saleItemsTable.getSelectedRow() >= 0;
     }
     
     private boolean isJewelAlreadyInOrder(String jewelName) {
@@ -361,28 +451,10 @@ public class CreateSales extends javax.swing.JFrame {
     }
    
     private void createSaleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createSaleBtnActionPerformed
-        save();
+        createSale();
     }//GEN-LAST:event_createSaleBtnActionPerformed
     
-    private void deleteSaleItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteSaleItemActionPerformed
-        deleteLineFromSaleItemsTable();
-        totalAmountTxt.setText(String.valueOf(calculateSaleTotalAmount()));
-    }//GEN-LAST:event_deleteSaleItemActionPerformed
-
-    private void totalAmountTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalAmountTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_totalAmountTxtActionPerformed
-
-    private void deleteLineFromSaleItemsTable() {
-        int row = saleItemsTable.getSelectedRow();
-        if (row == -1) {
-            JOptionPane.showMessageDialog(this, "Seleccione una linea.");
-            return;
-        }
-        saleItemsTableModel.removeItem(row);
-    }
-    
-    private void save() {
+    private void createSale() {
         String customerName = customerSaleCbx.getSelectedItem().toString();
         String jewelName = jewelSaleCbx.getSelectedItem().toString();
         String quantity = quantitySaleTxt.getText();
@@ -400,24 +472,41 @@ public class CreateSales extends javax.swing.JFrame {
             return;
         }
         
-        int question = JOptionPane.showConfirmDialog(null, "¿Está seguro que los datos están correctos?");
+        int question = 
+                JOptionPane.showConfirmDialog(null, "¿Está seguro que los datos están correctos?");
         if (question == 0) {
             try {
                 SaleDTO saleDTO = new SaleDTO();
                 saleDTO.setCustomerName(customerName);
                 saleDTO.setTotal(Double.parseDouble(total));
                 
-                Long cratedSaleId = saleController.createSaleWithReturningId(saleDTO);
-                saveSaleItems(cratedSaleId);
-                callback.updateList();
-                dispose();
+                // la vista 'Home' pasa un objeto 'sale' al constructor de esta vista
+                // cuando es para editar, pasa el objeto correspondiente al item seleccionado en la tabla ventas
+                // de la vista 'Home'. Cuando es para crear, pasa a sale como null.
+                // por eso aqui comprueba si es null, para poder llamar al metodo correcto del DAO (insert o update)
+                boolean isCreateSaleMode = sale == null;
+                if (isCreateSaleMode) {
+                    Long cratedSaleId = saleController.createSaleWithReturningId(saleDTO);
+                    saveCreatedSaleItems(cratedSaleId);
+                    callback.updateList();
+                    dispose();
+                } else {
+                    saleController.updateSale(sale.getId(), saleDTO);
+                    saveAddedSaleItems(sale.getId());
+                    saveDeletedSaleItems(sale.getId());
+                    updateRemainingSaleItems(sale.getId());
+                    callback.updateList();
+                    dispose();
+                }
+                
             } catch (DAOException e) {
-                JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, 
+                        "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
     
-    private void saveSaleItems(Long saleId) {
+    private void saveCreatedSaleItems(Long saleId) {
         List<SaleItemTableEntity> saleItemsFromTable = saleItemsTableModel.getSaleItems();
         saleItemsFromTable.stream()
                     .forEach(item -> {
@@ -429,13 +518,255 @@ public class CreateSales extends javax.swing.JFrame {
                         saleItemDTO.setSubtotal(Double.parseDouble(item.getSubtotal()));
                         try {
                             saleItemController.createSaleItem(saleItemDTO);
-                            jewelController.updateJewelStock(item.getJewelName(), Integer.parseInt(item.getQuantity()));
+                            jewelController.updateJewelStock(
+                                    item.getJewelName(), 
+                                    Integer.parseInt(item.getQuantity())
+                            );
                         } catch (DAOException e) {
-                            JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(this, 
+                                    "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                         } catch (InsufficientStockException e) {
-                            JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(this, 
+                                    e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                         }
                     });
+    }
+    
+    private void saveAddedSaleItems(Long saleId) {
+        try {
+            List<SaleItem> previousSaleItemsSavedInDB = saleItemController.getSaleItemBySaleId(saleId);
+            List<SaleItemTableEntity> saleItemsFromTable = saleItemsTableModel.getSaleItems();
+            List<SaleItemTableEntity> saleItemsToAdd = saleItemsToAddInSaleUpdate(
+                    previousSaleItemsSavedInDB, saleItemsFromTable);
+            if (saleItemsToAdd.isEmpty()) {
+                return;
+            }
+            saleItemsToAdd.stream()
+                        .forEach(item -> {  
+                            SaleItemDTO saleItemDTO = new SaleItemDTO();
+                            saleItemDTO.setSaleId(saleId);
+                            saleItemDTO.setJewelName(item.getJewelName());
+                            saleItemDTO.setQuantity(Integer.parseInt(item.getQuantity()));
+                            saleItemDTO.setPrice(Double.parseDouble(item.getPrice()));
+                            saleItemDTO.setSubtotal(Double.parseDouble(item.getSubtotal()));
+                            try {
+                                saleItemController.createSaleItem(saleItemDTO);
+                                jewelController.updateJewelStock(
+                                        item.getJewelName(), 
+                                        Integer.parseInt(item.getQuantity())
+                                );
+                            } catch (DAOException e) {
+                                JOptionPane.showMessageDialog(this, 
+                                        "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                            } catch (InsufficientStockException e) {
+                                JOptionPane.showMessageDialog(this, 
+                                        e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                            }
+                        });
+        } catch (DAOException e) {
+            JOptionPane.showMessageDialog(this, 
+                    "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private List<SaleItemTableEntity> saleItemsToAddInSaleUpdate(
+            List<SaleItem> saleItemsInDB,
+            List<SaleItemTableEntity> saleItemsFromTable
+    ) {
+        List<SaleItemTableEntity> result = new ArrayList<>();
+        try {
+            List<String> saleItemsNames = saleItemsNamesToAddInSaleUpdate(saleItemsInDB, saleItemsFromTable);
+        
+            for (SaleItemTableEntity saleItem : saleItemsFromTable) {
+                if (saleItemsNames.contains(saleItem.getJewelName())) {
+                    result.add(saleItem);
+                }
+            }
+        } catch (DAOException e) {
+            JOptionPane.showMessageDialog(this, 
+                    "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } 
+        return result;
+    }
+    
+    private List<String> saleItemsNamesToAddInSaleUpdate(
+            List<SaleItem> saleItemsInDB,
+            List<SaleItemTableEntity> saleItemsFromTable
+    )  throws DAOException 
+        {
+        List<String> result = new ArrayList<>();
+        List<String> saleItemsNamesInDB = new ArrayList<>();
+
+        for (SaleItem s : saleItemsInDB) {
+            Jewel jewel = jewelController.getJewelById(s.getJewelId());
+            String name = jewel.getName();
+            saleItemsNamesInDB.add(name);
+        }
+
+        List<String> saleItemsNamesFromTable = saleItemsFromTable.stream()
+                 .map(s -> s.getJewelName())
+                 .collect(Collectors.toList());
+
+         for (String nameSaleItemInTable : saleItemsNamesFromTable) {
+             if (!saleItemsNamesInDB.contains(nameSaleItemInTable)) {
+                 result.add(nameSaleItemInTable);
+             }
+         }
+        return result;
+    }
+    
+    private void saveDeletedSaleItems(Long saleId) {
+        try {
+            List<SaleItem> previousSaleItemsSavedInDB = saleItemController.getSaleItemBySaleId(saleId);
+            List<SaleItemTableEntity> saleItemsFromTable = saleItemsTableModel.getSaleItems();
+            List<SaleItemTableEntity> saleItemsToDelete = saleItemsToDeleteInSaleUpdate(
+                    previousSaleItemsSavedInDB, saleItemsFromTable);
+            if (saleItemsToDelete.isEmpty()) {
+                return;
+            }
+            saleItemsToDelete.stream()
+                        .forEach(item -> {  
+                            SaleItemDTO saleItemDTO = new SaleItemDTO();
+                            saleItemDTO.setSaleId(saleId);
+                            saleItemDTO.setJewelName(item.getJewelName());
+                            saleItemDTO.setQuantity(Integer.parseInt(item.getQuantity()));
+                            saleItemDTO.setPrice(Double.parseDouble(item.getPrice()));
+                            saleItemDTO.setSubtotal(Double.parseDouble(item.getSubtotal()));
+                            try {
+                                Long jewelId = jewelController.getJewelByName(item.getJewelName()).getId();
+                                saleItemController.deleteBySaleIdAndJewelId(saleId, jewelId);
+                                jewelController.updateJewelStock(
+                                        item.getJewelName(), 
+                                        Integer.parseInt(item.getQuantity())
+                                );
+                            } catch (DAOException e) {
+                                JOptionPane.showMessageDialog(this, 
+                                        "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                            } catch (InsufficientStockException e) {
+                                JOptionPane.showMessageDialog(this, 
+                                        e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                            }
+                        });
+        } catch (DAOException e) {
+            JOptionPane.showMessageDialog(this, 
+                    "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private List<SaleItemTableEntity> saleItemsToDeleteInSaleUpdate(
+            List<SaleItem> saleItemsInDB,
+            List<SaleItemTableEntity> saleItemsFromTable
+    ) {
+        List<SaleItemTableEntity> result = new ArrayList<>();
+        try {
+            List<String> saleItemsNames = saleItemsNamesToDeleteInSaleUpdate(saleItemsInDB, saleItemsFromTable);
+        
+            for (SaleItemTableEntity saleItem : saleItemsFromTable) {
+                if (saleItemsNames.contains(saleItem.getJewelName())) {
+                    result.add(saleItem);
+                }
+            }
+        } catch (DAOException e) {
+            JOptionPane.showMessageDialog(this, 
+                    "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } 
+        return result;
+    }
+    
+    private List<String> saleItemsNamesToDeleteInSaleUpdate(
+            List<SaleItem> saleItemsInDB,
+            List<SaleItemTableEntity> saleItemsFromTable
+    )  throws DAOException 
+        {
+        List<String> result = new ArrayList<>();
+        List<String> saleItemsNamesInDB = new ArrayList<>();
+
+        for (SaleItem s : saleItemsInDB) {
+            Jewel jewel = jewelController.getJewelById(s.getJewelId());
+            String name = jewel.getName();
+            saleItemsNamesInDB.add(name);
+        }
+
+        List<String> saleItemsNamesFromTable = saleItemsFromTable.stream()
+                 .map(s -> s.getJewelName())
+                 .collect(Collectors.toList());
+
+         for (String saleItemNameInDB : saleItemsNamesInDB) {
+             if (!saleItemsNamesFromTable.contains(saleItemNameInDB)) {
+                 result.add(saleItemNameInDB);
+             }
+         }
+        return result;
+    }
+    
+    private void updateRemainingSaleItems(Long saleId) {
+        List<SaleItemTableEntity> saleItemsFromTable = saleItemsTableModel.getSaleItems();
+
+        saleItemsFromTable.stream()
+                    .forEach(item -> {  
+                        SaleItemDTO saleItemDTO = new SaleItemDTO();
+                        saleItemDTO.setSaleId(saleId);
+                        saleItemDTO.setJewelName(item.getJewelName());
+                        saleItemDTO.setQuantity(Integer.parseInt(item.getQuantity()));
+                        saleItemDTO.setPrice(Double.parseDouble(item.getPrice()));
+                        saleItemDTO.setSubtotal(Double.parseDouble(item.getSubtotal()));
+                        try {
+                            Long jewelId = jewelController.getJewelByName(item.getJewelName()).getId();
+                            saleItemController.updateBySaleIdAndJewelId(saleId, jewelId);
+                            jewelController.updateJewelStock(
+                                    item.getJewelName(), 
+                                    Integer.parseInt(item.getQuantity())
+                            );
+                        } catch (DAOException e) {
+                            JOptionPane.showMessageDialog(this, 
+                                    "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                        } catch (InsufficientStockException e) {
+                            JOptionPane.showMessageDialog(this, 
+                                    e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    });
+    }
+    
+    private void deleteSaleItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteSaleItemActionPerformed
+        deleteLineFromSaleItemsTable();
+        totalAmountTxt.setText(String.valueOf(calculateSaleTotalAmount()));
+    }//GEN-LAST:event_deleteSaleItemActionPerformed
+
+    private void deleteLineFromSaleItemsTable() {
+        int row = saleItemsTable.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione una linea.");
+            return;
+        }
+        saleItemsTableModel.removeItem(row);
+    }
+    
+    private void totalAmountTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalAmountTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_totalAmountTxtActionPerformed
+
+    private void saleItemsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saleItemsTableMouseClicked
+        try {
+            setSelectedRowDataOnTextFields();
+        } catch (DAOException | InvalidInputException | CustomerNotFoundException e) {
+            JOptionPane.showMessageDialog(this, 
+                    "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } 
+    }//GEN-LAST:event_saleItemsTableMouseClicked
+
+    private void setSelectedRowDataOnTextFields() 
+            throws DAOException, InvalidInputException, CustomerNotFoundException {
+        boolean isEditingMode = sale != null;
+        if (isEditingMode) {
+            int row = saleItemsTable.getSelectedRow();
+            SaleItemTableEntity selectedSaleItem = saleItemsTableModel.getSaleItemInRow(row);
+            String customerName = customerController.getCustomerName(sale.getCustomerId());
+            String jewelName = selectedSaleItem.getJewelName();
+            String quantity = selectedSaleItem.getQuantity();
+            customerSaleCbx.setSelectedItem(customerName);
+            jewelSaleCbx.setSelectedItem(jewelName);
+            quantitySaleTxt.setText(quantity);
+        }
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

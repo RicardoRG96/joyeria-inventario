@@ -28,7 +28,13 @@ public class PostgreSQLSaleItemDAO implements SaleItemDAO {
     private final String UPDATE = 
             "UPDATE sale_items SET sale_id = ?, jewel_id = ?, quantity = ?, price = ?, subtotal = ? WHERE id = ?";
     
+    private final String UPDATE_BY_SALE_ID_AND_JEWEL_ID = 
+            "UPDATE sale_items SET sale_id = ?, jewel_id = ?, quantity = ?, price = ?, subtotal = ? WHERE sale_id = ? AND jewel_id = ?";
+    
     private final String DELETE = "DELETE FROM sale_items WHERE id = ?";
+    
+    private final String DELETE_BY_SALE_ID_AND_JEWEL_ID = 
+            "DELETE FROM sale_items WHERE sale_id = ? AND jewel_id = ?";
     
     private Connection conn;
 
@@ -244,6 +250,54 @@ public class PostgreSQLSaleItemDAO implements SaleItemDAO {
        try {
            preparedStatement = conn.prepareStatement(DELETE);
            preparedStatement.setLong(1, id);
+           boolean wasCreated = preparedStatement.executeUpdate() > 0;
+           if (!wasCreated) {
+               throw new DAOException("El item de la venta no pudo ser eliminado");
+           }
+       } catch (SQLException e) {
+           throw new DAOException("Error al intentar eliminar item de venta", e);
+       } finally {
+           if (preparedStatement == null) {
+               try {
+                   preparedStatement.close();
+               } catch (SQLException e) {
+                   throw new DAOException("Error al intentar cerrar la conexion", e);
+               }
+           }
+       }
+    }
+    
+    @Override
+    public void updateBySaleIdAndJewelId(Long saleId, Long jewelId) throws DAOException {
+         PreparedStatement preparedStatement = null;
+       try {
+           preparedStatement = conn.prepareStatement(UPDATE_BY_SALE_ID_AND_JEWEL_ID);
+           preparedStatement.setLong(1, saleId);
+           preparedStatement.setLong(2, jewelId);
+           boolean wasCreated = preparedStatement.executeUpdate() > 0;
+           if (!wasCreated) {
+               throw new DAOException("El item de la venta no pudo ser actualizado");
+           }
+       } catch (SQLException e) {
+           throw new DAOException("Error al intentar actualizar item de venta", e);
+       } finally {
+           if (preparedStatement == null) {
+               try {
+                   preparedStatement.close();
+               } catch (SQLException e) {
+                   throw new DAOException("Error al intentar cerrar la conexion", e);
+               }
+           }
+       }
+    }
+
+    @Override
+    public void deleteBySaleIdAndJewelId(Long saleId, Long jewelId) throws DAOException {
+        PreparedStatement preparedStatement = null;
+       try {
+           preparedStatement = conn.prepareStatement(DELETE_BY_SALE_ID_AND_JEWEL_ID);
+           preparedStatement.setLong(1, saleId);
+           preparedStatement.setLong(2, jewelId);
            boolean wasCreated = preparedStatement.executeUpdate() > 0;
            if (!wasCreated) {
                throw new DAOException("El item de la venta no pudo ser eliminado");

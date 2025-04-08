@@ -27,4 +27,8 @@ public interface SaleItemDAO extends DAO<SaleItem, Long> {
     @Override
     void delete(Long id) throws DAOException;
     
+    void updateBySaleIdAndJewelId(Long saleId, Long jewelId) throws DAOException;
+    
+    void deleteBySaleIdAndJewelId(Long saleId, Long jewelId) throws DAOException;
+    
 }

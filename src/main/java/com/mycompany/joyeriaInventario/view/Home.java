@@ -13,6 +13,8 @@ import com.mycompany.joyeriaInventario.model.entities.Sale;
 import com.mycompany.joyeriaInventario.view.jewel.CreateJewelView;
 import com.mycompany.joyeriaInventario.view.jewel.UpdateJewelView;
 import com.mycompany.joyeriaInventario.view.listener.UpdateableList;
+import com.mycompany.joyeriaInventario.view.reports.TopCustomersReport;
+import com.mycompany.joyeriaInventario.view.reports.TopJewerly;
 import com.mycompany.joyeriaInventario.view.sale.CreateSales;
 import com.mycompany.joyeriaInventario.view.tableModel.JewelryTableModel;
 import com.mycompany.joyeriaInventario.view.tableModel.SalesTableModel;
@@ -440,6 +442,11 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
         updateSaleBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/edit.png"))); // NOI18N
         updateSaleBtn.setBorder(null);
         updateSaleBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        updateSaleBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateSaleBtnActionPerformed(evt);
+            }
+        });
 
         jLabel13.setBackground(new java.awt.Color(248, 250, 252));
         jLabel13.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
@@ -587,6 +594,11 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
         totalSalesBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         totalSalesBtn.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         totalSalesBtn.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        totalSalesBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                totalSalesBtnActionPerformed(evt);
+            }
+        });
 
         bestSellingJewelryBtn.setBackground(new java.awt.Color(255, 255, 255));
         bestSellingJewelryBtn.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
@@ -597,6 +609,11 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
         bestSellingJewelryBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bestSellingJewelryBtn.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         bestSellingJewelryBtn.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        bestSellingJewelryBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bestSellingJewelryBtnActionPerformed(evt);
+            }
+        });
 
         topCustomersBtn.setBackground(new java.awt.Color(255, 255, 255));
         topCustomersBtn.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
@@ -607,6 +624,11 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
         topCustomersBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         topCustomersBtn.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         topCustomersBtn.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        topCustomersBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                topCustomersBtnActionPerformed(evt);
+            }
+        });
 
         jLabel11.setBackground(new java.awt.Color(248, 250, 252));
         jLabel11.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
@@ -743,8 +765,7 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
     }//GEN-LAST:event_deleteJewelBtnActionPerformed
 
     private void updateStockBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateStockBtnActionPerformed
-        updateList();
-        
+        updateList();  
     }//GEN-LAST:event_updateStockBtnActionPerformed
 
     private void deleteSaleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteSaleBtnActionPerformed
@@ -774,7 +795,59 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
     }//GEN-LAST:event_addNewSaleBtnActionPerformed
 
     private void openCreateSaleForm() throws SQLException, DAOException, InvalidInputException {
-        CreateSales createSalesView = new CreateSales(this, this);
+        CreateSales createSalesView = new CreateSales(this, null, this);
+        createSalesView.setVisible(true);
+        createSalesView.setLocationRelativeTo(null);
+    }
+    
+    private void updateSaleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateSaleBtnActionPerformed
+        try {
+            openUpdateSaleForm();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_updateSaleBtnActionPerformed
+
+    private void totalSalesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalSalesBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_totalSalesBtnActionPerformed
+
+    private void topCustomersBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_topCustomersBtnActionPerformed
+        try {
+            openTopCustomersReport();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_topCustomersBtnActionPerformed
+
+    private void openTopCustomersReport() throws SQLException {
+        TopCustomersReport topCustomersReport = new TopCustomersReport();
+        topCustomersReport.setVisible(true);
+        topCustomersReport.setLocationRelativeTo(null);
+    }
+    
+    private void bestSellingJewelryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bestSellingJewelryBtnActionPerformed
+        try {
+            openTopJewelsReport();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_bestSellingJewelryBtnActionPerformed
+    
+    private void openTopJewelsReport() throws SQLException {
+        TopJewerly topJewerlyReport = new TopJewerly();
+        topJewerlyReport.setVisible(true);
+        topJewerlyReport.setLocationRelativeTo(null);
+    }
+    
+    private void openUpdateSaleForm() throws SQLException {
+        int row = salesTable.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione una venta.");
+            return;
+        }
+        Sale selectedSale = salesTableModel.getSaleInRow(row);
+        CreateSales createSalesView = new CreateSales(this, selectedSale, this);
         createSalesView.setVisible(true);
         createSalesView.setLocationRelativeTo(null);
     }

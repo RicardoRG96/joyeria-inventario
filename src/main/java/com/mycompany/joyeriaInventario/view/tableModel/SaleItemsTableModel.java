@@ -24,6 +24,16 @@ public class SaleItemsTableModel extends AbstractTableModel {
         fireTableDataChanged();
     }
     
+    public void updateItemQuantity(int index, String quantity) {
+        this.saleItems.get(index).setQuantity(quantity);
+        fireTableDataChanged();
+    }
+    
+    public void updateItemSubtotal(int index, String subtotal) {
+        this.saleItems.get(index).setSubtotal(subtotal);
+        fireTableDataChanged();
+    }
+    
     @Override
     public int getRowCount() {
         return saleItems.size();
@@ -32,6 +42,11 @@ public class SaleItemsTableModel extends AbstractTableModel {
     @Override
     public int getColumnCount() {
         return columns.length;
+    }
+    
+    @Override
+    public String getColumnName(int column) {
+        return columns[column];
     }
 
     @Override
