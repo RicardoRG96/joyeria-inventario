@@ -3,7 +3,6 @@ package com.mycompany.joyeriaInventario.model.dao.postgreSQL;
 import com.mycompany.joyeriaInventario.exception.common.DAOException;
 import com.mycompany.joyeriaInventario.exception.common.InvalidInputException;
 import com.mycompany.joyeriaInventario.exception.customer.CustomerNotFoundException;
-import com.mycompany.joyeriaInventario.exception.sale.SaleNotFoundException;
 import com.mycompany.joyeriaInventario.model.dao.CustomerDAO;
 import com.mycompany.joyeriaInventario.model.entities.Customer;
 import java.sql.Connection;

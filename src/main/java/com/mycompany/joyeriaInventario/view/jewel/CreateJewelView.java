@@ -19,7 +19,7 @@ public class CreateJewelView extends javax.swing.JFrame {
     
     private final MaterialController materialController;
   
-    private UpdateableList callback;
+    private final UpdateableList callback;
     
     public CreateJewelView(JFrame parent, UpdateableList callback) 
             throws SQLException, DAOException, InvalidInputException {
@@ -29,6 +29,7 @@ public class CreateJewelView extends javax.swing.JFrame {
         
         initComponents();
         loadMaterials();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
     
     private void loadMaterials() {

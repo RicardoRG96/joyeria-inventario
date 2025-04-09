@@ -32,6 +32,7 @@ public class UpdateJewelView extends javax.swing.JFrame {
         this.callback = callback;
         loadMaterials();
         loadDataToUpdate();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
     
     private void loadMaterials() {

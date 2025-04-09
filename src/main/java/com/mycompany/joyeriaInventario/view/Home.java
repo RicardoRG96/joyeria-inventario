@@ -64,23 +64,11 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
         jLabel15 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        inventoryTab1 = new javax.swing.JPanel();
+        salesTab = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
-        inventoryTab2 = new javax.swing.JPanel();
+        reportsTab = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel7 = new javax.swing.JPanel();
-        addJewelBtn = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        updateStockBtn = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        deleteJewelBtn = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        editJewelBtn = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        inventoryTable = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
@@ -101,6 +89,19 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
         bestSellingJewelryBtn = new javax.swing.JButton();
         topCustomersBtn = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        addJewelBtn = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        updateStockBtn = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        deleteJewelBtn = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        editJewelBtn = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        inventoryTable = new javax.swing.JTable();
+        jLabel19 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -109,6 +110,12 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
         jPanel2.setBackground(new java.awt.Color(217, 234, 253));
 
         inventoryTab.setBackground(new java.awt.Color(217, 234, 253));
+        inventoryTab.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        inventoryTab.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                inventoryTabMouseClicked(evt);
+            }
+        });
 
         jLabel15.setFont(new java.awt.Font("SansSerif", 0, 22)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(49, 54, 63));
@@ -155,47 +162,59 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
-        inventoryTab1.setBackground(new java.awt.Color(217, 234, 253));
+        salesTab.setBackground(new java.awt.Color(217, 234, 253));
+        salesTab.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        salesTab.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                salesTabMouseClicked(evt);
+            }
+        });
 
         jLabel16.setFont(new java.awt.Font("SansSerif", 0, 22)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(49, 54, 63));
         jLabel16.setText("Ventas");
 
-        javax.swing.GroupLayout inventoryTab1Layout = new javax.swing.GroupLayout(inventoryTab1);
-        inventoryTab1.setLayout(inventoryTab1Layout);
-        inventoryTab1Layout.setHorizontalGroup(
-            inventoryTab1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(inventoryTab1Layout.createSequentialGroup()
+        javax.swing.GroupLayout salesTabLayout = new javax.swing.GroupLayout(salesTab);
+        salesTab.setLayout(salesTabLayout);
+        salesTabLayout.setHorizontalGroup(
+            salesTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(salesTabLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        inventoryTab1Layout.setVerticalGroup(
-            inventoryTab1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(inventoryTab1Layout.createSequentialGroup()
+        salesTabLayout.setVerticalGroup(
+            salesTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(salesTabLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        inventoryTab2.setBackground(new java.awt.Color(217, 234, 253));
+        reportsTab.setBackground(new java.awt.Color(217, 234, 253));
+        reportsTab.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        reportsTab.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                reportsTabMouseClicked(evt);
+            }
+        });
 
         jLabel17.setFont(new java.awt.Font("SansSerif", 0, 22)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(49, 54, 63));
         jLabel17.setText("Reportes");
 
-        javax.swing.GroupLayout inventoryTab2Layout = new javax.swing.GroupLayout(inventoryTab2);
-        inventoryTab2.setLayout(inventoryTab2Layout);
-        inventoryTab2Layout.setHorizontalGroup(
-            inventoryTab2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(inventoryTab2Layout.createSequentialGroup()
+        javax.swing.GroupLayout reportsTabLayout = new javax.swing.GroupLayout(reportsTab);
+        reportsTab.setLayout(reportsTabLayout);
+        reportsTabLayout.setHorizontalGroup(
+            reportsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(reportsTabLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        inventoryTab2Layout.setVerticalGroup(
-            inventoryTab2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(inventoryTab2Layout.createSequentialGroup()
+        reportsTabLayout.setVerticalGroup(
+            reportsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(reportsTabLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
                 .addContainerGap())
@@ -211,8 +230,8 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
                     .addComponent(inventoryTab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(inventoryTab1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(inventoryTab2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(salesTab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(reportsTab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -223,9 +242,9 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
                 .addGap(52, 52, 52)
                 .addComponent(inventoryTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(inventoryTab1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(salesTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(inventoryTab2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(reportsTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(115, Short.MAX_VALUE))
         );
 
@@ -233,176 +252,6 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
 
         jTabbedPane1.setBackground(new java.awt.Color(248, 250, 252));
         jTabbedPane1.setForeground(new java.awt.Color(34, 40, 49));
-
-        jPanel3.setBackground(new java.awt.Color(248, 250, 252));
-
-        jPanel7.setBackground(new java.awt.Color(248, 250, 252));
-
-        addJewelBtn.setBackground(new java.awt.Color(255, 255, 255));
-        addJewelBtn.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        addJewelBtn.setForeground(new java.awt.Color(34, 40, 49));
-        addJewelBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agregar.png"))); // NOI18N
-        addJewelBtn.setBorder(null);
-        addJewelBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        addJewelBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addJewelBtnActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(34, 40, 49));
-        jLabel5.setText("Agregar Joya");
-
-        updateStockBtn.setBackground(new java.awt.Color(255, 255, 255));
-        updateStockBtn.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        updateStockBtn.setForeground(new java.awt.Color(34, 40, 49));
-        updateStockBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/update.png"))); // NOI18N
-        updateStockBtn.setBorder(null);
-        updateStockBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        updateStockBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateStockBtnActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(34, 40, 49));
-        jLabel6.setText("Actualizar Stock");
-
-        deleteJewelBtn.setBackground(new java.awt.Color(255, 255, 255));
-        deleteJewelBtn.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        deleteJewelBtn.setForeground(new java.awt.Color(34, 40, 49));
-        deleteJewelBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/delete.png"))); // NOI18N
-        deleteJewelBtn.setBorder(null);
-        deleteJewelBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        deleteJewelBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteJewelBtnActionPerformed(evt);
-            }
-        });
-
-        jLabel7.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(34, 40, 49));
-        jLabel7.setText("Eliminar");
-
-        editJewelBtn.setBackground(new java.awt.Color(255, 255, 255));
-        editJewelBtn.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        editJewelBtn.setForeground(new java.awt.Color(34, 40, 49));
-        editJewelBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/edit.png"))); // NOI18N
-        editJewelBtn.setBorder(null);
-        editJewelBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        editJewelBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editJewelBtnActionPerformed(evt);
-            }
-        });
-
-        jLabel8.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(34, 40, 49));
-        jLabel8.setText("Editar Joya");
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(addJewelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
-                        .addComponent(editJewelBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(updateStockBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54)))
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(deleteJewelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(33, Short.MAX_VALUE))
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(deleteJewelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(updateStockBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addJewelBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editJewelBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel7)))
-        );
-
-        jScrollPane1.setBorder(null);
-        jScrollPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jScrollPane1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-
-        inventoryTable.setBackground(new java.awt.Color(248, 250, 252));
-        inventoryTable.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        inventoryTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "ID", "Nombre", "Material", "Peso", "Precio", "Stock"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(inventoryTable);
-        if (inventoryTable.getColumnModel().getColumnCount() > 0) {
-            inventoryTable.getColumnModel().getColumn(0).setPreferredWidth(10);
-            inventoryTable.getColumnModel().getColumn(1).setPreferredWidth(40);
-            inventoryTable.getColumnModel().getColumn(2).setPreferredWidth(35);
-            inventoryTable.getColumnModel().getColumn(3).setPreferredWidth(25);
-            inventoryTable.getColumnModel().getColumn(4).setPreferredWidth(25);
-            inventoryTable.getColumnModel().getColumn(5).setPreferredWidth(20);
-        }
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(107, 107, 107))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 20, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Inventario", jPanel3);
 
         jPanel4.setBackground(new java.awt.Color(248, 250, 252));
 
@@ -559,26 +408,26 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(98, 98, 98)
+                        .addGap(17, 17, 17)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(99, 99, 99)
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(24, Short.MAX_VALUE)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addGap(24, 24, 24))
         );
 
         jTabbedPane1.addTab("Ventas", jPanel4);
@@ -656,20 +505,205 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(28, 28, 28)
                 .addComponent(jLabel11)
-                .addGap(40, 40, 40)
+                .addGap(32, 32, 32)
                 .addComponent(totalSalesBtn)
-                .addGap(18, 18, 18)
+                .addGap(31, 31, 31)
                 .addComponent(bestSellingJewelryBtn)
-                .addGap(18, 18, 18)
+                .addGap(29, 29, 29)
                 .addComponent(topCustomersBtn)
-                .addContainerGap(284, Short.MAX_VALUE))
+                .addContainerGap(286, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Reportes", jPanel5);
 
-        jPanel1.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(187, 0, 600, 490));
+        jPanel3.setBackground(new java.awt.Color(248, 250, 252));
+
+        jPanel7.setBackground(new java.awt.Color(248, 250, 252));
+
+        addJewelBtn.setBackground(new java.awt.Color(255, 255, 255));
+        addJewelBtn.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        addJewelBtn.setForeground(new java.awt.Color(34, 40, 49));
+        addJewelBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agregar.png"))); // NOI18N
+        addJewelBtn.setBorder(null);
+        addJewelBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        addJewelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addJewelBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(34, 40, 49));
+        jLabel5.setText("Agregar Joya");
+
+        updateStockBtn.setBackground(new java.awt.Color(255, 255, 255));
+        updateStockBtn.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        updateStockBtn.setForeground(new java.awt.Color(34, 40, 49));
+        updateStockBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/update.png"))); // NOI18N
+        updateStockBtn.setBorder(null);
+        updateStockBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        updateStockBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateStockBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(34, 40, 49));
+        jLabel6.setText("Actualizar Stock");
+
+        deleteJewelBtn.setBackground(new java.awt.Color(255, 255, 255));
+        deleteJewelBtn.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        deleteJewelBtn.setForeground(new java.awt.Color(34, 40, 49));
+        deleteJewelBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/delete.png"))); // NOI18N
+        deleteJewelBtn.setBorder(null);
+        deleteJewelBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        deleteJewelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteJewelBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(34, 40, 49));
+        jLabel7.setText("Eliminar");
+
+        editJewelBtn.setBackground(new java.awt.Color(255, 255, 255));
+        editJewelBtn.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        editJewelBtn.setForeground(new java.awt.Color(34, 40, 49));
+        editJewelBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/edit.png"))); // NOI18N
+        editJewelBtn.setBorder(null);
+        editJewelBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        editJewelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editJewelBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(34, 40, 49));
+        jLabel8.setText("Editar Joya");
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(addJewelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addComponent(editJewelBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(updateStockBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(54, 54, 54)))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteJewelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(33, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(deleteJewelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateStockBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addJewelBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editJewelBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel7)))
+        );
+
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+
+        inventoryTable.setBackground(new java.awt.Color(248, 250, 252));
+        inventoryTable.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        inventoryTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Nombre", "Material", "Peso", "Precio", "Stock"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(inventoryTable);
+        if (inventoryTable.getColumnModel().getColumnCount() > 0) {
+            inventoryTable.getColumnModel().getColumn(0).setPreferredWidth(10);
+            inventoryTable.getColumnModel().getColumn(1).setPreferredWidth(40);
+            inventoryTable.getColumnModel().getColumn(2).setPreferredWidth(35);
+            inventoryTable.getColumnModel().getColumn(3).setPreferredWidth(25);
+            inventoryTable.getColumnModel().getColumn(4).setPreferredWidth(25);
+            inventoryTable.getColumnModel().getColumn(5).setPreferredWidth(20);
+        }
+
+        jLabel19.setBackground(new java.awt.Color(248, 250, 252));
+        jLabel19.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(49, 54, 63));
+        jLabel19.setText("Inventario");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap(46, Short.MAX_VALUE)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel19)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
+        );
+
+        jTabbedPane1.addTab("Inventario", jPanel3);
+
+        jPanel1.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(187, -40, 600, 530));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -844,6 +878,18 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
             JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_bestSellingJewelryBtnActionPerformed
+
+    private void salesTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salesTabMouseClicked
+        jTabbedPane1.setSelectedIndex(0);
+    }//GEN-LAST:event_salesTabMouseClicked
+
+    private void inventoryTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inventoryTabMouseClicked
+        jTabbedPane1.setSelectedIndex(2);
+    }//GEN-LAST:event_inventoryTabMouseClicked
+
+    private void reportsTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportsTabMouseClicked
+        jTabbedPane1.setSelectedIndex(1);
+    }//GEN-LAST:event_reportsTabMouseClicked
     
     private void openTopJewelsReport() throws SQLException {
         TopJewerly topJewerlyReport = new TopJewerly();
@@ -911,8 +957,6 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
     private javax.swing.JButton deleteSaleBtn;
     private javax.swing.JButton editJewelBtn;
     private javax.swing.JPanel inventoryTab;
-    private javax.swing.JPanel inventoryTab1;
-    private javax.swing.JPanel inventoryTab2;
     private javax.swing.JTable inventoryTable;
     private javax.swing.JButton invoiceBtn;
     private javax.swing.JLabel jLabel10;
@@ -924,6 +968,7 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -941,6 +986,8 @@ public class Home extends javax.swing.JFrame implements UpdateableList {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JPanel reportsTab;
+    private javax.swing.JPanel salesTab;
     private javax.swing.JTable salesTable;
     private javax.swing.JButton topCustomersBtn;
     private javax.swing.JButton totalSalesBtn;

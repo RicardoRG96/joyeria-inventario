@@ -38,7 +38,7 @@ public class CreateSales extends javax.swing.JFrame {
     
     private final SaleItemsTableModel saleItemsTableModel;
   
-    private UpdateableList callback;
+    private final UpdateableList callback;
     
     public CreateSales(JFrame parent, Sale sale, UpdateableList callback) 
             throws SQLException {
@@ -57,6 +57,7 @@ public class CreateSales extends javax.swing.JFrame {
         loadSaleItemsToEditInTable();
         loadSaleItemDataInComboBoxAndTextField();
         totalAmountTxt.setText(String.valueOf(calculateSaleTotalAmount()));
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
     
     private void loadCustomersInComboBox() {

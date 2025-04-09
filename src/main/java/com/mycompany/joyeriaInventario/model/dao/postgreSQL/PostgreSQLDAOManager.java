@@ -1,7 +1,5 @@
 package com.mycompany.joyeriaInventario.model.dao.postgreSQL;
 
-import com.mycompany.joyeriaInventario.exception.common.DAOException;
-import com.mycompany.joyeriaInventario.exception.common.InvalidInputException;
 import com.mycompany.joyeriaInventario.model.dao.CustomerDAO;
 import com.mycompany.joyeriaInventario.model.dao.DAOManager;
 import com.mycompany.joyeriaInventario.model.dao.InvoiceDAO;
@@ -11,13 +9,9 @@ import com.mycompany.joyeriaInventario.model.dao.SaleDao;
 import com.mycompany.joyeriaInventario.model.dao.SaleItemDAO;
 import com.mycompany.joyeriaInventario.model.dao.TopCustomerViewDAO;
 import com.mycompany.joyeriaInventario.model.dao.TopJewelViewDAO;
-import com.mycompany.joyeriaInventario.model.views.TopCustomerView;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.Month;
-import java.util.List;
 
 public class PostgreSQLDAOManager implements DAOManager {
     
@@ -109,12 +103,4 @@ public class PostgreSQLDAOManager implements DAOManager {
         return topJewelsView; 
     }
     
-    public static void main(String[] args) throws SQLException, DAOException {
-        DAOManager manager = new PostgreSQLDAOManager("localhost", "5432", "joyeria_inventario", "postgres", "ricardo1996");
-        List<TopCustomerView> topCustomers = manager
-                    .getTopCustomerViewDAO()
-                    .findByFilters(null, LocalDate.of(2025, 4, 1), LocalDate.of(2025, 4, 8));
-        System.out.println(topCustomers);
-    }
-
 }
